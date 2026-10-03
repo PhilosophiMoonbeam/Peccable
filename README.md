@@ -127,7 +127,7 @@ Pass an absolute skill-directory path to the pinned reference validator: a liter
 
 The documented whole-directory installation has been exercised in a configured directory containing spaces, including refusal to overwrite an existing installation. The installed `peccable` payload passed resource integrity, official validation, metadata reading, and discovery-prompt generation without repository maintenance files.
 
-[AGENTS.md](AGENTS.md) defines contribution and verification policy. [CHANGELOG.md](CHANGELOG.md) records this unreleased cutover. [SKILLS_SPEC.md](SKILLS_SPEC.md) is the retained specification reference.
+[AGENTS.md](AGENTS.md) defines contribution and verification policy. [CHANGELOG.md](CHANGELOG.md) records this unreleased cutover.
 
 ## Attribution and license
 
