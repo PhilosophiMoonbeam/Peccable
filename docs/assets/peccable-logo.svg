@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="logo-title logo-description">
   <title id="logo-title">Peccable</title>
-  <desc id="logo-description">An ink-colored, custom serif wordmark beside a lowercase p with its coral upper curve deliberately offset. Precision with room for imperfection.</desc>
+  <desc id="logo-description">A custom serif Peccable wordmark beginning with a stylized lowercase p whose coral upper curve is deliberately offset. Precision with room for imperfection.</desc>
   <!-- Original vector artwork. Letterforms are paths: no fonts or raster assets. -->
   <defs>
-    <path id="letter-p" fill-rule="evenodd" d="M2 39 31 31 34 33V43C42 35 51 31 62 31 87 31 101 49 101 74 101 101 84 119 61 119 49 119 40 115 34 109V139C34 146 37 149 47 150V156H1V150C10 149 13 146 13 139V53C13 46 10 44 2 44ZM34 57V93C38 105 46 110 55 110 70 110 78 97 78 76 78 54 70 41 55 41 46 41 39 46 34 57Z"/>
     <path id="letter-e" fill-rule="evenodd" d="M27 78C28 98 39 109 54 109 68 109 76 102 82 93L88 97C81 111 68 119 49 119 22 119 4 102 4 76 4 50 22 31 48 31 73 31 87 47 87 73V78ZM27 69H65C65 49 60 39 48 39 36 39 28 50 27 69Z"/>
     <path id="letter-c" d="M79 97 85 101C77 113 64 119 49 119 21 119 4 101 4 76 4 50 24 31 51 31 70 31 83 39 83 51 83 58 79 62 73 62 66 62 62 58 62 52 62 47 64 45 64 43 61 40 57 39 52 39 36 39 27 53 27 74 27 96 37 109 53 109 64 109 72 105 79 97Z"/>
     <path id="letter-a" fill-rule="evenodd" d="M53 66V56C53 44 48 39 39 39 33 39 27 41 24 45 27 47 28 50 28 53 28 59 24 63 18 63 12 63 8 59 8 53 8 40 24 31 43 31 65 31 75 40 75 58V100C75 108 78 111 87 107V113C83 117 78 119 72 119 62 119 56 114 54 107 45 116 37 119 27 119 12 119 3 110 3 97 3 79 21 71 53 66ZM53 74C32 77 25 84 25 94 25 104 29 109 37 109 43 109 48 106 53 100Z"/>
@@ -11,20 +10,21 @@
     <path id="letter-l" d="M1 8 32 0 34 2V102C34 109 37 111 46 112V117H1V112C10 111 13 109 13 102V23C13 16 9 13 1 13Z"/>
   </defs>
   <path fill="#F5F1E8" d="M0 0H1200V400H0Z"/>
-  <!-- The bowl's displaced quadrant is the only accent. -->
-  <g transform="translate(116 105)">
-    <path fill="#242421" d="M83 4C45 4 17 31 17 70V156C17 172 13 180 2 183V191H75V183C59 179 54 174 54 160V126C63 136 77 140 94 140 126 140 151 114 153 83H118C115 103 105 111 91 111 65 111 53 91 53 72 53 48 65 34 83 34Z"/>
-    <path fill="#DB533B" d="M94-4C137-4 167 27 167 69H133C133 47 119 30 94 30Z"/>
-  </g>
-  <!-- Optical spacing is intentional; repeated letters share exact outlines. -->
-  <g fill="#242421" transform="translate(326 132) scale(1.06)">
-    <use href="#letter-p"/>
-    <use href="#letter-e" x="106"/>
-    <use href="#letter-c" x="198"/>
-    <use href="#letter-c" x="287"/>
-    <use href="#letter-a" x="377"/>
-    <use href="#letter-b" x="469"/>
-    <use href="#letter-l" x="577"/>
-    <use href="#letter-e" x="628"/>
+  <!-- The stylized p is the first letter of the name, not a separate mark. -->
+  <g transform="translate(-120 -54) scale(1.2)">
+    <g transform="translate(216 160) scale(.7)">
+      <path fill="#242421" d="M83 4C45 4 17 31 17 70V156C17 172 13 180 2 183V191H75V183C59 179 54 174 54 160V126C63 136 77 140 94 140 126 140 151 114 153 83H118C115 103 105 111 91 111 65 111 53 91 53 72 53 48 65 34 83 34Z"/>
+      <path fill="#DB533B" d="M94-4C137-4 167 27 167 69H133C133 47 119 30 94 30Z"/>
+    </g>
+    <!-- Optical spacing is intentional; repeated letters share exact outlines. -->
+    <g fill="#242421" transform="translate(339 132) scale(1.06)">
+      <use href="#letter-e" x="0"/>
+      <use href="#letter-c" x="92"/>
+      <use href="#letter-c" x="181"/>
+      <use href="#letter-a" x="271"/>
+      <use href="#letter-b" x="363"/>
+      <use href="#letter-l" x="471"/>
+      <use href="#letter-e" x="522"/>
+    </g>
   </g>
 </svg>

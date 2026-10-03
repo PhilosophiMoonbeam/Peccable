@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/peccable-logo.png" alt="Peccable — a serif wordmark and a p monogram with a displaced coral segment" width="800">
+  <img src="docs/assets/peccable-logo.svg" alt="Peccable — a serif wordmark beginning with a stylized p and a displaced coral segment" width="800">
 </p>
 
 # Peccable — autonomous fork
