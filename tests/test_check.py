@@ -2,6 +2,7 @@
 
 import importlib.util
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -75,16 +76,43 @@ class ResourceTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
-    def test_default_directory_is_independent_of_working_directory(self):
-        # Copy just the maintainer script beside a temporary payload.
-        copied = self.root / "scripts" / "check.py"
+    def copy_maintainer_checker_with_root_decoy(self):
+        repo = self.base / "unrelated-checkout"
+        shutil.copytree(self.root, repo)
+        copied = repo / "scripts" / "check.py"
         copied.parent.mkdir()
         copied.write_bytes(CHECKER.read_bytes())
+        return repo, copied
+
+    def test_default_directory_is_independent_of_working_directory(self):
+        repo, copied = self.copy_maintainer_checker_with_root_decoy()
+        payload = repo / "skills" / "peccable"
+        shutil.copytree(self.root, payload)
         result = subprocess.run(
             [sys.executable, str(copied)], cwd=self.base,
             text=True, capture_output=True,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
+
+        # A valid obsolete root cannot supply a missing distribution resource.
+        (payload / "references" / "guide.md").unlink()
+        result = subprocess.run(
+            [sys.executable, str(copied)], cwd=self.base,
+            text=True, capture_output=True,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("references/guide.md: missing resource", result.stderr)
+
+    def test_default_directory_missing_despite_valid_root_decoy(self):
+        repo, copied = self.copy_maintainer_checker_with_root_decoy()
+        self.assertEqual(checker.check(repo), [])
+        result = subprocess.run(
+            [sys.executable, str(copied)], cwd=self.base,
+            text=True, capture_output=True,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("not a directory", result.stderr)
+        self.assertIn(str(repo / "skills" / "peccable"), result.stderr)
 
     def test_cli_failure_is_useful_and_nonzero(self):
         (self.root / "LICENSE").unlink()

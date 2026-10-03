@@ -1,6 +1,6 @@
 # Attribution and third-party notices
 
-This autonomous fork includes guidance derived from the following works. Attribution does not imply endorsement of the fork or its changes.
+Peccable is an autonomous fork that includes guidance derived from the following works. Attribution does not imply endorsement of the fork or its changes.
 
 ## Impeccable and frontend-design origins
 
@@ -8,7 +8,7 @@ Impeccable was created by [Paul Bakaus](https://www.paulbakaus.com).
 
 Copyright 2025 Paul Bakaus.
 
-The upstream Impeccable work is licensed under the Apache License, Version 2.0. The root [LICENSE](LICENSE) is preserved unchanged.
+The upstream Impeccable work is licensed under the Apache License, Version 2.0. The bundled [LICENSE](LICENSE) is preserved unchanged.
 
 Impeccable originated from Anthropic's [frontend-design skill](https://github.com/anthropics/skills/tree/main/skills/frontend-design). This fork preserves that origin attribution while adapting the guidance to autonomous, assignment-bounded use.
 

@@ -8,7 +8,7 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 
-DEFAULT_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_ROOT = Path(__file__).resolve().parent.parent / "skills" / "peccable"
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
 # Deliberately limited to ordinary Markdown links, images and link definitions.
 # Destinations may be angle-wrapped or contain one level of balanced parentheses.

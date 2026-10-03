@@ -2,21 +2,23 @@
 
 ## Unreleased
 
-This deliberately divergent fork replaces Impeccable's command-driven product with one autonomous Agent Skill named `impeccable`.
+Peccable is a deliberately divergent fork replacing upstream Impeccable's command-driven product with one autonomous Agent Skill named `peccable`.
 
 ### Changed
 
-- Root `SKILL.md` is the canonical entry point, with focused, demand-loaded references instead of generated provider replicas.
+- Renamed the project to Peccable and the skill to `peccable`; Impeccable remains the upstream project name.
+- Moved the canonical entry point to `skills/peccable/SKILL.md`, alongside focused, demand-loaded references, a bundled copy of the unchanged root license, and the attribution notice. The complete directory is authored distribution source, not a generated replica; there are no root skill aliases or notice duplicates.
+- Isolated the shipping source from repository-level skill discovery paths to avoid intentionally loading frontend guidance during skill maintenance. The standard does not mandate a repository layout, and harness discovery remains harness-specific.
 - The agent infers task context and chooses design interventions within the assignment. User-intent questions are reserved for unresolved material gaps; no command selection, initialization workshop, or mandatory product/design documents are required.
 - Design iteration follows acceptance criteria and evidence. Accessibility, responsiveness, functionality, and performance are integrated into ordinary frontend work; planning-only requests and existing coherent identity remain binding.
-- Installation is a direct copy of `SKILL.md`, `references/`, `LICENSE`, and `NOTICE.md` into a configured skills directory named `impeccable`, refusing to replace an existing destination silently. Harness discovery and activation remain harness-specific.
-- Maintenance uses a portable-resource checker for missing or escaping resources, isolated boundary regressions including Markdown code spans, and the pinned official Agent Skills validator with an absolute directory path. There is no runtime build or generation step.
+- Installation exclusively creates a configured skills directory's `peccable` destination, refuses an existing destination, and copies all of `skills/peccable/.`, including any future referenced scripts or assets. Root scripts, tests, specification, and maintenance documentation do not ship. Harness discovery and activation remain harness-specific.
+- Maintenance uses a portable-resource checker for missing or escaping resources, isolated boundary regressions including Markdown code spans, and the pinned official Agent Skills validator with the absolute `"$PWD/skills/peccable"` directory path. The checker defaults to the canonical payload independently of the working directory and accepts an optional installed-payload path without requiring repository maintenance files. There is no runtime build or generation step.
 
 ### Retained and adapted
 
 - Frontend craft across typography, color, layout, motion, interaction, content, reusable systems, performance, platform conventions, and quality practices.
 - Context-sensitive design judgment, adapted from command-specific guidance without preserving command menus, rigid aesthetic bans, or workshop dependencies.
-- The unchanged root license and skill specification, upstream Impeccable/Paul Bakaus and Anthropic frontend-design attribution, and the MIT license notice for ehmo's platform guidance.
+- The unchanged root license and skill specification, an identical license copy bundled for portability, upstream Impeccable/Paul Bakaus and Anthropic frontend-design attribution, and the MIT license notice for ehmo's platform guidance in `skills/peccable/NOTICE.md`.
 
 ### Removed
 

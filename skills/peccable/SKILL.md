@@ -1,10 +1,10 @@
 ---
-name: impeccable
+name: peccable
 description: "Use when designing, building, reviewing, or improving frontend interfaces: websites, landing pages, dashboards, product UI, native apps, components, forms, onboarding, and content surfaces. Infer the task from the request and project context, choose the highest-leverage scoped intervention, and implement and inspect it when authorized. Covers visual hierarchy, typography, color, layout, interaction, motion, accessibility, responsive behavior, UX copy, reusable systems, and performance. Also use for planning-only or read-only design work, preserving those boundaries."
 license: Apache-2.0
 ---
 
-# Impeccable
+# Peccable
 
 Make interfaces useful, distinctive, and complete. Work as an autonomous design partner, not a command router.
 An ordinary request to improve a surface authorizes ordinary implementation within its scope; do not ask which design tactic to use or request routine approval.
