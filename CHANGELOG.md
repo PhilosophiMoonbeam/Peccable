@@ -6,6 +6,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Corrected the repository guidelines by removing the accidental specification-retention requirement. Root and bundled license preservation requirements remain unchanged.
 - Reformatted the entry point and all eleven focused references in terse, complete Standard Technical English: shorter sentence-case headings, direct prose, and consistent instruction groups. Preserved guidance, examples, qualifications, technical thresholds, code snippets, reference loading, and authority boundaries; frontmatter, licenses, and attribution are unchanged.
 - Restored precision after auditing the terse rewrite against its parent: explicit acceptance and interaction-completion requirements, typeface evaluation, deliberate font-display choice, API-exposure scope, animation-independent content, and context-sensitive effect guidance.
 - Added a README SVG logo with custom path-based serif lettering. Its initial stylized p includes a deliberately offset coral segment and forms part of the name. The SVG is the sole logo asset; removed the superseded PNG and its generation prompt. Artwork lives with repository documentation, outside the installed skill payload.

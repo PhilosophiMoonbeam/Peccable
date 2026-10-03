@@ -2,7 +2,7 @@
 
 ## Source and scope
 
-Peccable is an autonomous, deliberately divergent fork of upstream Impeccable. The canonical installable source is `skills/peccable/`, containing `SKILL.md`, eleven focused files in `references/`, `LICENSE`, and `NOTICE.md`. The frontmatter name is `peccable`, matching the source and installation directory. `SKILLS_SPEC.md` is the retained repository specification reference; `scripts/check.py`, `tests/`, `.github/`, and root documentation are maintenance resources, not part of the installed payload. The current skill calls no scripts.
+Peccable is an autonomous, deliberately divergent fork of upstream Impeccable. The canonical installable source is `skills/peccable/`, containing `SKILL.md`, eleven focused files in `references/`, `LICENSE`, and `NOTICE.md`. The frontmatter name is `peccable`, matching the source and installation directory. `scripts/check.py`, `tests/`, `.github/`, and root documentation are maintenance resources, not part of the installed payload. The current skill calls no scripts.
 
 Edit the canonical payload sources directly, keeping every shipped resource inside `skills/peccable/`. This authored distribution directory is intentionally separate from repository-level `agents/skills/` and `.agents/skills/` discovery paths so maintenance does not intentionally auto-load our frontend skill; neither the standard nor this layout guarantees discovery behavior in every harness. There are no generators, runtime builds, provider replicas, adapters, command menus, aliases, root skill compatibility copies, or release packages to refresh. Do not restore them or introduce hidden project state, mandatory initialization, external service dependencies, or required product/design documents.
 
@@ -18,7 +18,7 @@ Respect planning-only requests, coherent existing identity, and explicit constra
 
 Prefer small edits to the canonical sources over new layers of abstraction. Preserve relevant craft while adapting obsolete orchestration; do not replace context-sensitive judgment with universal aesthetic bans. Update affected links, installation instructions, notices, and the `Unreleased` changelog when behavior or the payload changes. Do not invent a release or bump a version to document work that has not shipped.
 
-Preserve the root `LICENSE` and `SKILLS_SPEC.md` byte-for-byte unchanged. Bundle an identical license copy at `skills/peccable/LICENSE`, and retain upstream and third-party attribution in `skills/peccable/NOTICE.md`, including applicable license text; do not duplicate the notice at the root. Installation must exclusively create the configured skills directory's `peccable` destination, refuse existing destinations, and copy all of `skills/peccable/.`, including any future referenced scripts or assets, without copying repository maintenance files.
+Preserve the root `LICENSE` byte-for-byte unchanged. Bundle an identical license copy at `skills/peccable/LICENSE`, and retain upstream and third-party attribution in `skills/peccable/NOTICE.md`, including applicable license text; do not duplicate the notice at the root. Installation must exclusively create the configured skills directory's `peccable` destination, refuse existing destinations, and copy all of `skills/peccable/.`, including any future referenced scripts or assets, without copying repository maintenance files.
 
 ## Verification requirements
 
