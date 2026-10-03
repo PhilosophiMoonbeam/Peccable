@@ -1,35 +1,35 @@
 # Interaction and recovery
 
-Read when shaping a task flow, navigation, forms, onboarding, destructive actions, or difficult states. Design the path to a real outcome, not just its ideal screenshot.
+Read when designing task flows, navigation, forms, onboarding, destructive actions, or difficult states. Design for a real outcome, not just an ideal screenshot.
 
-## Start with the task topology
+## Task topology
 
 - Infer the user's job, experience level, urgency, and success condition from the request and existing product.
 - Map entry points, decisions, dependencies, destinations, exits, and return paths before changing screens.
 - Preserve authorized functionality and information architecture; simplification removes obstacles, not necessary capabilities.
-- Use a hierarchy for parent–child navigation, peer destinations for peer sections, and a sequence only when steps depend on each other.
+- Use hierarchical navigation for parent–child relationships, peer destinations for peer sections, and sequences only for dependent steps.
 - Keep location visible through a title, selected destination, breadcrumb, or step indicator appropriate to the surface.
-- Co-locate evidence and controls needed for a decision; avoid making users remember values from another screen.
+- Co-locate decision evidence and controls; do not require users to remember values from another screen.
 - Make the primary next action prominent at the current decision point without hiding useful alternatives.
-- Group related choices and disclose advanced options when relevant. There is no universal maximum number of options.
-- Remove redundant steps, competing emphasis, and containers that add no meaning; retain necessary domain complexity.
+- Group related choices and disclose advanced options when relevant; no universal option-count limit applies.
+- Remove redundant steps, competing emphasis, and meaningless containers; retain necessary domain complexity.
 
 ## Affordances and input
 
 - Prefer semantic links for destinations and buttons for actions; use established native controls in native applications.
 - Make enabled, disabled, selected, expanded, focused, pressed, and pending states distinguishable without color alone.
-- Keep labels and hit areas understandable without hover. Hover may enhance an already reachable action.
+- Make labels and hit areas understandable without hover; hover may enhance an already reachable action.
 - Give icon-only controls accessible names; ensure the name agrees with the visible label when one exists.
 - Provide a non-drag alternative for reordering, sliders, or other gesture-driven tasks when the gesture is not essential.
-- Support the keyboard model of the control, not just Tab: activation, arrow keys, selection, and dismissal as applicable.
+- Support each control's keyboard model beyond Tab: activation, arrow keys, selection, and dismissal as applicable.
 - Preserve a logical focus order and visible focus; avoid positive tab indices and keyboard traps.
 - Match touch target size and spacing to platform expectations; enlarge the hit area without overlapping nearby controls.
 - Use shortcuts for frequent expert tasks where useful, without replacing visible controls or hijacking standard shortcuts.
-- Do not make an entire clickable row contain ambiguous nested actions; separate targets and their outcomes clearly.
+- Avoid ambiguous nested actions inside clickable rows; clearly separate targets and outcomes.
 
-## Complete the state model
+## States and transitions
 
-For every data-bearing or mutating interaction, account for the applicable states and transitions:
+For every data-bearing or mutating interaction, cover applicable states and transitions:
 
 | State | User needs | Recovery or next transition |
 |---|---|---|
@@ -46,10 +46,10 @@ For every data-bearing or mutating interaction, account for the applicable state
 | Success | The completed outcome | Continue with authoritative state |
 
 - Keep useful content visible during refresh where appropriate; do not replace every update with a blank loading screen.
-- Distinguish initial load from pagination and background refresh; retain scroll position and selection when meaningful.
+- Distinguish initial load, pagination, and background refresh; retain scroll position and selection when meaningful.
 - Never show an error as an empty collection, or success before the operation actually succeeds.
 - Show determinate progress only when known; give time estimates only when supported by evidence.
-- Prevent duplicate mutation submissions; indicate pending state while keeping cancellation or navigation understandable.
+- Prevent duplicate mutation submissions; show pending state and keep cancellation or navigation understandable.
 - Treat expired authentication separately from insufficient permissions; preserve a safe return path and unsaved work where possible.
 - Handle out-of-order responses so stale searches or selections cannot overwrite newer results.
 - Use optimistic updates only when rollback and conflict handling are credible; show and recover from rejection.
@@ -58,14 +58,14 @@ For every data-bearing or mutating interaction, account for the applicable state
 
 ## Forms and destructive actions
 
-- Use persistent field labels, appropriate input types, autocomplete, and input modes; placeholders supply examples only.
+- Use persistent field labels, appropriate input types, autocomplete, and input modes; use placeholders only for examples.
 - Explain requirements before submission and mark required/optional fields consistently.
-- Validate at useful moments rather than punishing incomplete typing; client feedback does not replace server validation.
+- Validate at useful moments rather than penalizing incomplete typing; client feedback does not replace server validation.
 - Associate inline errors with fields, provide an error summary for long forms, and move focus purposefully after failure.
 - Preserve entered values, uploaded-work context, and the user's place after recoverable errors.
 - Keep destructive actions away from habitual primary targets and name the affected object and consequence.
-- Prefer undo for safely reversible changes; make its availability and duration honest.
-- For irreversible or high-impact changes, use a proportionate confirmation showing scope and explicit action labels.
+- Prefer undo for safely reversible changes; state its actual availability and duration.
+- For irreversible or high-impact changes, use proportionate confirmation with scope and explicit action labels.
 - Guard unsaved work when leaving would discard it; distinguish Save, Discard, and Cancel rather than vague confirmation.
 - A destructive UI is not authority to execute destructive data changes beyond the user's request.
 
@@ -80,11 +80,11 @@ For every data-bearing or mutating interaction, account for the applicable state
 - Allow page-axis scrolling across custom controls while recognizing intentional control-axis dragging.
 - Clean up listeners, timers, subscriptions, and obsolete requests when an interaction ends or its surface disappears.
 
-## First value and contextual learning
+## Onboarding and contextual learning
 
-- Teach the minimum needed to reach a useful real outcome; collect only necessary setup information up front.
-- Prefer working templates and contextual examples over a long passive tour; label demonstration data as examples.
-- Make optional education skippable, dismissible, and replayable; respect completion and dismissal for returning users.
+- Teach only what users need to reach a useful real outcome; collect only necessary setup information up front.
+- Prefer working templates and contextual examples to long passive tours; label demonstration data as examples.
+- Make optional education skippable, dismissible, and replayable; respect returning users' completion and dismissal.
 - Request permissions at the moment their purpose is clear, with an honest denial path.
 - Use a safe, clearly identified practice space for high-stakes learning rather than disguising practice as real work.
 
@@ -93,5 +93,5 @@ For every data-bearing or mutating interaction, account for the applicable state
 - Walk the main path and its cancellation, back, retry, denied-access, conflict, and interruption branches.
 - Check keyboard-only and screen-reader operation, including focus after navigation, errors, and dismissed dialogs.
 - Exercise double submission, slow/offline responses, stale results, empty data, and very large collections.
-- For custom controls, complete tap, drag, scroll-across, cancellation, and next-gesture recovery; a screenshot cannot prove these.
+- For custom controls, exercise tap, drag, scroll-across, cancellation, and next-gesture recovery; screenshots cannot prove these.
 - Confirm simplification preserves the task and that a returning user can bypass education without losing access.

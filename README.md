@@ -70,6 +70,8 @@ Iteration is bounded by the task's acceptance criteria and available evidence, r
 
 These are authored Markdown sources, not generated replicas or provider adapters. There are no required product/design documents or hidden project-state files. Existing project documents remain useful evidence when present.
 
+Guidance uses terse, complete Standard Technical English: concise sentence-case headings, direct instructions, parallel lists, and tables or code examples where useful. Formatting preserves design guidance, examples, qualifications, technical thresholds, and scope boundaries.
+
 `skills/peccable/` is the authored, installable distribution source, not a generated output. Its isolation from repository-level `agents/skills/` and `.agents/skills/` discovery paths avoids intentionally auto-loading our frontend skill while maintaining skills. The Agent Skills standard does not mandate a repository layout, and this placement cannot guarantee how every harness discovers or activates skills.
 
 ```text

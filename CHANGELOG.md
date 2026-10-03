@@ -6,6 +6,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Reformatted the entry point and all eleven focused references in terse, complete Standard Technical English: shorter sentence-case headings, direct prose, and consistent instruction groups. Preserved guidance, examples, qualifications, technical thresholds, code snippets, reference loading, and authority boundaries; frontmatter, licenses, and attribution are unchanged.
 - Added a README SVG logo with custom path-based serif lettering. Its initial stylized p includes a deliberately offset coral segment and forms part of the name. The original generated PNG is retained; artwork lives with repository documentation, outside the installed skill payload.
 - Renamed the project to Peccable and the skill to `peccable`; Impeccable remains the upstream project name.
 - Moved the canonical entry point to `skills/peccable/SKILL.md`, alongside focused, demand-loaded references, a bundled copy of the unchanged root license, and the attribution notice. The complete directory is authored distribution source, not a generated replica; there are no root skill aliases or notice duplicates.
