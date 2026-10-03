@@ -6,6 +6,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Added a README logo pairing an editorial serif wordmark with a deliberately offset coral segment in the monogram. The artwork lives with repository documentation, outside the installed skill payload.
 - Renamed the project to Peccable and the skill to `peccable`; Impeccable remains the upstream project name.
 - Moved the canonical entry point to `skills/peccable/SKILL.md`, alongside focused, demand-loaded references, a bundled copy of the unchanged root license, and the attribution notice. The complete directory is authored distribution source, not a generated replica; there are no root skill aliases or notice duplicates.
 - Isolated the shipping source from repository-level skill discovery paths to avoid intentionally loading frontend guidance during skill maintenance. The standard does not mandate a repository layout, and harness discovery remains harness-specific.

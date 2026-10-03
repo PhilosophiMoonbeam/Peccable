@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/peccable-logo.png" alt="Peccable — a serif wordmark and a p monogram with a displaced coral segment" width="800">
+</p>
+
 # Peccable — autonomous fork
 
 Peccable is a deliberately divergent fork of Impeccable—with a name that admits we can get things wrong. Upstream was created by Paul Bakaus and originally inspired by Anthropic's frontend-design skill. This fork retains frontend design craft while replacing the command-driven product and its runtime with **one portable, standards-compliant Agent Skill** named `peccable`.
