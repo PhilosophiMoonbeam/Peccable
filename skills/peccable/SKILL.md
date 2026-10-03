@@ -60,7 +60,7 @@ Without an identifiable assignment or target, ask for the missing intent; do not
 4. **Inspect real behavior.** Examine rendered desktop/mobile surfaces or relevant native device classes. Exercise the changed flow, keyboard paths, accessibility, and edge states.
 5. **Correct.** Fix observed material gaps, then reinspect affected behavior. Batch related corrections; a pass limit never excuses a known unresolved blocker.
 6. **Retain useful learning.** If an observed decision or pitfall will matter again, update an appropriate existing project convention or shared component within authorized scope. No mandatory sidecar or new context artifact.
-7. **Finish.** Stop when evidence supports the scoped outcome and relevant acceptance conditions, or report a concrete prerequisite preventing completion. Do not initiate unrelated improvements.
+7. **Finish.** Stop when the scoped outcome and relevant acceptance conditions are met with evidence, or report a concrete prerequisite preventing completion. Do not initiate unrelated improvements.
 
 Scale the loop to the task: a broken control needs a focused fix; a new flow needs coherent end-to-end design.
 Planning and review use evidence and decision steps, then deliver the requested artifact within their boundaries.

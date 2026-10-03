@@ -93,5 +93,5 @@ For every data-bearing or mutating interaction, cover applicable states and tran
 - Walk the main path and its cancellation, back, retry, denied-access, conflict, and interruption branches.
 - Check keyboard-only and screen-reader operation, including focus after navigation, errors, and dismissed dialogs.
 - Exercise double submission, slow/offline responses, stale results, empty data, and very large collections.
-- For custom controls, exercise tap, drag, scroll-across, cancellation, and next-gesture recovery; screenshots cannot prove these.
+- For custom controls, complete tap, drag, scroll-across, cancellation, and next-gesture recovery; screenshots cannot prove these.
 - Confirm simplification preserves the task and that a returning user can bypass education without losing access.

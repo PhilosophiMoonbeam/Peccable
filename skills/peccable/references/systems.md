@@ -50,7 +50,7 @@ Read when consolidating repeated UI, extracting tokens or components, extending 
 - Support appropriate content wrapping, localization, and text scaling; shared controls must not assume short English labels.
 - Include actual empty, loading, failure, and success behavior in the appropriate shared pattern.
 - Support class/style extension through existing conventions without requiring routine overrides of internals.
-- Do not expose implementation details when consumers need only a semantic option.
+- Avoid exposing internal implementation details as an API when consumers need only a semantic option.
 - Preserve stable identity and state when lists reorder or layouts change; reused UI must not unexpectedly discard user work.
 
 ## Migrate consumers without parallel conventions

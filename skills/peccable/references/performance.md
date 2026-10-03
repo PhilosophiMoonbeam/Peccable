@@ -58,7 +58,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Debounce expensive search where useful while keeping typing feedback immediate; prevent stale responses from replacing newer results.
 - Throttle repeated scroll work; use platform observation facilities where appropriate instead of continuous polling.
 - Split long tasks into interruptible work; use background computation when measured workload justifies its overhead.
-- Bound layout and paint areas for expensive filters, shadows, masks, or blur; do not ban meaningful effects.
+- Bound layout and paint areas for expensive filters, shadows, masks, or blur rather than banning meaningful effects outright.
 - Prefer transform/opacity for ordinary movement when suitable; compositor-friendly properties do not guarantee cheap animation.
 - Use layer promotion hints sparingly and only while useful; excessive layers consume memory.
 - Use containment or deferred offscreen rendering only where focus, sizing, search, printing, and accessible content remain intact.
@@ -87,7 +87,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 ## Checks and evidence
 
 - Compare equivalent cold and warm loads, interaction traces, large datasets, and constrained-network paths as relevant.
-- Check the complete task: keyboard, focus, screen readers, error/retry, search, and navigation.
+- Check that the complete task still works: keyboard, focus, screen readers, error/retry, search, and navigation.
 - Check for regressions in font coverage, layout stability, image quality, full text, and native text scaling.
 - Report observed before/after numbers, conditions, and the responsible change; distinguish perceived feedback from actual latency.
 - Name unmeasured areas, especially field percentiles, target hardware, native gestures, and production network behavior.

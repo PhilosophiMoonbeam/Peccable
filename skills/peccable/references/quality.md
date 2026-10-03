@@ -109,7 +109,7 @@ Exercise custom drag/slider/scroll controls with the relevant input method:
 ## Motion and performance in context
 
 - Check normal and reduced-motion settings. Preserve understandable state changes without forcing large movement, parallax, flashing, or motion-dependent content access.
-- Make essential content available before entrance sequences finish; transitions must not interfere with focus or reading.
+- Keep essential content available without an entrance sequence completing; transitions must not interfere with focus or reading.
 - Observe scroll, input responsiveness, loading, and layout stability in the affected flow.
 - When performance is the task or observed jank needs explanation, profile the relevant path before choosing a fix.
 - Do not claim speed from source inspection alone or add memoization, dependencies, or architecture without causal evidence.

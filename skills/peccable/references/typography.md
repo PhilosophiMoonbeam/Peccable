@@ -6,7 +6,7 @@ Preserve established families and the explicit brief. Local refinement does not 
 ## Choose type by role
 
 - For task-heavy interfaces, favor distinguishable characters, stable widths, clear labels, and a reliable range of weights.
-- For reading, assess paragraphs at the actual measure, not specimen headings.
+- For reading, assess the typeface in paragraphs at the actual measure, not specimen headings.
 - For expressive surfaces, give display type a specific voice while keeping supporting text effortless to read.
 - Familiar or system families can be appropriate. Distinctiveness comes from relationships to content, scale, composition, and detail, not obscurity alone.
 - Add a second family only for a role it performs better; pair complementary jobs, not collected styles.
@@ -66,7 +66,7 @@ body { font-family: "Product Sans", system-ui, sans-serif; }
 ```
 
 - Match the path and weight range to the actual asset; declare each static font's actual weight.
-- Use `swap` to keep fallback text available during loading. `optional` can avoid a late swap when retaining the fallback is acceptable; choose deliberately.
+- `swap` keeps fallback text available during loading. `optional` can avoid a late swap when retaining the fallback is acceptable; choose deliberately.
 - When reflow is disruptive, match fallback metrics with measured `size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override` values on a fallback face. Values depend on the chosen pair; never borrow percentages from an unrelated font example.
 - Preload only a critical font needed immediately; loading every weight competes with other content.
 
