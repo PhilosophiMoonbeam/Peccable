@@ -6,6 +6,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Recommended `npx skills add PhilosophiMoonbeam/Peccable` in the README for simpler installation; retained the exclusive whole-directory copy procedure as a manual alternative.
 - Corrected the repository guidelines by removing the accidental specification-retention requirement. Root and bundled license preservation requirements remain unchanged.
 - Reformatted the entry point and all eleven focused references in terse, complete Standard Technical English: shorter sentence-case headings, direct prose, and consistent instruction groups. Preserved guidance, examples, qualifications, technical thresholds, code snippets, reference loading, and authority boundaries; frontmatter, licenses, and attribution are unchanged.
 - Restored precision after auditing the terse rewrite against its parent: explicit acceptance and interaction-completion requirements, typeface evaluation, deliberate font-display choice, API-exposure scope, animation-independent content, and context-sensitive effect guidance.

@@ -10,6 +10,16 @@ The agent infers context from your task, repository, existing documentation, int
 
 ## Install
 
+Recommended: install with the [Skills CLI](https://github.com/vercel-labs/skills) using Node.js and npm:
+
+```sh
+npx skills add PhilosophiMoonbeam/Peccable
+```
+
+Follow the prompts to choose your agent and installation scope.
+
+### Manual installation
+
 Choose an Agent Skills-compatible harness and find its configured skills directory. Discovery, activation, and permissions depend on that harness; copying these files does **not** guarantee that every harness automatically loads them.
 
 From this repository's root, set `SKILLS_DIR` to that configured directory, then copy the entire authored distribution directory:
