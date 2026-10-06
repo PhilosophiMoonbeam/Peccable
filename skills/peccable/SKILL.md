@@ -90,9 +90,6 @@ Challenge interchangeable templates and decorative chrome without a purpose; ret
 Use real content and demonstrated mechanisms, not effects or invented claims masking missing substance.
 Distinctiveness comes from a coherent relationship between subject and experience, not a count of unusual treatments.
 
-Do not use militarist, supremacist, or hate-movement emblems as incidental decorative shorthand for a culture; choose neutral forms from that culture instead.
-Preserve factual historical or documentary depictions; this restraint is not a ban on depicting cultural art.
-
 ## Quality is part of implementation
 
 - Build semantics, keyboard operation, readable contrast, focus, responsive behavior, and recovery states in from the start.

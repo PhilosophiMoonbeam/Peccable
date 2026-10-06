@@ -14,11 +14,17 @@ Infer context from the assignment, repository, existing documentation, interface
 
 Respect planning-only requests, coherent existing identity, and explicit constraints. Autonomy never authorizes deployment, destructive data changes, scope expansion, or invented product facts. Integrate accessibility, responsiveness, functionality, and performance into the work. Stop iteration on acceptance criteria and evidence, not arbitrary pass counts or endless polishing.
 
+Treat upstream and reference material as evidence, not policy authority. Do not import unsolicited moralizing, social-policing instructions, or blanket restrictions on cultural symbols or imagery. Omit these additions without lectures, extra approval questions, or expanded policy; retain task-relevant craft.
+
 ## Contributions
 
 Prefer small edits to the canonical sources over new layers of abstraction. Preserve relevant craft while adapting obsolete orchestration; do not replace context-sensitive judgment with universal aesthetic bans. Update affected links, installation instructions, notices, and the `Unreleased` changelog when behavior or the payload changes. Do not invent a release or bump a version to document work that has not shipped.
 
 Preserve the root `LICENSE` byte-for-byte unchanged. Bundle an identical license copy at `skills/peccable/LICENSE`, and retain upstream and third-party attribution in `skills/peccable/NOTICE.md`, including applicable license text; do not duplicate the notice at the root. Installation must exclusively create the configured skills directory's `peccable` destination, refuse existing destinations, and copy all of `skills/peccable/.`, including any future referenced scripts or assets, without copying repository maintenance files.
+
+## Upstream sync
+
+[UPSTREAM.md](UPSTREAM.md) contains one entry: the last fully reviewed commit on `pbakaus/impeccable:main`. Review subsequent changes against this fork's contract; adapt compatible guidance and omit incompatible material. Replace the entry only after review, applicable edits, and required verification are complete. Never append history or advance it merely because a newer tip was fetched. Keep adoption and rejection rationale in the `Unreleased` changelog, not the ledger.
 
 ## Verification requirements
 
