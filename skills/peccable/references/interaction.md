@@ -73,7 +73,9 @@ For every data-bearing or mutating interaction, cover applicable states and tran
 
 - Use a dialog only for a focused interruption; inline editing or disclosure is often less disruptive.
 - Give modal dialogs an accessible name, sensible initial focus, contained keyboard navigation, and a clear exit.
-- Restore focus to the invoker or a sensible successor after dismissal; announce material updates without noisy repetition.
+- A native dialog opened with `showModal()` enters the top layer and makes content outside its subtree inert; a larger `z-index` cannot make outside controls usable.
+- Keep nested popovers and dialogs in the active modal's usable focus context. Prefer native behavior and existing component patterns; do not suppress events or weaken product focus containment to accommodate inspection controls.
+- After dismissal, restore meaningful focus within any remaining active modal, or to the invoker or a sensible successor when none remains; prevent competing focus traps from stealing input. Announce material updates without noisy repetition.
 - Keep dismissal consistent with the platform and task; guard data loss rather than silently disabling every escape path.
 - Track the initiating pointer for custom drags; a second pointer must not steal the gesture or cause a jump.
 - End drag state on cancellation, lost capture, release outside the control, or loss of window focus.
@@ -92,6 +94,8 @@ For every data-bearing or mutating interaction, cover applicable states and tran
 
 - Walk the main path and its cancellation, back, retry, denied-access, conflict, and interruption branches.
 - Check keyboard-only and screen-reader operation, including focus after navigation, errors, and dismissed dialogs.
+- Open, close, and reopen modals, including nested dialogs and popovers; confirm the topmost overlay is visible and usable by keyboard and touch while outside content remains inert where required.
+- Dismiss nested overlays and then their parent; check meaningful focus restoration at each step and ensure no stale focus trap steals input after closing or reopening.
 - Exercise double submission, slow/offline responses, stale results, empty data, and very large collections.
 - For custom controls, complete tap, drag, scroll-across, cancellation, and next-gesture recovery; screenshots cannot prove these.
 - Confirm simplification preserves the task and that a returning user can bypass education without losing access.

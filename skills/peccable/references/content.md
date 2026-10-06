@@ -25,6 +25,13 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, or
 - Do not invent failure causes, wait times, saving guarantees, privacy promises, or resolutions the implementation cannot know.
 - State uncertainty honestly: an unconfirmed payment or save is neither confirmed failure nor confirmed success.
 
+## Optional visual composition prompts
+
+- When a mockup or sketch would help and suitable tools are available, describe the surface in visitor reading order. Generation is optional.
+- Lead with the exact authorized headline and primary action, then one dominant compositional move. Describe supporting regions briefly with real content.
+- Request the actual interface surface, not an atmospheric poster, browser frame, or device presentation.
+- Inspect drafts for hierarchy, content fidelity, and fit with the established direction. A draft is not evidence of runtime behavior; reuse an accepted comp rather than regenerating it for variety.
+
 ## Actions, navigation, and help
 
 - Prefer a specific verb and object when the result is not obvious: "Save changes" rather than "Submit".

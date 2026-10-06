@@ -74,7 +74,11 @@ For open composition, choose a clear thesis from the audience, subject, and visi
 - Which one dominant visual or interaction move supports that path?
 - Can the direction carry real content, small screens, recovery states, and available assets?
 
-Consider alternatives internally only to resolve real uncertainty. Choose a viable approach yourself; do not stage a concept tournament.
+Draw inspiration from the audience's graphic and screen traditions, publications, identity systems, notation, places, and rituals as well as physical tools and materials.
+Compare genuinely distinct inspirations internally only when open composition needs alternatives, judging audience relevance and task clarity. A sketch or probe may help resolve that uncertainty; neither is required.
+Borrow system discipline—hierarchy, rhythm, grouping, or navigation—rather than another direction's costume or copied motifs. Carry one coherent system through the surface.
+Choose a viable approach yourself; do not stage a concept tournament or reopen settled direction for variety.
+
 Expressive marketing, efficient tools, comfortable reading, and artifact-led exploration need different balances of attention and restraint.
 Typography, color, imagery, density, and motion should support that balance, not compete as independent effects.
 

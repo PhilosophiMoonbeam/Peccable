@@ -90,6 +90,9 @@ Challenge interchangeable templates and decorative chrome without a purpose; ret
 Use real content and demonstrated mechanisms, not effects or invented claims masking missing substance.
 Distinctiveness comes from a coherent relationship between subject and experience, not a count of unusual treatments.
 
+Do not use militarist, supremacist, or hate-movement emblems as incidental decorative shorthand for a culture; choose neutral forms from that culture instead.
+Preserve factual historical or documentary depictions; this restraint is not a ban on depicting cultural art.
+
 ## Quality is part of implementation
 
 - Build semantics, keyboard operation, readable contrast, focus, responsive behavior, and recovery states in from the start.
@@ -117,7 +120,7 @@ Read only the references needed for the current decision. Each is self-contained
 | [Layout](references/layout.md) | Resolving composition, grouping, density, spacing, responsiveness, or overflow. |
 | [Motion](references/motion.md) | Designing transitions, expressive movement, feedback, or reduced-motion behavior. |
 | [Interaction](references/interaction.md) | Building controls, navigation, forms, focus behavior, gestures, or robust interaction states. |
-| [Content](references/content.md) | Improving information structure, labels, errors, onboarding, proof, or truthful illustrative content. |
+| [Content](references/content.md) | Improving information structure, labels, errors, onboarding, proof, or truthful illustrative content, or considering optional visual composition prompts. |
 | [Systems](references/systems.md) | Reusing or evolving tokens/components and retaining design decisions that help later tasks. |
 | [Performance](references/performance.md) | Diagnosing slow UI, jank, asset delivery, expensive effects, or unnecessary work. |
 | [Platforms](references/platforms.md) | Adapting to web/native conventions, device classes, input methods, or platform accessibility. |

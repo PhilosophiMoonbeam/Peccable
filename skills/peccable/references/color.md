@@ -38,7 +38,7 @@ A role defines a color's purpose; a primitive defines its value. Themes can rema
 - For a more assertive target, amplify an existing identity palette relationship and quiet neighboring elements within the authorized scope.
 - For a calmer target, remove redundant colored surfaces or reduce decorative chroma before lowering text or control contrast.
 - Neutral gray is legitimate. Tint neutrals for cohesion, not because every palette supposedly requires a tint.
-- Tune supporting text against its actual colored surface. A hue-related foreground may cohere better than generic gray, but readability decides.
+- Tune supporting text against its actual colored surface. Near-black or dark neutral ink can work on chromatic surfaces; a hue-related foreground may cohere better, but readability decides.
 - Gradients, glass, shadows, and strong accents can be legitimate materials. Keep them only when they clarify depth, content, state, or an intentional visual world.
 - A glow is not automatically elevation; depth should communicate what sits above what and why.
 
@@ -74,7 +74,7 @@ At standard CSS units, large-text thresholds are 24px regular or about 18.67px b
 
 ## Inspect evidence
 
-- List critical foreground/background pairs, measured ratios, and states; do not assert accessibility from appearance.
+- List critical foreground/background pairs, measured composited contrast ratios, and states; do not assert accessibility from appearance or reject colors by gray-named classes, shade labels, or lightness alone.
 - For text over photography or gradients, inspect the weakest area behind the text and provide a stable backing if needed.
 - In grayscale or with common color-vision deficiencies simulated, confirm action, selection, status, and data meaning remain recoverable.
 - Inspect empty, dense, error, and loading states for accents that change meaning or overpower the intended task.

@@ -16,7 +16,13 @@ Distinguish evidence types:
 - **Measured evidence:** a contrast calculation, accessibility-tree observation, profile, or other tool result with its scope identified.
 - **Inference:** a plausible, unobserved conclusion. Label it; do not present it as fact.
 
-Existing screenshots or visual-regression fixtures can establish incumbent appearance when their route, state, theme, and freshness are known. Compare them with current components, assets, and tokens; stale captures cannot resolve conflicts with the implementation. A design comp expresses intent, not proof of a matching running interface.
+Qualify measurements inferred only from source. An unresolved CSS custom property leaves the affected measurement unknown; do not substitute a guessed value and report it as a measurement or defect.
+
+Existing screenshots or visual-regression fixtures can establish incumbent appearance when their route, state, theme, and freshness are known. Compare them with current components, assets, and tokens; stale captures cannot resolve conflicts with the implementation.
+
+When the assignment designates a supplied or accepted design comp as the visual target, treat it as fixed until new user direction authorizes a changed target. A mood image, inspiration, or evidence of an incumbent interface does not become a mandated target merely because it was supplied. Preserve the designated reference as supplied; correct the build or assets rather than edit or regenerate the reference to make a mismatch pass. Carry out authorized work, including authorized target changes, without an extra approval step or introducing a hidden target copy or new state. A comp expresses intent, not proof of a matching running interface.
+
+An accepted viewport settles its intentional local visual choices; do not reopen them for routine approval. Those choices remain subordinate to required behavior and later explicit user direction. Acceptance does not establish other viewports, the rest of the page, other states, accessibility, or functionality. Dropped content or a changed build requires fresh evidence.
 
 ## Inspect rendered output
 
@@ -25,11 +31,13 @@ Existing screenshots or visual-regression fixtures can establish incumbent appea
 - Desktop browser rendering is not native-app evidence; a resized viewport is layout evidence, not a physical-device test.
 
 Use real content, loaded fonts/assets, and representative data. Inspect the opening composition and the rest of the scoped surface.
-Before trusting a capture:
-- Confirm the route/screen, viewport, theme, and state are the intended ones.
+Before trusting inspection or a capture:
+- Confirm the route/screen, viewport, theme, and state are the intended ones, and that the intended interface is displayed rather than an incidental bot challenge, login screen, network failure, or server error. Requested error or denied states remain legitimate inspection targets.
+- If the intended interface is unavailable, report the missing observation, not a clean result.
 - Allow loading and entrance motion to settle; separately inspect intentional loading or motion states when relevant.
 - Open the capture and check for blank regions, missing assets, clipping, wrong scroll position, and mislabeled screenshots.
 - Capture the whole scoped surface or its important regions, not only the flattering first viewport.
+- Exclude temporary inspector overlays and chrome from product captures.
 
 Name runtime and context precisely: for example, “Chromium at 1440 and 390 CSS pixels; pointer and synthesized touch,” not “tested on desktop and iPhone.” Emulated Chromium touch proves neither Safari behavior nor real-device ergonomics; name untested contexts. A screenshot cannot prove submission, dragging, keyboard operation, screen-reader behavior, or data persistence.
 
@@ -118,6 +126,7 @@ Exercise custom drag/slider/scroll controls with the relevant input method:
 
 - Prioritize blocked tasks, inaccessible controls, false information, data-loss risks, and broken layouts over ornamental defects.
 - Fix causes, batch related corrections, then reinspect affected behavior and regression risks.
+- Final evidence must cover current frontend files, assets, fonts, data, and dependencies. After later edits to any of these, refresh affected captures and measurements and re-exercise the affected path before handoff; unaffected checks need not restart.
 - Continue until scoped requirements hold or a concrete unavailable prerequisite blocks them; a fixed pass count is not a completion criterion.
 - Stop speculative visual tweaking once evidence supports the requested outcome.
 - For read-only review, deliver prioritized findings, not fixes. Include location, evidence, user impact, a concrete remedy, and important strengths to preserve.

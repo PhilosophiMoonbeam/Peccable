@@ -32,6 +32,8 @@ Restraint means fewer competing weights and clearer spacing, not equal sizes for
 
 - Around 1rem is a useful web body starting point, not a universal minimum for every dense label or a substitute for testing readability.
 - Start prose around 45–75 characters per line. Adjust for the face, language, audience, and content; short UI labels are not prose.
+- Assess reading measure from the text and line breaks actually rendered with loaded fonts, CSS whitespace handling, and script shaping.
+- Raw DOM text can include hidden content, style/script source, and indentation that never appears. Code units are not necessarily visible characters; source counts alone do not establish reading measure.
 - Wider lines usually need more leading. Start body line height around 1.4–1.6; inspect actual paragraphs rather than applying one ratio everywhere.
 - Display headings can use tighter leading, but accents, descenders, and wrapped lines must not collide or clip.
 - Adjust tracking for the face and role. Tighten large display text only while letter shapes remain clear; do not copy one negative tracking value across the interface.
