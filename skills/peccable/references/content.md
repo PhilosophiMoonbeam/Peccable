@@ -29,7 +29,7 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, or
 
 - When a mockup or sketch would help and suitable tools are available, describe the surface in visitor reading order. Generation is optional.
 - Lead with the exact authorized headline and primary action, then one dominant compositional move. Describe supporting regions briefly with real content.
-- Request the actual interface surface, not an atmospheric poster, browser frame, or device presentation.
+- For interface inspection, depict the actual surface without presentation framing. Use atmospheric, browser-framed, or device-presented compositions when they serve the requested deliverable.
 - Inspect drafts for hierarchy, content fidelity, and fit with the established direction. A draft is not evidence of runtime behavior; reuse an accepted comp rather than regenerating it for variety.
 
 ## Actions, navigation, and help

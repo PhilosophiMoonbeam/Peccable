@@ -6,6 +6,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Qualified interface-framing and platform-control defaults: permit presentation formats suited to the requested deliverable, custom controls for brand identity or visual exploration, and Cupertino-inspired Android styling that preserves Android behavior.
 - Added a single-entry upstream sync ledger and a maintenance rule to advance it only after completed review and verification. Upstream and reference material cannot introduce unsolicited moralizing, social policing, or blanket cultural-symbol restrictions.
 - Removed the imported emblem-specific guidance; retained context-led design judgment and explicit user/project constraints.
 - Recommended `npx skills add PhilosophiMoonbeam/Peccable` in the README for simpler installation; retained the exclusive whole-directory copy procedure as a manual alternative.
