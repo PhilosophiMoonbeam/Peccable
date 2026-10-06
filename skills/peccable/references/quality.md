@@ -29,6 +29,8 @@ An accepted viewport settles its intentional local visual choices; do not reopen
 - Map each scoped reference region to layout and component relationships: content width, alignment, type scale and wrapping, spacing, control dimensions, image crop, and repeated treatments. Account for image scaling; a pixel in a resized capture is not automatically a CSS pixel.
 - Use legible reference copy when it is authorized content. Resolve unclear text against available content sources; generated names, testimonials, prices, and metrics are not factual authority.
 - Compare corresponding reference and rendered regions at matching viewport, theme, and state. Correct structural discrepancies before local decoration; resolve unseen responsive and interaction behavior from project requirements rather than treating a static image as a complete specification.
+- Compare media with its designated target for subject, placement, scale, palette, and visual treatment. Correct drift against scoped requirements rather than treating a decodable file as a fidelity pass.
+- For transparent media, verify real alpha rather than a painted checkerboard. Inspect composites on light and dark grounds: intended solid paint stays opaque, interior holes reveal the background, and fine edges avoid halos. Check glass and soft shadows for convincing translucency; partial alpha alone does not establish it.
 
 ## Inspect rendered output
 
@@ -42,6 +44,8 @@ Before trusting inspection or a capture:
 - If the intended interface is unavailable, report the missing observation, not a clean result.
 - Allow loading and entrance motion to settle; separately inspect intentional loading or motion states when relevant.
 - Open the capture and check for blank regions, missing assets, clipping, wrong scroll position, and mislabeled screenshots.
+- Verify required assets appear in their intended roles; source references or concealed pixels do not establish rendered presence.
+- Judge visibility against the authorized treatment, including subtle art, cropping, gradients, SVG, and low opacity. A visual target alone does not mandate a particular asset.
 - Capture the whole scoped surface or its important regions, not only the flattering first viewport.
 - Exclude temporary inspector overlays and chrome from product captures.
 

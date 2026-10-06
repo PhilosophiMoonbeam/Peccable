@@ -41,12 +41,13 @@ If sections become interchangeable without their words, reconsider whether the s
 
 - Reuse the existing spacing scale. Add a role only when a repeated relationship cannot be expressed clearly with what exists.
 - Use `gap` for sibling relationships and padding for a container's internal boundary; avoid stacked margins that obscure the source of an interval.
-- Alternate compact groups with generous transitions where the content benefits. Equal spacing everywhere erases hierarchy.
+- Vary density, scale, imagery, and whitespace across the scoped surface where content benefits. Keep the design coherent; avoid fixed alternation patterns and uniform spacing that obscures hierarchy.
 - Keep repeated controls and comparable records consistent so their differences remain easy to scan.
 - In comparison groups, align matching titles, prices, feature groups, and actions where that helps scanning. Use shared, content-sized rows rather than fixed-height spacers that fail with localized or enlarged text.
 - Bound wide reading regions and workspaces; a large display does not require stretching every line or panel edge to edge.
 - Give display text, prose, and media separate width constraints when their jobs differ; a comfortable paragraph measure need not restrict a headline or image.
 - Keep the target's rhythm related to its neighbors without changing those neighbors merely to justify a local refinement.
+- End the page with a clear conclusion or relevant next action.
 
 ## Adapt composition to content
 
@@ -79,6 +80,7 @@ Use the project's spacing token and a content-appropriate minimum. `auto-fit` ex
 - Do not substitute a decorative gradient, placeholder chart, or unrelated stock scene for what the visitor needs to understand.
 - Choose crop, aspect ratio, and scale to preserve the subject and its relationship to text; inspect every responsive crop.
 - When an effect needs the subject's organic edge, use an actual cut-out or image-derived matte, not an arbitrary geometric mask.
+- Separate foreground, frame, and background when they must vary independently for responsive placement, motion, or changing content. A frame opening should reveal the intended layer behind it, not a baked-in view that conflicts with that behavior.
 - Use geometry for diagrams and shapes whose structure conveys meaning.
 - If the needed asset is unavailable, state the gap; do not present a decorative substitute as evidence.
 

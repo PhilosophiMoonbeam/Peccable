@@ -81,14 +81,24 @@ Draw inspiration from the audience's graphic and screen traditions, publications
 Compare genuinely distinct inspirations internally only when open composition needs alternatives, judging audience relevance and task clarity. A sketch or probe may help resolve that uncertainty; neither is required.
 Borrow system discipline—hierarchy, rhythm, grouping, or navigation—rather than another direction's costume or copied motifs. Carry one coherent system through the surface.
 Choose a viable approach yourself; do not stage a concept tournament or reopen settled direction for variety.
+Execute the settled direction at its authorized scope and fidelity; do not replace it with a generic design because no user is present.
+Change direction only when requirements or evidence justify it. Keep unresolved intent or authority blocked.
 
-Expressive marketing, efficient tools, comfortable reading, and artifact-led exploration need different balances of attention and restraint.
-Typography, color, imagery, density, and motion should support that balance, not compete as independent effects.
+Match expression to the job of each surface:
+- **Working tools:** prioritize familiar navigation, controls, task areas, and states. Tie filters to their data and keep charts and tables readable. Use type, palette, density, and notation for identity without obscuring operation.
+- **Reading surfaces:** express identity through page framing and wayfinding; keep the reading column legible and uncluttered. Use the actual opening and demanding content, including code, tables, or diagrams, rather than ideal short samples.
+- **Expressive surfaces:** integrate usable navigation, text, and primary actions into the composition. Implement required search, booking, or purchase behavior; painted controls or decorative links cannot replace it.
+
+Borrow an instrument's or fictional interface's notation when it clarifies real information; do not imply capabilities with fake gauges, prompts, or switches.
+Custom controls and strong styling remain valid when the brief supports them and their operation is clear and accessible. Typography, color, imagery, density, and motion serve the surface's job rather than competing as independent effects.
 
 ## Implement a complete scoped result
 
 - Use existing components and framework patterns where they fit. Apply the improvement across relevant instances and states; do not leave half the surface in a second system.
 - Confirm installed dependencies and versions before using their APIs or changing framework configuration; do not replace the project's stack merely for visual convenience.
+- Implement required interactive techniques with the supported stack, relevant input methods, states, and accessible alternatives. Static visual imitations do not satisfy required behavior.
+- Distinctiveness alone does not require effects, canvas, or new dependencies.
+- If a required capability is unavailable, report the exact prerequisite rather than substitute a static image.
 - Retain semantic structure, real data contracts, navigation, platform affordances, and accessible operation.
 - Use actual content; stress the design with realistic short, typical, and long values.
 - Do not invent product facts, capabilities, data contracts, or integrations to make the design appear finished.

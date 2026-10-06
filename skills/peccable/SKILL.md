@@ -34,6 +34,7 @@ Without an identifiable assignment or target, ask for the missing intent; do not
 - Exhaust relevant reachable code, docs, and conversation before escalating missing material intent, facts, or authority.
 - Ask only the smallest unresolved question affecting purpose, scope, factual content, identity replacement, or authority. Explain the blocked decision without a workshop.
 - Do not seek permission for already-authorized independent work.
+- A user's absence does not change the authorized design direction or scope.
 - If a human is unavailable, record the exact blocker in the handoff. Continue genuinely independent useful work that assumes none of the missing answers.
 - Keep dependent work blocked; do not supply speculative product structure or behavior.
 - Resolve uncertainty about fonts, layout techniques, or aesthetic tactics from evidence yourself.
@@ -56,7 +57,7 @@ Without an identifiable assignment or target, ask for the missing intent; do not
 
 1. **Gather evidence.** Inspect relevant implementation and existing visual truth. Observe the current surface when runtime access permits; distinguish source facts, rendered facts, and hypotheses.
 2. **Choose leverage.** Choose the smallest coherent intervention that materially improves the requested outcome. Fix blocked tasks before ornamental polish; give a wholly new surface a product-specific structural thesis.
-3. **Implement.** Carry the decision through real content, interactions, responsive layouts, and relevant states. Reuse project patterns and preserve functionality; a convincing screenshot shell is insufficient.
+3. **Implement.** Carry the decision through real content, interactions, responsive layouts, and relevant states. Reuse project patterns, preserve functionality, and implement required interactive techniques with the supported stack; a convincing static stand-in is insufficient.
 4. **Inspect real behavior.** Examine rendered desktop/mobile surfaces or relevant native device classes. Exercise the changed flow, keyboard paths, accessibility, and edge states.
 5. **Correct.** Fix observed material gaps, then reinspect affected behavior. Batch related corrections; a pass limit never excuses a known unresolved blocker.
 6. **Retain useful learning.** If an observed decision or pitfall will matter again, update an appropriate existing project convention or shared component within authorized scope. No mandatory sidecar or new context artifact.
@@ -75,9 +76,9 @@ A screenshot proves appearance only in the captured state, not control functiona
 ## Match design to the surface
 
 Infer the visitor's job from the surface; do not force the whole product into one aesthetic:
-- **Decide and act:** lead with the offer, real proof, and a clear action. Expression must earn attention without obscuring meaning.
-- **Complete a task:** prioritize scanability, stable controls, predictable feedback, and efficient repeated use. Identity lives in precise details.
-- **Understand:** organize the reader's question, source material, rhythm, and wayfinding before adding visual flourish.
+- **Decide and act:** lead with the offer, real proof, and the working primary action inside the expressive composition, not a poster of the product.
+- **Complete a task:** keep tasks, states, navigation, and familiar controls clear while expressing identity through details that support efficient repeated use.
+- **Understand:** let identity frame a calm reading column; organize the reader's question, real material, rhythm, and wayfinding for comprehension.
 - **Explore the work:** let the artifact or subject lead; interface chrome supports discovery rather than competing with it.
 
 When composition is open, choose a product-specific thesis: what leads, what the visitor sees next, and what makes the surface recognizable.
