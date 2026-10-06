@@ -35,6 +35,7 @@ If sections become interchangeable without their words, reconsider whether the s
 - Use nested containers for real parent/child relationships; remove layers that merely repeat padding and decoration.
 - Use eyebrows, section numbers, and metrics for orientation, sequence, or evidence, not obligatory template decoration.
 - Use depth to explain layers or state. Give borders, shadows, and radii coherent roles rather than accumulating component defaults.
+- For concentric rounded enclosures, derive the inner radius from the outer radius minus the intervening inset, floored at zero. Unrelated controls can retain their own role-based radii.
 
 ## Maintain rhythm as content changes
 
@@ -42,7 +43,9 @@ If sections become interchangeable without their words, reconsider whether the s
 - Use `gap` for sibling relationships and padding for a container's internal boundary; avoid stacked margins that obscure the source of an interval.
 - Alternate compact groups with generous transitions where the content benefits. Equal spacing everywhere erases hierarchy.
 - Keep repeated controls and comparable records consistent so their differences remain easy to scan.
+- In comparison groups, align matching titles, prices, feature groups, and actions where that helps scanning. Use shared, content-sized rows rather than fixed-height spacers that fail with localized or enlarged text.
 - Bound wide reading regions and workspaces; a large display does not require stretching every line or panel edge to edge.
+- Give display text, prose, and media separate width constraints when their jobs differ; a comfortable paragraph measure need not restrict a headline or image.
 - Keep the target's rhythm related to its neighbors without changing those neighbors merely to justify a local refinement.
 
 ## Adapt composition to content
@@ -65,6 +68,7 @@ Use the project's spacing token and a content-appropriate minimum. `auto-fit` ex
 
 - Reflow or collapse around task priority. Do not hide essential content merely because it is difficult to fit.
 - Preserve meaningful DOM and keyboard order when columns stack; visual reordering must not create a contradictory interaction path.
+- Reconsider desktop spans, overlaps, and transforms when columns stack; reset those that would create stray tracks, clipped content, or conflicting touch targets.
 - Check intermediate widths, where layouts often fail before the narrowest breakpoint.
 - Make sticky headers, overlays, and safe-area handling preserve access to content and focused controls.
 - Keep visible marks and their interactive areas distinct when needed: a small icon does not justify a tiny touch target.

@@ -6,6 +6,8 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Adapted complementary Taste Skill guidance into the existing references: redesign dependency preservation, reference-to-code measurement, optional media-layer briefs, asset and brandmark consistency, optical typography, contextual material and layout geometry, keyboard bypass, and motion lifecycle/performance safeguards.
+- Added Leonxlnx's Taste Skill attribution and complete MIT license text to the bundled notice; updated README attribution. The root and bundled Apache licenses remain unchanged.
 - Qualified interface-framing and platform-control defaults: permit presentation formats suited to the requested deliverable, custom controls for brand identity or visual exploration, and Cupertino-inspired Android styling that preserves Android behavior.
 - Added a single-entry upstream sync ledger and a maintenance rule to advance it only after completed review and verification. Upstream and reference material cannot introduce unsolicited moralizing, social policing, or blanket cultural-symbol restrictions.
 - Removed the imported emblem-specific guidance; retained context-led design judgment and explicit user/project constraints.
@@ -22,6 +24,12 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 - Installation exclusively creates a configured skills directory's `peccable` destination, refuses an existing destination, and copies all of `skills/peccable/.`, including any future referenced scripts or assets. Root scripts, tests, specification, and maintenance documentation do not ship. Harness discovery and activation remain harness-specific.
 - Maintenance uses a portable-resource checker for missing or escaping resources, isolated boundary regressions including Markdown code spans, and the pinned official Agent Skills validator with the absolute `"$PWD/skills/peccable"` directory path. The checker defaults to the canonical payload independently of the working directory and accepts an optional installed-payload path without requiring repository maintenance files. There is no runtime build or generation step.
 
+### Reference review
+
+- Reviewed all 15 documents under `skills/` in [Leonxlnx/taste-skill at ce26fc25](https://github.com/Leonxlnx/taste-skill/tree/ce26fc25c0e5e8cab638f883de62d9a86ee5e45b/skills). Classified 530 unique heading sections after excluding three duplicates, then compared flagged candidates with the canonical guidance before adapting missing craft.
+- Retained context-sensitive details from the taste, redesign, soft, brutalist, image-to-code, image-generation, and brandkit documents. Rewrote them as concise, provider-neutral additions to the eleven existing focused references; no new runtime, required artifact, or reference-loading chain.
+- Omitted mandatory workshops, dials, randomization and simulated execution, image-first/regeneration rules, style catalogs and universal bans, forced animation, framework/provider defaults, hidden design state, fabricated realism, and partial-output continuation protocols. Existing guidance already covers most compatible content; classification labels were not adoption decisions.
+
 ### Upstream review
 
 - Reviewed `pbakaus/impeccable` from [e103efe7](https://github.com/pbakaus/impeccable/commit/e103efe779e2dd01274dabae83531fef00bf2563) through [ca6ca49f](https://github.com/pbakaus/impeccable/commit/ca6ca49f6a74e2e23adb955fb3801f4aa6426f3d), fetched 2026-10-06: [full baseline-to-tip comparison](https://github.com/pbakaus/impeccable/compare/e103efe779e2dd01274dabae83531fef00bf2563...ca6ca49f6a74e2e23adb955fb3801f4aa6426f3d). Adapted transferable guidance to autonomous, assignment-bounded work rather than importing upstream orchestration.
@@ -37,7 +45,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 - Frontend craft across typography, color, layout, motion, interaction, content, reusable systems, performance, platform conventions, and quality practices.
 - Context-sensitive design judgment, adapted from command-specific guidance without preserving command menus, rigid aesthetic bans, or workshop dependencies.
-- The unchanged root license, an identical license copy bundled for portability, upstream Impeccable/Paul Bakaus and Anthropic frontend-design attribution, and the MIT license notice for ehmo's platform guidance in `skills/peccable/NOTICE.md`.
+- The unchanged root license, an identical license copy bundled for portability, upstream Impeccable/Paul Bakaus and Anthropic frontend-design attribution, and MIT license notices for ehmo's platform guidance and Leonxlnx's Taste Skill collection in `skills/peccable/NOTICE.md`.
 
 ### Removed
 

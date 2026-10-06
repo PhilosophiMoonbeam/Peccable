@@ -23,6 +23,7 @@ Read when designing task flows, navigation, forms, onboarding, destructive actio
 - Provide a non-drag alternative for reordering, sliders, or other gesture-driven tasks when the gesture is not essential.
 - Support each control's keyboard model beyond Tab: activation, arrow keys, selection, and dismissal as applicable.
 - Preserve a logical focus order and visible focus; avoid positive tab indices and keyboard traps.
+- On web surfaces with repeated navigation, provide a keyboard bypass to a real main-content target that can receive focus.
 - Match touch target size and spacing to platform expectations; enlarge the hit area without overlapping nearby controls.
 - Use shortcuts for frequent expert tasks where useful, without replacing visible controls or hijacking standard shortcuts.
 - Avoid ambiguous nested actions inside clickable rows; clearly separate targets and outcomes.
@@ -73,6 +74,7 @@ For every data-bearing or mutating interaction, cover applicable states and tran
 
 - Use a dialog only for a focused interruption; inline editing or disclosure is often less disruptive.
 - Give modal dialogs an accessible name, sensible initial focus, contained keyboard navigation, and a clear exit.
+- Use coherent layer roles for sticky chrome, popovers, dialogs, and tooltips; resolve stacking contexts rather than escalating arbitrary `z-index` values.
 - A native dialog opened with `showModal()` enters the top layer and makes content outside its subtree inert; a larger `z-index` cannot make outside controls usable.
 - Keep nested popovers and dialogs in the active modal's usable focus context. Prefer native behavior and existing component patterns; do not suppress events or weaken product focus containment to accommodate inspection controls.
 - After dismissal, restore meaningful focus within any remaining active modal, or to the invoker or a sensible successor when none remains; prevent competing focus traps from stealing input. Announce material updates without noisy repetition.

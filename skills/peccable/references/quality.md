@@ -24,6 +24,12 @@ When the assignment designates a supplied or accepted design comp as the visual 
 
 An accepted viewport settles its intentional local visual choices; do not reopen them for routine approval. Those choices remain subordinate to required behavior and later explicit user direction. Acceptance does not establish other viewports, the rest of the page, other states, accessibility, or functionality. Dropped content or a changed build requires fresh evidence.
 
+## Translate designated references
+
+- Map each scoped reference region to layout and component relationships: content width, alignment, type scale and wrapping, spacing, control dimensions, image crop, and repeated treatments. Account for image scaling; a pixel in a resized capture is not automatically a CSS pixel.
+- Use legible reference copy when it is authorized content. Resolve unclear text against available content sources; generated names, testimonials, prices, and metrics are not factual authority.
+- Compare corresponding reference and rendered regions at matching viewport, theme, and state. Correct structural discrepancies before local decoration; resolve unseen responsive and interaction behavior from project requirements rather than treating a static image as a complete specification.
+
 ## Inspect rendered output
 
 - For web work, inspect the current surface at representative desktop and mobile widths, including the user's reported width and content-driven breakpoints implicated by the change.

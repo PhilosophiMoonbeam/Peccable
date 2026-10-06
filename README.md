@@ -141,4 +141,4 @@ The documented whole-directory installation has been exercised in a configured d
 
 ## Attribution and license
 
-Upstream Impeccable was created by [Paul Bakaus](https://www.paulbakaus.com), with origins in Anthropic's [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design). The root [LICENSE](LICENSE) remains unchanged, with an identical [bundled copy](skills/peccable/LICENSE) for portable installations. [NOTICE.md](skills/peccable/NOTICE.md) preserves upstream attribution and the MIT notice for platform guidance adapted from ehmo's platform-design-skills.
+Upstream Impeccable was created by [Paul Bakaus](https://www.paulbakaus.com), with origins in Anthropic's [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design). The root [LICENSE](LICENSE) remains unchanged, with an identical [bundled copy](skills/peccable/LICENSE) for portable installations. [NOTICE.md](skills/peccable/NOTICE.md) preserves upstream attribution and the MIT notices for guidance adapted from ehmo's platform-design-skills and Leonxlnx's Taste Skill collection.

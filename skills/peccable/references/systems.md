@@ -9,6 +9,9 @@ Read when consolidating repeated UI, extracting tokens or components, extending 
 - Treat existing documentation as evidence; resolve conflicts against the intended current system, not stale prose.
 - Follow the project's directory structure, naming, imports/exports, styling approach, and component conventions.
 - Prefer the incumbent system for refinement. Do not rename scales, replace icon sets, or add a theme layer merely for tidiness.
+- Use supplied, licensed, or original assets. Borrow reference rhythm and treatment rather than unrelated identity; reuse distinctive marks, slogans, or visual assets when the task and rights permit.
+- Keep related photographs, illustrations, and icons coherent in treatment, palette, lighting, and framing where applicable; vary subjects and composition without accidental identity drift.
+- When brandmark changes are authorized, check recognition and balance at actual use sizes and across required backgrounds and variants; preserve established marks otherwise.
 - Distinguish intentional variants from accidental drift; similar pixels do not always imply the same component intent.
 - Without a shared system, choose the smallest structure consistent with the repository and current scope.
 - This guidance requires no special context document, generated sidecar, private service, or external engine.

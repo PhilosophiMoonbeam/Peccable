@@ -28,6 +28,7 @@ Read when adapting to viewport sizes, input methods, device classes, or web/nati
 - For web touch, aim for comfortable hit areas around 44 CSS pixels where practical; accessibility standards include minimum-size/spacing exceptions, not a universal native size.
 - Keep body and form text readable; `1rem`/`16px` is a useful baseline, and sub-`16px` inputs can trigger focus zoom in iOS Safari.
 - Account for browser chrome, safe-area insets, sticky controls, and the on-screen keyboard; focused fields and errors remain reachable.
+- Use minimum heights for viewport-filling sections that must accommodate growing content; choose stable or dynamic viewport sizing for the intended browser-chrome behavior, not a universal unit.
 - Use responsive images for density and width, and alternate crops only when needed to preserve the subject and composition.
 - Exercise custom sliders/drags with scrolling and cancellation; resized screenshots do not prove working touch interaction.
 

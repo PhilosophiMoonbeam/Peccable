@@ -35,8 +35,9 @@ Restraint means fewer competing weights and clearer spacing, not equal sizes for
 - Assess reading measure from the text and line breaks actually rendered with loaded fonts, CSS whitespace handling, and script shaping.
 - Raw DOM text can include hidden content, style/script source, and indentation that never appears. Code units are not necessarily visible characters; source counts alone do not establish reading measure.
 - Wider lines usually need more leading. Start body line height around 1.4–1.6; inspect actual paragraphs rather than applying one ratio everywhere.
-- Display headings can use tighter leading, but accents, descenders, and wrapped lines must not collide or clip.
+- Display headings can use tighter leading, but accents, descenders, and wrapped lines must not collide or clip. Inspect italic overhangs at wrapper edges too; allow clearance for the actual glyphs rather than relying on one line-height ratio.
 - Adjust tracking for the face and role. Tighten large display text only while letter shapes remain clear; do not copy one negative tracking value across the interface.
+- Small uppercase labels may need more tracking than mixed-case text. Tune the actual face and language without making labels harder to scan or wrap.
 - Reassess apparent weight and spacing on dark surfaces. Slightly more weight or leading may help; automatic compensation can make a robust face clumsy.
 - Use paragraph spacing or indentation as the primary paragraph signal. Applying both often overstates the boundary.
 - Give headings more separation from the preceding section than from the content they introduce.

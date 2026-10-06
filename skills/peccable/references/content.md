@@ -28,8 +28,11 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, or
 ## Optional visual composition prompts
 
 - When a mockup or sketch would help and suitable tools are available, describe the surface in visitor reading order. Generation is optional.
+- Distinguish a composition reference from a production media asset. A raster comp can guide the interface, but cannot replace live text, functional controls, responsive layout, or product evidence.
 - Lead with the exact authorized headline and primary action, then one dominant compositional move. Describe supporting regions briefly with real content.
 - For interface inspection, depict the actual surface without presentation framing. Use atmospheric, browser-framed, or device-presented compositions when they serve the requested deliverable.
+- For production media, describe the subject, focal region, crop or aspect ratio, palette, and clear space needed for live content. Keep imagery, text, and controls as separate implementation layers.
+- Choose an output size that keeps required detail legible at its intended viewing scale; a compressed overview is not a reliable source for small labels or component measurements.
 - Inspect drafts for hierarchy, content fidelity, and fit with the established direction. A draft is not evidence of runtime behavior; reuse an accepted comp rather than regenerating it for variety.
 
 ## Actions, navigation, and help

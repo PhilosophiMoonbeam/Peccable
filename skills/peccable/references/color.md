@@ -41,6 +41,7 @@ A role defines a color's purpose; a primitive defines its value. Themes can rema
 - Tune supporting text against its actual colored surface. Near-black or dark neutral ink can work on chromatic surfaces; a hue-related foreground may cohere better, but readability decides.
 - Gradients, glass, shadows, and strong accents can be legitimate materials. Keep them only when they clarify depth, content, state, or an intentional visual world.
 - A glow is not automatically elevation; depth should communicate what sits above what and why.
+- When simulating a physical material, make shadows and edge highlights agree on the intended light direction. Tint shadows when the surrounding color supports it, not as a universal replacement for neutral shadows.
 
 ## Compose themes and ramps
 
@@ -50,8 +51,10 @@ Perceptual lightness is not a WCAG contrast ratio; compute the rendered foregrou
 - Adjust ramp lightness deliberately; usually reduce chroma near white and black.
 - Check output in the supported color gamut; highly chromatic values can clip or shift across displays and browsers.
 - Design dark-theme surfaces, elevation, text, and accents together rather than mechanically inverting the light theme.
+- Preserve relative action, selection, and content emphasis across themes while keeping brand colors recognizable; identical token values are not the goal.
 - Inspect selected, disabled, error, hover, pressed, and focus states in every supported theme.
 - Prefer explicit foreground/surface pairs when stacked translucent layers make their final contrast hard to predict.
+- Give translucent surfaces a legible solid-fill fallback when blur is unavailable or reduced transparency is requested. Blur alone cannot guarantee contrast against changing content.
 - For sequential data, make ordering legible through lightness; for diverging data, make the meaningful midpoint clear.
 - For categorical data, pair distinguishable colors with labels or other redundant cues. More hues cannot fix an unreadable legend.
 

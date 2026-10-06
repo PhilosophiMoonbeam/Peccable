@@ -46,6 +46,9 @@ Short travel and frequent actions usually need shorter durations. Entrances can 
 - Do not move focus unexpectedly, animate a focused control away, or leave visually hidden controls reachable.
 - Keep content visible and usable before scripts initialize and when effects are unsupported.
 - Use the existing stack's smallest adequate mechanism; an isolated transition rarely justifies a new dependency.
+- Give each animated property one owner; independent engines can coexist when they do not compete for the same styles or lifecycle.
+- Scope animation targets to the owning surface; cancel timelines, observers, and frame callbacks and restore temporary styles on teardown or preference changes. Reinitialization must not duplicate effects.
+- For scroll-linked effects, derive travel from actual container/content geometry and refresh when it changes; when pinning or effects are disabled or unsupported, preserve reading order and reachable content in normal flow.
 - Avoid reflexively animating layout-driving properties. Transforms can move elements without relaying out siblings, but expanding content still needs an honest final layout.
 - Bound expensive filters, shadows, canvas, and shader effects to a purposeful region and lifetime.
 - Apply `will-change` only where a known animation benefits; permanently promoting many elements consumes memory without proving smoothness.

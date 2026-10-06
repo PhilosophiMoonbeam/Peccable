@@ -35,6 +35,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Lazy-load genuinely offscreen media and defer heavy noncritical widgets without breaking navigation or discovery.
 - Split code at useful route/feature boundaries; avoid tiny chunks that create an interaction-time request waterfall.
 - Remove unused dependencies and CSS through the existing build process, not a second delivery pipeline.
+- Before importing a UI or motion library, confirm dependency availability, version-compatible exports, and target-runtime requirements; follow existing initialization and styling conventions.
 - Reduce unnecessary third-party scripts and embeds where the task permits; never silently remove required functionality.
 - Preload only proven critical resources; indiscriminate preload competes with resources users need.
 - Prefetch likely next work only when product needs and connection cost justify it, not every possible destination.
@@ -54,6 +55,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Batch layout reads before writes; avoid alternating measurements and style mutation in loops.
 - Remove unnecessary repeated computation, rendering, and allocations in measured hot paths.
 - Use stable list keys and scoped state so one edit does not rebuild an unrelated large region.
+- Keep high-frequency pointer, scroll, and animation-frame values local to the rendering mechanism rather than repeatedly updating broad application state; commit meaningful state changes separately.
 - Memoize expensive computations or renders when profiling shows reuse; blanket memoization adds complexity and can cost more.
 - Debounce expensive search where useful while keeping typing feedback immediate; prevent stale responses from replacing newer results.
 - Throttle repeated scroll work; use platform observation facilities where appropriate instead of continuous polling.
@@ -61,6 +63,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Bound layout and paint areas for expensive filters, shadows, masks, or blur rather than banning meaningful effects outright.
 - Prefer transform/opacity for ordinary movement when suitable; compositor-friendly properties do not guarantee cheap animation.
 - Use layer promotion hints sparingly and only while useful; excessive layers consume memory.
+- Limit layout/shared-element animation measurements to transitions that need them; static content should not incur continuous motion bookkeeping.
 - Use containment or deferred offscreen rendering only where focus, sizing, search, printing, and accessible content remain intact.
 
 ## Data, lists, and network
