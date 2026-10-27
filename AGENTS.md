@@ -42,3 +42,22 @@ uvx --from 'git+https://github.com/agentskills/agentskills.git@69ef37e9424c0a7ea
 - Review instruction changes against the autonomy and scope contract. Structural validation cannot establish visual quality, factual accuracy, or activation in every harness.
 
 Python 3 and `uvx` are needed only for these maintenance gates. No build or generation step is required. Report only checks actually run, with results and any unavailable evidence; do not describe a skipped gate as passing. If the assignment explicitly requires edit-only work, hand off the required checks to the integration owner instead.
+
+<!-- resource-lifecycle:start -->
+## Resource lifecycle and disk usage
+
+Reuse compatible build trees, dependency caches, environments and development
+containers without compromising isolation; avoid per-run clones and copies.
+Treat per-run resources as disposable unless persistence is explicitly required.
+Namespace or label owned containers, volumes, worktrees, browser profiles and
+scratch; register cleanup before acquisition, clean up on success, failure and
+interruption, and reconcile verified inactive leftovers on startup. Replacing
+owned disposable containers must retire the old containers and anonymous volumes;
+remove named volumes only with verified ownership and explicit disposable status.
+Preserve active/shared services, persistent data, secrets, unique work and required
+backups; never use broad host-wide pruning. Put large scratch on verified
+disk-backed storage, not RAM-backed `/tmp`. Set size, age and count budgets for
+caches, logs, captures and retained runs; keep compact evidence, bound concurrency,
+verify cleanup and space afterward, and report intentional retention with its
+purpose and expiry.
+<!-- resource-lifecycle:end -->
