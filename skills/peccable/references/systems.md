@@ -47,6 +47,7 @@ Read when consolidating repeated UI, extracting tokens or components, extending 
 - Preserve semantic elements, accessible names, roles, and expected keyboard or native interaction models.
 - A button abstraction supports pending and disabled behavior without removing its label or focus feedback.
 - A field abstraction keeps labels, hints, errors, required state, and accessible associations together.
+- Improve a confusing control without removing a necessary input constraint or business rule; keep required formats, limits, and conditions visible and associated with the field rather than treating all help text as clutter.
 - Dialogs include focus entry, containment, dismissal, and restoration, not just a shared background and radius.
 - Expose real variants with sensible defaults and clear types or prop contracts in the project's language.
 - Keep controlled/uncontrolled state ownership clear and consistent with existing patterns.

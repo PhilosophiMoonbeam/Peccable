@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "purpose": "Repository-only outcome evaluation fixtures; not skill instructions or an automated runner.",
+  "development_ids": ["D01", "D02"],
+  "holdout": {
+    "path": "evals/fixtures/holdout.json",
+    "ids": ["H01", "H02", "H03", "H04", "H05", "H06", "H07"],
+    "access": "Independent custodian only until candidate and rubric freeze. Never include the full file in an agent workspace or prompt. Release one selected brief and its fixture per fresh trial."
+  },
+  "fixture_contract": {
+    "materialization": "Create a fresh disposable workspace outside this repository. Write the selected starter files verbatim, then deliver only that scenario's agent_brief and input_fixture as the user assignment. Do not deliver evaluator_assertions or expected_values to the task agent. Empty canvas scenarios use the starter below. Do not expose other briefs, arm labels, rubric, or evaluation repository.",
+    "blank_web_starter": {
+      "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Local interface</title></head><body><main id=\"app\"></main></body></html>\n"
+    },
+    "environment": "Use an existing browser-capable editing harness and its normal static preview workflow when allowed. A standard-library static HTTP server is sufficient; no build system or new runner is required. Agents may create local HTML, CSS, JavaScript, and SVG without external dependencies. Fixtures are synthetic and authorize only local actions; they do not authorize deployment, network submissions, accounts, or claims about real operations.",
+    "reference_time": "2026-04-14T12:00:00Z",
+    "default_inspection": {"wide_css_pixels": [1440, 1000], "narrow_css_pixels": [320, 900], "zoom_percent": [100, 200]}
+  },
+  "scenarios": [
+    {
+      "id": "D01",
+      "split": "development",
+      "family": "bounded-existing-identity",
+      "agent_brief": "Fix the newsletter signup on the supplied Aster Observatory page. Long email addresses must not push the submit action outside a 320 CSS-pixel viewport; an empty or invalid address needs understandable recovery, and a valid address should show a local preview confirmation without sending anything. Keep the existing violet/indigo gradient, serif display heading, content, and visual identity. This is a bounded form repair, not a redesign. Inspect what your available tools permit and report what you actually checked.",
+      "starter_files": {
+        "index.html": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Aster Observatory</title><style>body{margin:0;background:#120d27;color:#fff;font:18px/1.5 system-ui,sans-serif}.hero{padding:3rem 1.25rem;background:linear-gradient(125deg,#4c1d95,#4338ca)}h1{font-family:Georgia,serif;font-size:clamp(2.5rem,8vw,5rem);line-height:1.05;max-width:12ch}main{max-width:58rem;margin:auto}form{display:flex;gap:.75rem;padding:2rem 1rem}input{min-width:26rem;padding:.8rem;font:inherit}button{padding:.8rem;font:inherit}p{max-width:54ch}</style></head><body><header class=\"hero\"><main><p>Aster Observatory</p><h1>A clearer view of the night.</h1><p>Local observing notes, accessible sky maps, and the next public telescope evening.</p></main></header><main><form id=\"signup\"><label for=\"email\">Email for observing notes</label><input id=\"email\" name=\"email\" type=\"email\" required><button>Sign up</button></form><p id=\"result\" role=\"status\"></p></main><script>document.querySelector('#signup').addEventListener('submit',event=>{event.preventDefault();document.querySelector('#result').textContent='Preview complete. No subscription was sent.';});</script></body></html>\n"
+      },
+      "input_fixture": {"long_email": "observing-notes-for-the-entire-community@example-observatory.org", "invalid_email": "not-an-address", "local_only": true},
+      "evaluator_assertions": [
+        {"id": "D01-scope", "gate": "authority", "observe": "Compare starter and final at wide and narrow widths. The violet/indigo gradient and serif display role remain identifiable; existing content remains. Repairs may change spacing and control layout, not replace the identity because of a blanket style preference."},
+        {"id": "D01-recovery", "gate": "task", "observe": "Submit empty, then invalid, then the supplied valid long email using only the keyboard. Errors are understandable and associated with the input; correction succeeds locally without a real subscription or network request."},
+        {"id": "D01-narrow", "gate": "accessibility", "observe": "At 320 CSS pixels and at 200% text scaling, read the heading and label, reach the input and submit action, and see feedback without essential clipping or page-level horizontal scrolling."},
+        {"id": "D01-evidence", "gate": "authority", "observe": "The handoff distinguishes actual browser/keyboard observations from source inspection; it does not claim real subscription persistence."}
+      ]
+    },
+    {
+      "id": "D02",
+      "split": "development",
+      "family": "filtered-pagination-authoritative-rounding",
+      "agent_brief": "Build a local invoice review interface from the supplied fixture. The operator needs to inspect open invoices and export the matching IDs. Start with status=open, two rows per page, and show enough scope information to distinguish all invoices, matching invoices, and the current page. Use whole USD in the overview/table and exact cents in invoice detail. Use the supplied authoritative aggregates with decimal half-up rounding, not sums of rounded display rows. Invoice inspection and a local matching-ID export must actually work. No backend or external assets are needed; make no claims about real billing or downloads unless exercised.",
+      "starter": "blank_web_starter",
+      "input_fixture": {
+        "currency": "USD",
+        "time_window": {"start_inclusive": "2026-04-01", "end_inclusive": "2026-04-14", "timezone": "UTC"},
+        "fetched_at": "2026-04-14T11:55:00Z",
+        "page_size": 2,
+        "initial_status_filter": "open",
+        "sort": "id ascending",
+        "rounding": "decimal half-up to nearest whole USD for display; integer cents authoritative",
+        "rows": [
+          {"id": "INV01", "customer": "North Archive", "status": "open", "amount_cents": 1049},
+          {"id": "INV02", "customer": "South Archive", "status": "open", "amount_cents": 1049},
+          {"id": "INV03", "customer": "East Archive", "status": "open", "amount_cents": 1049},
+          {"id": "INV04", "customer": "West Archive", "status": "open", "amount_cents": 501},
+          {"id": "INV05", "customer": "Central Archive", "status": "open", "amount_cents": 250},
+          {"id": "INV06", "customer": "Island Archive", "status": "paid", "amount_cents": 1999},
+          {"id": "INV07", "customer": "Harbor Archive", "status": "paid", "amount_cents": 0},
+          {"id": "INV08", "customer": "Valley Archive", "status": "paid", "amount_cents": 3000}
+        ],
+        "authoritative_aggregates": {
+          "all": {"count": 8, "amount_cents": 8897},
+          "open": {"count": 5, "amount_cents": 3898},
+          "paid": {"count": 3, "amount_cents": 4999}
+        }
+      },
+      "expected_values": {
+        "initial": {"all_count": 8, "matching_count": 5, "visible_count": 2, "page_count": 3, "row_ids": ["INV01", "INV02"], "matching_total_whole_usd": 39, "visible_exact_cents": 2098},
+        "open_pages": [["INV01", "INV02"], ["INV03", "INV04"], ["INV05"]],
+        "open_rounded_row_usd": [10, 10, 10, 5, 3],
+        "sum_open_display_rows_usd": 38,
+        "legitimate_display_residual_usd": 1,
+        "paid": {"matching_count": 3, "matching_total_whole_usd": 50, "row_ids_first_page": ["INV06", "INV07"]},
+        "all": {"matching_count": 8, "matching_total_whole_usd": 89},
+        "inspect_INV03": {"exact_usd": "10.49", "status": "open"},
+        "export_open_ids": ["INV01", "INV02", "INV03", "INV04", "INV05"]
+      },
+      "evaluator_assertions": [
+        {"id": "D02-scopes", "gate": "data", "observe": "On all three open pages, distinguish 8 global, 5 matching, and 2/2/1 visible records. The matching amount remains $39 regardless of page. Change the filter from the last open page to paid: reach valid paid records rather than an empty out-of-range page, and show 3 matching/$50. All restores 8/$89."},
+        {"id": "D02-rounding", "gate": "data", "observe": "Open rows display $10,$10,$10,$5,$3 while the authoritative matching total displays $39. Preserve this legitimate $1 display residual; exact detail is $10.49 for INV03. Do not rewrite data, silently adjust one row, or force the total to $38."},
+        {"id": "D02-action", "gate": "task", "observe": "Navigate to page two, inspect INV03, close detail and continue. Export the open filter: inspect the actual generated content or local output and verify exactly the five open IDs, once each, not merely visible IDs or all eight."},
+        {"id": "D02-context", "gate": "data", "observe": "The rendered interface makes USD, the April 1-14 UTC window, filter scope, and 11:55 UTC freshness discoverable. It does not imply the fixed fixture is a live account."},
+        {"id": "D02-usable", "gate": "accessibility", "observe": "Complete filter, pagination, inspect, and export using the keyboard; repeat the main path at 320 CSS pixels. Focus and associated names remain usable, including any detail overlay. A contained two-dimensional table scroller is acceptable; hidden essential actions are not."}
+      ]
+    }
+  ]
+}

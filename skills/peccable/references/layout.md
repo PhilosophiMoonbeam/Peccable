@@ -49,6 +49,13 @@ If sections become interchangeable without their words, reconsider whether the s
 - Keep the target's rhythm related to its neighbors without changing those neighbors merely to justify a local refinement.
 - End the page with a clear conclusion or relevant next action.
 
+## Change representation when content outgrows it
+
+- Choose representation from actual cardinality and comparison needs. A single offer needs direct terms and an action, not an empty comparison grid; a growing set of records may need aligned rows instead of increasingly small cards.
+- When labels or categories no longer fit a diagram, change to a readable chart, table, or list rather than dropping records or shrinking text to preserve the silhouette.
+- Geometry that encodes quantity must retain its meaning: do not equalize unequal segments for symmetry or give a tiny value a visually dominant minimum area. If proportions become unreadable, use labeled values or another encoding rather than misleading geometry.
+- Use overview plus detail when position, sequence, or neighboring items help people choose what to inspect, such as an archive index beside a selected record. Keep that context while opening detail where useful; a simple linear task does not need an extra overview panel.
+
 ## Adapt composition to content
 
 Choose breakpoints where content relationships fail, not from device labels alone.

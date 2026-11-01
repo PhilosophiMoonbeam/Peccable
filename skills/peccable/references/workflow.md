@@ -77,10 +77,22 @@ For open composition, choose a clear thesis from the audience, subject, and visi
 - Which one dominant visual or interaction move supports that path?
 - Can the direction carry real content, small screens, recovery states, and available assets?
 
+When inventing page structure, outline the claim or question each section addresses, the available evidence that supports it, and the relevant visitor action, if any.
+Order sections by what the visitor needs to understand before deciding, not a stock sequence of marketing blocks. Evidence may be an existing artifact, factual detail, or working behavior; an unsupported claim is a content gap, not a reason to fabricate proof.
+Use this as a compact planning aid, not a required file or a reason to remove necessary navigation, disclosures, or task content.
+
 Draw inspiration from the audience's graphic and screen traditions, publications, identity systems, notation, places, and rituals as well as physical tools and materials.
 Compare genuinely distinct inspirations internally only when open composition needs alternatives, judging audience relevance and task clarity. A sketch or probe may help resolve that uncertainty; neither is required.
 Borrow system discipline—hierarchy, rhythm, grouping, or navigation—rather than another direction's costume or copied motifs. Carry one coherent system through the surface.
 Choose a viable approach yourself; do not stage a concept tournament or reopen settled direction for variety.
+
+When open composition benefits from a subject-to-form connection, consider cases such as:
+- A café's actual striped awning can supply a recurring band rhythm; derive the motif from that place rather than adding unrelated shapes.
+- An event's invitation can inform the grouping of date, venue, and attendance action; borrow its information relationships without forcing a paper-sized container around long content.
+- A color tool's existing picker can demonstrate its central claim when showing that working interaction is in scope; do not add a demo feature solely to justify the composition.
+
+For an open composition, mentally substitute a competitor's name and assets. If the structure still makes the same argument unchanged, look for real subject-specific evidence or relationships that could shape it.
+This tests specificity, not mandatory novelty: familiar task patterns and an established identity do not need replacement merely because competitors share them.
 Execute the settled direction at its authorized scope and fidelity; do not replace it with a generic design because no user is present.
 Change direction only when requirements or evidence justify it. Keep unresolved intent or authority blocked.
 

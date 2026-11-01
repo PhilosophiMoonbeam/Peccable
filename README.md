@@ -41,7 +41,7 @@ export SKILLS_DIR='/absolute/path/to/configured/skills'
 
 The installed directory must be named `peccable`, matching the skill's frontmatter name. If that destination already exists, the installation stops without replacing it. Review and move an older installation deliberately before installing again. Follow your harness's documented discovery or activation procedure; if it supports explicitly loading a skill file, point it at the installed `peccable/SKILL.md`.
 
-Everything shipped lives in `skills/peccable/`: currently `SKILL.md`, `references/`, `LICENSE`, and `NOTICE.md`. Copying the entire directory also includes any future referenced scripts or assets added there. Root maintenance scripts, tests, specification, and documentation do not ship and are not runtime dependencies; the current skill calls no scripts.
+Everything shipped lives in `skills/peccable/`: currently `SKILL.md`, twelve focused references in `references/`, `LICENSE`, and `NOTICE.md`. Copying the entire directory also includes any future referenced scripts or assets added there. Root maintenance scripts, tests, evaluations, specification, and documentation do not ship and are not runtime dependencies; the current skill calls no scripts. Optional resources may be added later if demonstrated useful; they are not promised or currently shipped features.
 
 ## Use ordinary tasks
 
@@ -74,6 +74,7 @@ Iteration is bounded by the task's acceptance criteria and available evidence, r
 | [Motion](skills/peccable/references/motion.md) | Purposeful animation and reduced-motion behavior |
 | [Interaction](skills/peccable/references/interaction.md) | Controls, navigation, feedback, and recovery |
 | [Content](skills/peccable/references/content.md) | Clear interface copy and truthful product communication |
+| [Data interfaces](skills/peccable/references/data-interfaces.md) | Decision-led data scope, truthful encoding, aggregation, and real actions |
 | [Systems](skills/peccable/references/systems.md) | Existing identity, reusable components, and tokens |
 | [Performance](skills/peccable/references/performance.md) | Efficient frontend implementation and rendering |
 | [Platforms](skills/peccable/references/platforms.md) | Web and native platform conventions |
@@ -87,11 +88,12 @@ Guidance uses terse, complete Standard Technical English: concise sentence-case 
 ```text
 skills/peccable/          # shipped: copy this entire directory
     SKILL.md
-    references/          # eleven focused references
+    references/          # twelve focused references
     LICENSE              # identical copy of the root license
     NOTICE.md
 scripts/check.py         # repository maintenance only
 tests/                   # repository maintenance only
+evals/                   # repository outcome evaluation only
 .github/                 # repository maintenance only
 SKILLS_SPEC.md           # retained specification; not shipped
 README.md, AGENTS.md,
@@ -132,6 +134,14 @@ python3 scripts/check.py "$SKILLS_DIR/peccable"
 ```
 
 The checker validates portable resource integrity; it does not reimplement YAML or Agent Skills specification validation. The boundary regression tests are isolated. The official `skills-ref` validator is pinned to the revision above; Python 3 and `uvx` are maintainer tooling only, not installation or usage prerequisites. Structural checks do not prove design quality or universal harness compatibility.
+
+Repository [outcome evaluations](evals/README.md) are maintenance resources, not installation or skill dependencies. The [pilot runner](evals/run-pilot.mjs), [oracle validator](evals/validate-oracles.mjs), [independent review stage](evals/review-pilot.mjs), and [harness protocol](evals/PILOT-HARNESS.md) use an existing Bun/SDK 18.14.2 installation, Linux bubblewrap, kernel ownership leases, and installed Chrome with pinned browser driver. Registration freezes arm snapshots, cases/oracles, environment, model/settings, tools, limits, review instructions, and successful semantic-control and real-provider protocol receipts before 63 matched holdout tasks. The [rubric and adoption rule](evals/RUBRIC.md) remain unchanged.
+
+Two independent blind reviewers and an adjudicator retain assertions, matched preferences, failures, uncertainty, and actual context evidence. The `openai-codex` / `gpt-6.1-sol` selector does not pin vendor weights. The [old exploration](evals/results/exploratory-2026-10-06.md) is exposed and retired; the [V2 pilot](evals/results/pilot-2026-10-31-v2-invalid.md) is invalidated, not rescored. The [completed V3 pilot](evals/results/pilot-2026-10-31-v3.md) is **inconclusive**: oversized review packets, an incomplete trace, and unresolved observations prevent adoption under the unchanged rule. Candidate guidance was not tuned or promoted; no optional payload resources were added. These small synthetic comparisons establish neither quality/context benefit nor real-user efficacy.
+
+The [V3 evidence-repair supplement](evals/results/pilot-v3-evidence-repair.md) qualifies the original failure counts and recovers evidence rejected by the consumer. It records corrected packet delivery and separately versioned oracle observations without changing candidate guidance, original results, or adoption thresholds. Genuine candidate defects still prevent the required all-task success condition; comparative benefit remains unestablished.
+
+The [final V3 evidence recovery](evals/results/pilot-v3-final-recovery.md) fixes focus-disturbing text measurement, supplies retained author observations and complete print pages, and completes scoped blind review/adjudication. Remaining uncertainty is smaller, but observed accessibility failures still disqualify the candidate. The report preserves rejected requests, independent audit, and actual context/cost; it does not rewrite the historical pilot or claim comparative benefit.
 
 Pass an absolute skill-directory path to the pinned reference validator: a literal `.` is interpreted with an empty directory name and fails its name-matching check. The copy installation above creates an exclusive destination, copies only the complete shipping directory, and refuses existing destinations without changing their contents.
 

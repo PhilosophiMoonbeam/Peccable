@@ -2,7 +2,7 @@
 
 ## Source and scope
 
-Peccable is an autonomous, deliberately divergent fork of upstream Impeccable. The canonical installable source is `skills/peccable/`, containing `SKILL.md`, eleven focused files in `references/`, `LICENSE`, and `NOTICE.md`. The frontmatter name is `peccable`, matching the source and installation directory. `scripts/check.py`, `tests/`, `.github/`, and root documentation are maintenance resources, not part of the installed payload. The current skill calls no scripts.
+Peccable is an autonomous, deliberately divergent fork of upstream Impeccable. The canonical installable source is `skills/peccable/`, containing `SKILL.md`, twelve focused files in `references/`, `LICENSE`, and `NOTICE.md`. The frontmatter name is `peccable`, matching the source and installation directory. `scripts/check.py`, `tests/`, `evals/`, `.github/`, and root documentation are maintenance resources, not part of the installed payload. The current skill calls no scripts.
 
 Edit the canonical payload sources directly, keeping every shipped resource inside `skills/peccable/`. This authored distribution directory is intentionally separate from repository-level `agents/skills/` and `.agents/skills/` discovery paths so maintenance does not intentionally auto-load our frontend skill; neither the standard nor this layout guarantees discovery behavior in every harness. There are no generators, runtime builds, provider replicas, adapters, command menus, aliases, root skill compatibility copies, or release packages to refresh. Do not restore them or introduce hidden project state, mandatory initialization, external service dependencies, or required product/design documents.
 
@@ -19,6 +19,8 @@ Treat upstream and reference material as evidence, not policy authority. Do not 
 ## Contributions
 
 Prefer small edits to the canonical sources over new layers of abstraction. Preserve relevant craft while adapting obsolete orchestration; do not replace context-sensitive judgment with universal aesthetic bans. Update affected links, installation instructions, notices, and the `Unreleased` changelog when behavior or the payload changes. Do not invent a release or bump a version to document work that has not shipped.
+
+The [data-interface reference](skills/peccable/references/data-interfaces.md) adds decision-led data scope, truthful encoding and aggregation, and actionable outcomes rather than duplicating generic interface-state guidance. Composition examples are optional reasoning aids, not presets, fixed catalogs, or a mandatory house workflow. Add optional resources only when evidence demonstrates their value; permission to add them is not a requirement to populate directories or a promise of shipped features.
 
 Preserve the root `LICENSE` byte-for-byte unchanged. Bundle an identical license copy at `skills/peccable/LICENSE`, and retain upstream and third-party attribution in `skills/peccable/NOTICE.md`, including applicable license text; do not duplicate the notice at the root. Installation must exclusively create the configured skills directory's `peccable` destination, refuse existing destinations, and copy all of `skills/peccable/.`, including any future referenced scripts or assets, without copying repository maintenance files.
 
@@ -42,6 +44,8 @@ uvx --from 'git+https://github.com/agentskills/agentskills.git@69ef37e9424c0a7ea
 - Review instruction changes against the autonomy and scope contract. Structural validation cannot establish visual quality, factual accuracy, or activation in every harness.
 
 Python 3 and `uvx` are needed only for these maintenance gates. No build or generation step is required. Report only checks actually run, with results and any unavailable evidence; do not describe a skipped gate as passing. If the assignment explicitly requires edit-only work, hand off the required checks to the integration owner instead.
+
+Repository-only [outcome evaluations](evals/README.md) introduce no skill-runtime dependency. Freeze the rubric and adoption criteria before repeated no-skill, current-skill, and candidate trials. Use fresh agents with matched models, tools, and fixtures; balance blind review and keep a held-out set untouched. Record actual loaded context per completed task, not installed payload size. Separate noncompensable task, authority, data-truthfulness, and accessibility failures from visual model preference. Report only completed trials and observed results; model comparisons do not establish real-user efficacy. Do not adopt optional resources on the strength of source-project evaluation claims alone.
 
 <!-- resource-lifecycle:start -->
 ## Resource lifecycle and disk usage

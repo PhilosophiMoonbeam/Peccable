@@ -119,6 +119,7 @@ Read only the references needed for the current decision. Each is self-contained
 | [Motion](references/motion.md) | Designing transitions, expressive movement, feedback, or reduced-motion behavior. |
 | [Interaction](references/interaction.md) | Building controls, navigation, forms, focus behavior, gestures, or robust interaction states. |
 | [Content](references/content.md) | Improving information structure, labels, errors, onboarding, proof, or truthful illustrative content, or considering optional visual composition prompts. |
+| [Data interfaces](references/data-interfaces.md) | Designing dashboards, analytics, operational tables, quantitative reports, or data-driven decisions with scoped aggregates, meaningful encodings, and authoritative precision. |
 | [Systems](references/systems.md) | Reusing or evolving tokens/components and retaining design decisions that help later tasks. |
 | [Performance](references/performance.md) | Diagnosing slow UI, jank, asset delivery, expensive effects, or unnecessary work. |
 | [Platforms](references/platforms.md) | Adapting to web/native conventions, device classes, input methods, or platform accessibility. |

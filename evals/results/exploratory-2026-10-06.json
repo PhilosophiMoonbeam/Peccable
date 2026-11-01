@@ -1,0 +1,1993 @@
+{
+  "schema_version": 1,
+  "decision": "inconclusive",
+  "protocol_conformant": false,
+  "baseline": "04324e126e25939d4d30eff09073af4433481e53",
+  "candidate_payload_sha256": {
+    "NOTICE.md": "03a1c6dc28579299cf9853afb7b5f7d33341d37890102b2e85ec0f5d52bf6e8e",
+    "SKILL.md": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+    "references/data-interfaces.md": "ab80df212dc8b1d5bdbc47da52ea713d209a15cd9289e067c0a3d5fb34dde630",
+    "references/workflow.md": "f0c938f6f65ddfe45b4a1f3898e65b931df134cc3c758db0fdeeae6df9d233e6",
+    "references/systems.md": "13da802a6b0a7ff78fff17d1fb415b8841f837ec9deb3c7281f6bc57141cd423",
+    "references/motion.md": "bc1c889065a66b9fda3a7a02bc8a02358dcb12203fc5a92be2491943748a0d2c",
+    "references/interaction.md": "fcdd19586e470fceca9f9e5879328572ba02529656ffbc452b0b7d4fb417efb7",
+    "references/quality.md": "619d11f4772e361e52dccb579eabded39b1f16148811e2f17ac56916de464fe3",
+    "references/platforms.md": "3ee9567bc8d0bf0062dcedb2cb2b7bf82d464693ee797565ea1a5b04babe3665",
+    "references/performance.md": "27476c50d8d95d97620d1dc060e21860e16fcc976d34c756a7fdf28ee6f0c294",
+    "references/content.md": "41318c9952e66a896f03c295b4e110a55a5316883f951b0fed265b2fbd9136fd",
+    "references/color.md": "420f5e5174e2bdc24acf61a60b73b63ea02d5a5290943f377a9df695a706fe88",
+    "references/layout.md": "4e67bf3bd95ec8236bfb62efb1357d1c354337907c8463511cc7739537d49422",
+    "references/typography.md": "2caf670429e5eab81270982d1b3e2a3eca7c7a4ef9ffd4906a55c7f09d46ac46"
+  },
+  "counts": {
+    "artifacts": 81,
+    "development": 18,
+    "exposed_holdouts": 63,
+    "browser_exercises": 72,
+    "generated_evaluators_finished": 69,
+    "planning_only_not_launched": 9
+  },
+  "context_semantics": "Known delivered skill UTF-8 prompt bytes only; total tokens, provider/model version and full agent-harness loading instrumentation unavailable. Not evidence of efficiency gain.",
+  "context_summary": {
+    "no-skill": {
+      "unique_loaded_skill_bytes_median": 0,
+      "unique_loaded_skill_bytes_range": [
+        0,
+        0
+      ],
+      "cumulative_delivered_skill_bytes_median": 0
+    },
+    "current": {
+      "unique_loaded_skill_bytes_median": 57117,
+      "unique_loaded_skill_bytes_range": [
+        44676,
+        79341
+      ],
+      "cumulative_delivered_skill_bytes_median": 69709
+    },
+    "candidate": {
+      "unique_loaded_skill_bytes_median": 56858,
+      "unique_loaded_skill_bytes_range": [
+        45900,
+        82094
+      ],
+      "cumulative_delivered_skill_bytes_median": 69680
+    }
+  },
+  "tasks": [
+    {
+      "id": "D01-1-no-skill",
+      "brief": "D01",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "813b581f034469101b57ac5a14b8534d05c256ea63d31ea6174c48d083796e0c"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-1-current",
+      "brief": "D01",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 44676,
+        "cumulative_delivered_skill_utf8_bytes": 57268,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "d4999f31c5359b99976af30cfdac24bee2fb0f52683a6e08015a0f386917b833"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-1-candidate",
+      "brief": "D01",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 45900,
+        "cumulative_delivered_skill_utf8_bytes": 58722,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "b089e44c9686d58936bc5d6d2c8f92044272e23392c53297d3d2190517305503"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-2-no-skill",
+      "brief": "D01",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "94193f703e2cccfccf768efc2825a1db3e4e36a38ca2c56a734c97223dc6b9bc"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-2-current",
+      "brief": "D01",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 44676,
+        "cumulative_delivered_skill_utf8_bytes": 57268,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "7f32163d76c666c00488139b29e1be61a9f93e9f62d55cb73a86e84ade7f1bcd"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-2-candidate",
+      "brief": "D01",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 45900,
+        "cumulative_delivered_skill_utf8_bytes": 58722,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "98c46780d79777b2acc00ff3df1b7980337426cd02ed756395858c2e9a49035a"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-3-no-skill",
+      "brief": "D01",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "7966c68ed92e1ef39c6e34c0d41f29c7d9bc49fc77153e5acf2b2c0519aed307"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-3-current",
+      "brief": "D01",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 44676,
+        "cumulative_delivered_skill_utf8_bytes": 57268,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "55dea92140e52f38ec0dbad001e756ffa878517b0cb574b79fc4e7c152823616"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D01-3-candidate",
+      "brief": "D01",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 45900,
+        "cumulative_delivered_skill_utf8_bytes": 58722,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "80845764423058cd08be051db4eadd740e56bf05972768527d834b1425c20a0f"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-1-no-skill",
+      "brief": "D02",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "a4e73560b2e4eb55adccd600a1c4729ba27510a3c3131bd91e0d111ae65676d9"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-1-current",
+      "brief": "D02",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/typography.md",
+          "references/color.md"
+        ],
+        "unique_skill_utf8_bytes": 79341,
+        "cumulative_delivered_skill_utf8_bytes": 91933,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "cf1115cf08677c87681677fd3773c449de76d8f7db2690afa599561142b8a515"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-1-candidate",
+      "brief": "D02",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 56858,
+        "cumulative_delivered_skill_utf8_bytes": 69680,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "65e83f9a798994974eaf9ae9301d1fe8d6f98bc987ce245dcdcd53dc4bb308e1"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-2-no-skill",
+      "brief": "D02",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "3716dc00454e35fdcd08abf53db90582af046b5e7a3983061a63f24a53b8535b"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-2-current",
+      "brief": "D02",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/typography.md",
+          "references/color.md"
+        ],
+        "unique_skill_utf8_bytes": 79341,
+        "cumulative_delivered_skill_utf8_bytes": 91933,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "970e51d1d3bb1060c1e1b5bf932a20fdbee27ff8a663e3101bc2ee7b2ce5b588"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-2-candidate",
+      "brief": "D02",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 56858,
+        "cumulative_delivered_skill_utf8_bytes": 69680,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "d94fa564bedee49530c9900376616c0d4eea4f5668ba189f73152f406539a2e4"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-3-no-skill",
+      "brief": "D02",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "1397c63d19f465fdf71075821076d23000ca7ced1c2c2ae6c5c919d8dafe88f5"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-3-current",
+      "brief": "D02",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/typography.md",
+          "references/color.md"
+        ],
+        "unique_skill_utf8_bytes": 79341,
+        "cumulative_delivered_skill_utf8_bytes": 91933,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "67d242e27c6c267623d7ee25a16d918669976936e8a31d97d52ee5f0b80c2442"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "D02-3-candidate",
+      "brief": "D02",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 69868,
+        "cumulative_delivered_skill_utf8_bytes": 82690,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "52de93deaf33efba4694903f6584e5bbaad5b548b5113246ce9a872a99bf4579"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-1-no-skill",
+      "brief": "H01",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "e24430c37cf4a1a4afd4eeb778f02a5905c82cc9206ba3725db1f0c005b22fff"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-1-current",
+      "brief": "H01",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 44676,
+        "cumulative_delivered_skill_utf8_bytes": 57268,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "218a5b4c81205c1e2bd08466337361922c35dfd7bc5d03ac3fd266c17f29e4c5"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-1-candidate",
+      "brief": "H01",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 45900,
+        "cumulative_delivered_skill_utf8_bytes": 58722,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "d13294e25eb5a875884050d6fe7ffea9d8984d4f1e7ecbbe0f9ecf27d3e06408"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-2-no-skill",
+      "brief": "H01",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "8320dc35d341be60ecc742a5dc8871b2c0afe3ef2ecaa1b6ce7bedc60e62129b"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-2-current",
+      "brief": "H01",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 44676,
+        "cumulative_delivered_skill_utf8_bytes": 57268,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "b5ae960d97b1b36014b67f50c8e8fd5d5ff28e01e1fdbe6538223d4334fddacd"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-2-candidate",
+      "brief": "H01",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 45900,
+        "cumulative_delivered_skill_utf8_bytes": 58722,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "02036fe0ce6b66e39acc5efcfc0b9ea53bc254b8362fca5a5e9d2b7cb3ee3885"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-3-no-skill",
+      "brief": "H01",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "09b9754b0e5550192a9890db66015b424b6fd2b83401f5329679c6c3bf4a1290"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H01-3-current",
+      "brief": "H01",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 44676,
+        "cumulative_delivered_skill_utf8_bytes": 57268,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "4aa5224f3f226dfa2a96c6fc972760c1c153f1184d3d16655b9fede5666fc73f"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H01-3-candidate",
+      "brief": "H01",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 45900,
+        "cumulative_delivered_skill_utf8_bytes": 58722,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "ce8b123e780db3a618f1d2c2fe59368b8813d65ddf8fee3397f45e82dbced5f8"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-1-no-skill",
+      "brief": "H02",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "2ce63c534533152af92cadf8ff1ff2c11fc3ff8998d445ca74419de537deb42f"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-1-current",
+      "brief": "H02",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 53890,
+        "cumulative_delivered_skill_utf8_bytes": 66482,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "fd1e252a5e6d99909e60fe686bdd052c585074521d98970a4b57073d19bd888e"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-1-candidate",
+      "brief": "H02",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/interaction.md",
+          "references/quality.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 57514,
+        "cumulative_delivered_skill_utf8_bytes": 70336,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "1f6ba3d3b40a1030b7ca13757d34facd37b4bb7be095eae20a5fe046419e058a"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-2-no-skill",
+      "brief": "H02",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "264f4839c23e3a9b7b13039526ea0c9e3040dfd4310840dd3e07278f68fb2c94"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-2-current",
+      "brief": "H02",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/color.md"
+        ],
+        "unique_skill_utf8_bytes": 60353,
+        "cumulative_delivered_skill_utf8_bytes": 72945,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "d01ca003422557124f4cd7147e63ead8b666fcbc923f79a529533dd410df8c1d"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-2-candidate",
+      "brief": "H02",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 66072,
+        "cumulative_delivered_skill_utf8_bytes": 78894,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "9175a8db42e25cab9325c7bdde3599902f57706b5d85667e24456d9532657597"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-3-no-skill",
+      "brief": "H02",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "3d886c29b8b0caa58c69f15f9836026bcffcc79102f208f1fb93fdc2748c4dec"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-3-current",
+      "brief": "H02",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 66331,
+        "cumulative_delivered_skill_utf8_bytes": 78923,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "ffedddf48ff08e469d09e1107b5a79b080ef1c744a0c88075e4b5e2f92e9b82c"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H02-3-candidate",
+      "brief": "H02",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 57514,
+        "cumulative_delivered_skill_utf8_bytes": 70336,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "4c6b643557c3e676bba8bdd49ebd2e2637e33d6ae42685cba4df6c460b6971a9"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-1-no-skill",
+      "brief": "H03",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "cdb1e5549a3ac774cb884f19436bab8e7b8d95e7014a739c14405fd54a143a9d"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-1-current",
+      "brief": "H03",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 53890,
+        "cumulative_delivered_skill_utf8_bytes": 66482,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "b8b4433839af1e68fcb4b55c0b74682658c248f1ebbc780ed453e5e8360972ee"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-1-candidate",
+      "brief": "H03",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 55114,
+        "cumulative_delivered_skill_utf8_bytes": 67936,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "732e129e30985a7939df1dc2d3484cd39ad46dfc7cec059132908d3f9c8b0047"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-2-no-skill",
+      "brief": "H03",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "64d1eacee6080d60586a68e87f4643946b17aef56e5bf93a563a36ded30cd860"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-2-current",
+      "brief": "H03",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 53890,
+        "cumulative_delivered_skill_utf8_bytes": 66482,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "18460a75f5e521a4dca7d2bfc0c04ee32bba6a19a17adfc723088ea9d89ee85f"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-2-candidate",
+      "brief": "H03",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 55114,
+        "cumulative_delivered_skill_utf8_bytes": 67936,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "92e42b9e2605429f83f019b198d49353292cad925cdc724685935f058e4adbc9"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-3-no-skill",
+      "brief": "H03",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "0291e9b0653ac645f8c0d7373e29580f796797af00f5f9663ead0d4a2a5d7799"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H03-3-current",
+      "brief": "H03",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/content.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 53890,
+        "cumulative_delivered_skill_utf8_bytes": 66482,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "e5d77072f932026c26941841be35092fe2f74e67f0718176f278468ccff99971"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H03-3-candidate",
+      "brief": "H03",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 55114,
+        "cumulative_delivered_skill_utf8_bytes": 67936,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "08ea7057cf020bcf199aa46bd67ce360eecae9dbf1b1f7589da1037b150b4c9f"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H04-1-no-skill",
+      "brief": "H04",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-1-current",
+      "brief": "H04",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 57117,
+        "cumulative_delivered_skill_utf8_bytes": 69709,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-1-candidate",
+      "brief": "H04",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/data-interfaces.md"
+        ],
+        "unique_skill_utf8_bytes": 70828,
+        "cumulative_delivered_skill_utf8_bytes": 83650,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-2-no-skill",
+      "brief": "H04",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-2-current",
+      "brief": "H04",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 57117,
+        "cumulative_delivered_skill_utf8_bytes": 69709,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-2-candidate",
+      "brief": "H04",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/data-interfaces.md"
+        ],
+        "unique_skill_utf8_bytes": 70828,
+        "cumulative_delivered_skill_utf8_bytes": 83650,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-3-no-skill",
+      "brief": "H04",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-3-current",
+      "brief": "H04",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 57117,
+        "cumulative_delivered_skill_utf8_bytes": 69709,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H04-3-candidate",
+      "brief": "H04",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/interaction.md",
+          "references/layout.md",
+          "references/data-interfaces.md"
+        ],
+        "unique_skill_utf8_bytes": 70828,
+        "cumulative_delivered_skill_utf8_bytes": 83650,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {},
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": false,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H05-1-no-skill",
+      "brief": "H05",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "db513b78f7cf91f82db512df4d2fbf7943db7c6238d16415d797a545070e675e"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-1-current",
+      "brief": "H05",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 66900,
+        "cumulative_delivered_skill_utf8_bytes": 79492,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "b11881ce772cf39c3696efa351b88ab5b5d7da63a3fbbbcae51d8cde11a6062d"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-1-candidate",
+      "brief": "H05",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/content.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/interaction.md"
+        ],
+        "unique_skill_utf8_bytes": 61661,
+        "cumulative_delivered_skill_utf8_bytes": 74483,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "a18567fc3bfec65dda3569f30f5332c18731f136ec19b6c85a05413e9c790878"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": false
+    },
+    {
+      "id": "H05-2-no-skill",
+      "brief": "H05",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "9c70e9e4b99d16f06dcd20391fec7c094a526dbf8d9485886082370d3d1f62a2"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-2-current",
+      "brief": "H05",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 53890,
+        "cumulative_delivered_skill_utf8_bytes": 66482,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "66dd51751f1429325b18066051ef5b486170c246b54bc9044ea19307a7938c09"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-2-candidate",
+      "brief": "H05",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 82094,
+        "cumulative_delivered_skill_utf8_bytes": 94916,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "bd1260fa7afcf863999af4fb90a3c4328d7b84a82173daa6133fc02a24ebed76"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-3-no-skill",
+      "brief": "H05",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "93cb89642bd1cb08baf9b9ca7203c5c1484d75003101d6a0d2ac6be64090744b"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-3-current",
+      "brief": "H05",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 66900,
+        "cumulative_delivered_skill_utf8_bytes": 79492,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "d48907328bc8222cd47c7466611e55fdd032f7a9135f2ff166becf522a8599c3"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H05-3-candidate",
+      "brief": "H05",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/quality.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 68124,
+        "cumulative_delivered_skill_utf8_bytes": 80946,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "fc388f88075c6fa8a53e8b8c936a89887fa826f8f9c9e50b9fc760a66bd2802a"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-1-no-skill",
+      "brief": "H06",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "f278b19729934dfa926995dce18de83913b6ad0fb42385174d7c76cc239c2029"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-1-current",
+      "brief": "H06",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 66900,
+        "cumulative_delivered_skill_utf8_bytes": 79492,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "f917f818538703d3aa5e5bdb40e7afd5dcf4e52dd727056ee99256c4925e416a"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-1-candidate",
+      "brief": "H06",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 82094,
+        "cumulative_delivered_skill_utf8_bytes": 94916,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "bbe4403031fafcd93f5f2373230e8adb3ba7fcf0de448bb0a3121d20b801179f"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-2-no-skill",
+      "brief": "H06",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "532c3da6408517e7e1dec40745dcc7d4b2655865f562e2fc7a65068095095d2d"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-2-current",
+      "brief": "H06",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/interaction.md",
+          "references/content.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 66900,
+        "cumulative_delivered_skill_utf8_bytes": 79492,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "840a28d275953d8a990bdb2cdf459e0a30395cab414cf3945917b6fbd60e12ce"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-2-candidate",
+      "brief": "H06",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/content.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 68124,
+        "cumulative_delivered_skill_utf8_bytes": 80946,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "da8b6d0c37c3358909a89a7583783696a861c037494b7f604a93feb3a545b260"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-3-no-skill",
+      "brief": "H06",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "3b2a8c404b8cc99e0c48953e4387233dffb1a974a1c47bd32aa3dbb16cb99491"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-3-current",
+      "brief": "H06",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/content.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 66900,
+        "cumulative_delivered_skill_utf8_bytes": 79492,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "7d0d23152e8fb7cf708ec9e373ebd9e0174b217091088529838118e261a1adb5"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H06-3-candidate",
+      "brief": "H06",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/layout.md",
+          "references/typography.md",
+          "references/color.md",
+          "references/content.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 82094,
+        "cumulative_delivered_skill_utf8_bytes": 94916,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "121926d42410b22a68f12968590635a9c2a5d5eb229eeb3133df9c17699f2cba"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-1-no-skill",
+      "brief": "H07",
+      "arm": "no-skill",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "512a15b57cefe636ce447a4cdaf39f9afafe33e082f659e8487219429a93fec7"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-1-current",
+      "brief": "H07",
+      "arm": "current",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 66331,
+        "cumulative_delivered_skill_utf8_bytes": 78923,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "0d2092620ed4528c36f52ecb34b78fc5427933eca203f2a9cd1fa8d048eae054"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-1-candidate",
+      "brief": "H07",
+      "arm": "candidate",
+      "repetition": 1,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 56858,
+        "cumulative_delivered_skill_utf8_bytes": 69680,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "49bc2a5b07a396c9c3a591935d866f43cb9c8fa0951dccbd385928c4466c86b1"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-2-no-skill",
+      "brief": "H07",
+      "arm": "no-skill",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "17ea45961044c84164abd58c572e95dfb0120e76734c58785694f9d2e77738ca"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-2-current",
+      "brief": "H07",
+      "arm": "current",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 66331,
+        "cumulative_delivered_skill_utf8_bytes": 78923,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "3aace16f48441308d3109a2e844801b9bcb363262fd4bf6f5d28fddbf8d00083"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-2-candidate",
+      "brief": "H07",
+      "arm": "candidate",
+      "repetition": 2,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 56858,
+        "cumulative_delivered_skill_utf8_bytes": 69680,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "25a5d2b7d2c97df03105b7fad05b0e2d93db32e797ea7bcbe8b05ba549fa5c62"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-3-no-skill",
+      "brief": "H07",
+      "arm": "no-skill",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [],
+        "unique_skill_utf8_bytes": 0,
+        "cumulative_delivered_skill_utf8_bytes": 0,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "39cdfe6b0d237525bfd6234c0b659a063a3c1598e003d7fca8dfe7f1d526bd2b"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-3-current",
+      "brief": "H07",
+      "arm": "current",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/workflow.md",
+          "references/quality.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/content.md"
+        ],
+        "unique_skill_utf8_bytes": 66331,
+        "cumulative_delivered_skill_utf8_bytes": 78923,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "424a2c62ccfd785df406de16e3f16ee58827cf35f9ed32edea2a32482ddd3764"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    },
+    {
+      "id": "H07-3-candidate",
+      "brief": "H07",
+      "arm": "candidate",
+      "repetition": 3,
+      "context": {
+        "loaded_paths": [
+          "SKILL.md",
+          "references/data-interfaces.md",
+          "references/layout.md",
+          "references/interaction.md",
+          "references/quality.md"
+        ],
+        "unique_skill_utf8_bytes": 56858,
+        "cumulative_delivered_skill_utf8_bytes": 69680,
+        "skill_attributable_tokens": null
+      },
+      "artifact_hashes": {
+        "index.html": "56a7b0fa7e51d98916c0f3db31484fd574e4518f5993832255ecce8b68ac13e5"
+      },
+      "pilot_assertions": "unverified: exploratory harness does not meet registered protocol",
+      "browser_exercise_attempted": true,
+      "generated_evaluator_finished": true
+    }
+  ],
+  "independently_confirmed_smokes": {
+    "D01-1-candidate": {
+      "keyboard_transitions": [
+        {
+          "value": "",
+          "text": "Aster Observatory\n\nA clearer view of the night.\n\nLocal observing notes, accessible sky maps, and the next public telescope evening.\n\nEmail for observing notes\nSign up\n\nEmail required. This is a local preview only; nothing will be sent or subscribed.\n\nEnter your email address to preview signup.",
+          "width": 320,
+          "documentWidth": 320
+        },
+        {
+          "value": "not-an-address",
+          "text": "Aster Observatory\n\nA clearer view of the night.\n\nLocal observing notes, accessible sky maps, and the next public telescope evening.\n\nEmail for observing notes\nSign up\n\nEmail required. This is a local preview only; nothing will be sent or subscribed.\n\nEnter a valid email address, such as name@example.org, then try Sign up again.",
+          "width": 320,
+          "documentWidth": 320
+        },
+        {
+          "value": "observing-notes-for-the-entire-community@example-observatory.org",
+          "text": "Aster Observatory\n\nA clearer view of the night.\n\nLocal observing notes, accessible sky maps, and the next public telescope evening.\n\nEmail for observing notes\nSign up\n\nEmail required. This is a local preview only; nothing will be sent or subscribed.\n\nPreview complete for observing-notes-for-the-entire-community@example-observatory.org. No subscription was sent.",
+          "width": 320,
+          "documentWidth": 320
+        }
+      ],
+      "actual_input_values_checked": true
+    },
+    "D02-1-candidate": {
+      "initial": "Skip to invoices\nL\nLocal ledger\nFixture workspace\n\nINVOICE OPERATIONS\n\nInvoice review\n\nInspect invoices and export the IDs that match your status filter.\n\nApril 1\u201314, 2026 \u00b7 UTC\nInclusive window\nFetched Apr 14, 2026 at 11:55 UTC\nAll invoices\n$89\nUSD\n8 invoices \u00b7 entire fixture\nMatching invoices\n$39\nUSD\n5 invoices \u00b7 open status\nCurrent page\n$21\nUSD\n2 invoices \u00b7 page 1 of 3\nInvoices\n\nID ascending \u00b7 2 rows per page\n\nStatus\nOpen\nPaid\nAll statuses\nExport matching IDs \u2193\nINVOICE ID \u2191\tCUSTOMER\tSTATUS\tAMOUNT (USD)\tDETAIL\nINV01\tNorth Archive\tOpen\t$10\tInspect \u2197\nINV02\tSouth Archive\tOpen\t$10\tInspect \u2197\n1\u20132 of 5 matching invoices\n\u2190 Previous\nPage 1 of 3\nNext \u2192\n\ni\nOverview and table use whole USD, rounded decimal half-up. Totals use authoritative cents, not rounded rows. Open an invoice for exact cents.\n\nLocal fixture only. No billing changes or external services. Exports include every matching invoice, across all pages.",
+      "controls": [
+        {
+          "text": "Export matching IDs \u2193",
+          "label": null
+        },
+        {
+          "text": "INV01",
+          "label": null
+        },
+        {
+          "text": "Inspect \u2197",
+          "label": "Inspect INV01"
+        },
+        {
+          "text": "INV02",
+          "label": null
+        },
+        {
+          "text": "Inspect \u2197",
+          "label": "Inspect INV02"
+        },
+        {
+          "text": "\u2190 Previous",
+          "label": null
+        },
+        {
+          "text": "Next \u2192",
+          "label": null
+        },
+        {
+          "text": "Save CSV",
+          "label": null
+        },
+        {
+          "text": "Close \u00d7",
+          "label": null
+        }
+      ],
+      "page_two": "Skip to invoices\nL\nLocal ledger\nFixture workspace\n\nINVOICE OPERATIONS\n\nInvoice review\n\nInspect invoices and export the IDs that match your status filter.\n\nApril 1\u201314, 2026 \u00b7 UTC\nInclusive window\nFetched Apr 14, 2026 at 11:55 UTC\nAll invoices\n$89\nUSD\n8 invoices \u00b7 entire fixture\nMatching invoices\n$39\nUSD\n5 invoices \u00b7 open status\nCurrent page\n$16\nUSD\n2 invoices \u00b7 page 2 of 3\nInvoices\n\nID ascending \u00b7 2 rows per page\n\nStatus\nOpen\nPaid\nAll statuses\nExport matching IDs \u2193\nINVOICE ID \u2191\tCUSTOMER\tSTATUS\tAMOUNT (USD)\tDETAIL\nINV03\tEast Archive\tOpen\t$10\tInspect \u2197\nINV04\tWest Archive\tOpen\t$5\tInspect \u2197\n3\u20134 of 5 matching invoices\n\u2190 Previous\nPage 2 of 3\nNext \u2192\n\ni\nOverview and table use whole USD, rounded decimal half-up. Totals use authoritative cents, not rounded rows. Open an invoice for exact cents.\n\nLocal fixture only. No billing changes or external services. Exports include every matching invoice, across all pages.",
+      "detail": "Skip to invoices\nL\nLocal ledger\nFixture workspace\n\nINVOICE OPERATIONS\n\nInvoice review\n\nInspect invoices and export the IDs that match your status filter.\n\nApril 1\u201314, 2026 \u00b7 UTC\nInclusive window\nFetched Apr 14, 2026 at 11:55 UTC\nAll invoices\n$89\nUSD\n8 invoices \u00b7 entire fixture\nMatching invoices\n$39\nUSD\n5 invoices \u00b7 open status\nCurrent page\n$16\nUSD\n2 invoices \u00b7 page 2 of 3\nInvoices\n\nID ascending \u00b7 2 rows per page\n\nStatus\nOpen\nPaid\nAll statuses\nExport matching IDs \u2193\nINVOICE ID \u2191\tCUSTOMER\tSTATUS\tAMOUNT (USD)\tDETAIL\nINV03\tEast Archive\tOpen\t$10\tInspect \u2197\nINV04\tWest Archive\tOpen\t$5\tInspect \u2197\n3\u20134 of 5 matching invoices\n\u2190 Previous\nPage 2 of 3\nNext \u2192\n\ni\nOverview and table use whole USD, rounded decimal half-up. Totals use authoritative cents, not rounded rows. Open an invoice for exact cents.\n\nLocal fixture only. No billing changes or external services. Exports include every matching invoice, across all pages.\n\nINVOICE DETAIL\n\nINV03\nClose \u00d7\nExact amount \u00b7 USD\n$10.49\nCustomer\nEast Archive\nStatus\nOpen\nInvoice ID\nINV03\n\nAuthoritative integer-cent amount from the supplied fixture. Read-only inspection; no billing action is performed."
+    },
+    "H03-1-candidate": {
+      "controls": [
+        {
+          "id": "contact-name",
+          "type": "text"
+        },
+        {
+          "id": "email",
+          "type": "email"
+        },
+        {
+          "id": "visit-date",
+          "type": "date"
+        },
+        {
+          "id": "party-size",
+          "type": "number"
+        },
+        {
+          "id": "access",
+          "type": "textarea"
+        }
+      ],
+      "actual_values": [
+        {
+          "id": "contact-name",
+          "value": "Alexandria-Marguerite de la Cruz-Smythe"
+        },
+        {
+          "id": "email",
+          "value": "alex@example.org"
+        },
+        {
+          "id": "visit-date",
+          "value": "2026-04-21"
+        },
+        {
+          "id": "party-size",
+          "value": "4"
+        },
+        {
+          "id": "access",
+          "value": "Seating near the document support table."
+        }
+      ],
+      "review": "A\nCommunity Archive\nLOCAL HISTORY, SHARED\n\nVISIT THE ARCHIVE\n\nA little planning.\nA lot to discover.\n\nPrepare a visit request for yourself or a small group. Add your details, then check them together on this page.\n\n1Visit details\n2Review\nReview your request\n\nCheck your details below. You can return to make changes.\n\nThis is a local review, not a booking.\nYour request has not been sent to the archive.\nCONTACT NAME\nAlexandria-Marguerite de la Cruz-Smythe\nEMAIL\nalex@example.org\nVISIT DATE\n21 April 2026\nPARTY SIZE\n4 people\nACCESS REQUIREMENTS\nSeating near the document support table.\nEdit details\n\nYour entries are kept while you edit on this page.\n\nBEFORE YOU BEGIN\n\nMake room for history.\n\nA name, a date and a few details help shape your visit request.\n\nRequest date range\n\n17 April\u201331 May\n2026\n\nChoose a date within this range. A date selection does not confirm availability.\n\nSmall groups welcome\n\nRequests can include 1\u20138 people in total, including the contact person.\n\nJust on this page\n\nThis form creates a review summary only. It does not send an email, submit a request or reserve a visit.\n\nReference date: 14 April 2026\n\nCommunity Archive \u00b7 Visit requests\nLocal review only \u00b7 No external submission"
+    },
+    "H06-1-candidate": {
+      "before": "Skip to content\nTern Estuary\nField Station\nThe tide & the walk\nChoose a route \u2197\nSATURDAY 25 APRIL 2026\nSpring\ntidal walk\n\nRead the estuary with the tide. Observe how tidal water links reed beds, exposed mud, and migrating birds.\n\nFind your walk\n\u2193\n\nTwo routes. Different paths through the same estuary.\n\nRaised bank\nReed beds\nExposed mud\nOuter causeway\nTidal channel\nFIELD NOTES / BANK \u2192 MUD \u2192 WATER\nIllustration, not a route map\nA LANDSCAPE THAT CHANGES\nThe tide shapes\nwhat we can see.\n\nWater falls. Feeding areas emerge.\nOn the falling tide, exposed mud reveals feeding areas. Look at the relationship between the water, the mud, and migrating birds.\n\nThe water also sets the limits.\nReed-bed paths stay on the raised bank. The outer causeway is not step-free and may close when water covers it.\n\nYOUR PATH THROUGH THE ESTUARY\nChoose your walk.\n\nCompare time, distance, and access. Select a route to see its full details.\n\nWhich route suits you?\nRaised-bank observation route\n09:30 start\n45 minutes\n1.2 km\nStep-free compacted path; two resting benches\nOuter causeway route\n09:00 start\n80 minutes\n2.4 km\nUneven steps; not step-free; route may close with water level\n\nROUTE DETAILS\n\nA view from the bank,\nor a walk onto the causeway?\n\nChoose the raised bank for a shorter, step-free walk. Choose the causeway only if uneven steps suit your access needs.\n\nYour choice stays on this page. This is not a reservation.\n\nConditions on the day\nVisitors choose a route; station staff make closure decisions at the site. Selecting the causeway does not confirm that it will be open.\n\nTern Estuary Field Station\n\nSpring tidal walk \u00b7 25 April 2026",
+      "bank": "SELECTED ROUTE \u00b7 25 APRIL 2026\n\nRaised-bank observation route\nStarts\n09:30\nDuration\n45 minutes\nDistance\n1.2 km\nAccess\nStep-free compacted path; two resting benches\nObserve\nReed beds\nView over feeding areas\n\nSelected on this page only \u2014 not a reservation.",
+      "causeway": "SELECTED ROUTE \u00b7 25 APRIL 2026\n\nOuter causeway route\nStarts\n09:00\nDuration\n80 minutes\nDistance\n2.4 km\nAccess\nUneven steps; not step-free; route may close with water level\nObserve\nExposed mud\nOuter tidal channel\n\nSelected on this page only \u2014 not a reservation. Station staff decide at the site whether the causeway is open."
+    }
+  },
+  "invalidated_review_runs": {
+    "initial_capped": {
+      "records": 81,
+      "capped": 51
+    },
+    "compact": {
+      "records_per_pass": 81,
+      "answered_per_pass": 79,
+      "errors_per_pass": 2,
+      "errors": [
+        "output-077",
+        "output-080"
+      ],
+      "reason": "Unsupported evaluator operations, oracle overreach and missing protocol coverage invalidate comparative labels."
+    }
+  },
+  "resource_decision": "No additional installed assets, catalog or helper justified.",
+  "retention": "Raw generated outputs and captures removed after compact evidence extraction; this ledger and summary persist."
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "peccable-pilot-owner-verification-v1",
+  "maintenance_gates": [
+    {
+      "command": "python3 scripts/check.py",
+      "cwd": "/home/bbferko/repos/Peccable",
+      "exit": 0,
+      "observed": "Resource integrity OK"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests",
+      "cwd": "/home/bbferko/repos/Peccable",
+      "exit": 0,
+      "tests": 30,
+      "observed": "Ran 30 tests; OK"
+    },
+    {
+      "command": "uvx --from 'git+https://github.com/agentskills/agentskills.git@69ef37e9424c0a7ea9dd2293b559e43ec8176379#subdirectory=skills-ref' skills-ref validate \"$PWD/skills/peccable\"",
+      "cwd": "/home/bbferko/repos/Peccable",
+      "exit": 0,
+      "observed": "Valid skill"
+    }
+  ],
+  "installed_payload": {
+    "configured_directory": "/home/bbferko/.cache/peccable-pilot-v2-yofrtwp4/installed-smoke/configured skills",
+    "procedure_source": "README.md lines 29\u201339, exact shell text",
+    "procedure": "(\n    set -eu\n    : \"${SKILLS_DIR:?Set SKILLS_DIR to your configured skills directory}\"\n    mkdir -p \"$SKILLS_DIR\"\n    destination=\"$SKILLS_DIR/peccable\"\n    if ! mkdir \"$destination\"; then\n        printf '%s\\n' \"Installation stopped: cannot create a new $destination directory; existing destinations are not overwritten.\" >&2\n        exit 1\n    fi\n    cp -R skills/peccable/. \"$destination/\"\n)",
+    "first_returncode": 0,
+    "second_returncode": 1,
+    "refusal_stderr": "mkdir: '/home/bbferko/.cache/peccable-pilot-v2-yofrtwp4/installed-smoke/configured skills/peccable': File exists\nInstallation stopped: cannot create a new /home/bbferko/.cache/peccable-pilot-v2-yofrtwp4/installed-smoke/configured skills/peccable directory; existing destinations are not overwritten.\n",
+    "payload_files": [
+      "LICENSE",
+      "NOTICE.md",
+      "SKILL.md",
+      "references/color.md",
+      "references/content.md",
+      "references/data-interfaces.md",
+      "references/interaction.md",
+      "references/layout.md",
+      "references/motion.md",
+      "references/performance.md",
+      "references/platforms.md",
+      "references/quality.md",
+      "references/systems.md",
+      "references/typography.md",
+      "references/workflow.md"
+    ],
+    "all_hashes_match_frozen_candidate": true,
+    "root_and_bundled_license_match_frozen_baseline": true,
+    "second_install_unchanged": true,
+    "unrelated_skill_preserved": true,
+    "no_maintenance_files_installed": true,
+    "file_hashes": {
+      "LICENSE": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "NOTICE.md": "03a1c6dc28579299cf9853afb7b5f7d33341d37890102b2e85ec0f5d52bf6e8e",
+      "SKILL.md": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+      "references/color.md": "420f5e5174e2bdc24acf61a60b73b63ea02d5a5290943f377a9df695a706fe88",
+      "references/content.md": "41318c9952e66a896f03c295b4e110a55a5316883f951b0fed265b2fbd9136fd",
+      "references/data-interfaces.md": "ab80df212dc8b1d5bdbc47da52ea713d209a15cd9289e067c0a3d5fb34dde630",
+      "references/interaction.md": "fcdd19586e470fceca9f9e5879328572ba02529656ffbc452b0b7d4fb417efb7",
+      "references/layout.md": "4e67bf3bd95ec8236bfb62efb1357d1c354337907c8463511cc7739537d49422",
+      "references/motion.md": "bc1c889065a66b9fda3a7a02bc8a02358dcb12203fc5a92be2491943748a0d2c",
+      "references/performance.md": "27476c50d8d95d97620d1dc060e21860e16fcc976d34c756a7fdf28ee6f0c294",
+      "references/platforms.md": "3ee9567bc8d0bf0062dcedb2cb2b7bf82d464693ee797565ea1a5b04babe3665",
+      "references/quality.md": "619d11f4772e361e52dccb579eabded39b1f16148811e2f17ac56916de464fe3",
+      "references/systems.md": "13da802a6b0a7ff78fff17d1fb415b8841f837ec9deb3c7281f6bc57141cd423",
+      "references/typography.md": "2caf670429e5eab81270982d1b3e2a3eca7c7a4ef9ffd4906a55c7f09d46ac46",
+      "references/workflow.md": "f0c938f6f65ddfe45b4a1f3898e65b931df134cc3c758db0fdeeae6df9d233e6"
+    },
+    "checks": [
+      {
+        "tool": "portable resource checker",
+        "cwd": "/home/bbferko/.cache/peccable-pilot-v2-yofrtwp4/installed-smoke",
+        "exit": 0,
+        "observed": "Resource integrity OK"
+      },
+      {
+        "tool": "pinned skills-ref validate",
+        "cwd": "/home/bbferko/.cache/peccable-pilot-v2-yofrtwp4/installed-smoke",
+        "exit": 0,
+        "observed": "Valid skill"
+      },
+      {
+        "tool": "pinned skills-ref read-properties",
+        "exit": 0,
+        "observed_name": "peccable",
+        "observed_license": "Apache-2.0"
+      },
+      {
+        "tool": "pinned skills-ref to-prompt",
+        "exit": 0,
+        "observed": "available_skills XML with installed peccable/SKILL.md location"
+      }
+    ]
+  },
+  "behavioral_proof": {
+    "replacement_trials": 63,
+    "native_oracle_observations": 187,
+    "oracle_mismatches": 0,
+    "oracle_controls": 65,
+    "consumer_boundary_controls": 8,
+    "real_review_protocol_checks": 4,
+    "runtime_contexts": 162,
+    "text200_contexts": 54,
+    "named_state_captures": 243,
+    "capture_inventory_issues": [],
+    "loading_integrity_issues": [],
+    "authority_and_quality_limit": "Structural checks and captured states do not certify behavior beyond observed assertions or change the inconclusive adoption disposition."
+  },
+  "resource_cleanup": {
+    "source_scratch_removed": true,
+    "temporary_coordination_artifact_removed": true,
+    "owned_namespace_processes_remaining": [],
+    "retained_raw_archives": 2,
+    "retained_raw_archive_bytes": 221216051,
+    "archive_verification": "Both compressed archives passed GNU tar byte/metadata comparison before source scratch retirement; SHA-256 identities are in the pilot ledger.",
+    "expires_at_utc": "2026-11-01T23:41:36.493Z",
+    "available_filesystem_bytes_after_cleanup": 950826754048,
+    "shared_runtime_and_browser_caches": "Preserved",
+    "user_services_and_data": "Preserved",
+    "scope": "The archive's owner-final-verification.json predates scratch removal; this published record adds the observed post-cleanup state."
+  }
+}
