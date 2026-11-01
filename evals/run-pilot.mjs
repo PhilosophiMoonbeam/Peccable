@@ -5,7 +5,7 @@ import { createHash, randomBytes } from 'node:crypto';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createServer } from 'node:http';
-import { readFile, writeFile, mkdir, readdir, lstat, realpath, copyFile, chmod, rm, access, open } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, lstat, realpath, copyFile, chmod, rm, access, open, link, readlink } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -141,6 +141,27 @@ function verifyOracleReceipt(receipt, bindings, cutoff) {
   ensure(Number.isFinite(Date.parse(receipt.finished_at)) && Date.parse(receipt.finished_at)<=cutoff, 'Oracle validation must predate the cohort freeze');
   for (const [key,value] of Object.entries(bindings)) ensure(receipt.bindings?.[key]===value, `Oracle validation source/environment differs: ${key}`);
 }
+async function runtimeDescription(o) {
+  const runtime = {
+    bun: await executable(o.bun || 'bun'), omp: await executable(o.omp || 'omp'), bwrap: await executable(o.bwrap || 'bwrap'), flock: await executable('flock'),
+    modules: await realpath(o.modules || '/home/bbferko/.local/share/reflex/bun/install/global/node_modules'),
+    chrome: await realpath(o.chrome || '/home/bbferko/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome'),
+  };
+  const versions = { bun: await command(runtime.bun, ['--version']), chrome: await command(runtime.chrome, ['--version']), bwrap: await command(runtime.bwrap, ['--version']), flock: await command(runtime.flock,['--version']), packages: {} };
+  for (const name of ['@oh-my-pi/pi-ai','@oh-my-pi/pi-agent-core','@oh-my-pi/pi-catalog','@oh-my-pi/pi-coding-agent','puppeteer-core']) {
+    const bytes = await readFile(path.join(runtime.modules, name, 'package.json')), pkg = JSON.parse(bytes);
+    versions.packages[name] = { version: pkg.version, package_sha256: sha(bytes) };
+    if (['@oh-my-pi/pi-ai','@oh-my-pi/pi-agent-core','@oh-my-pi/pi-catalog'].includes(name)) versions.packages[name].source = await inventory(path.join(runtime.modules,name,'src'));
+  }
+  return { runtime, versions };
+}
+async function authorCredential(m) {
+  let credential;
+  try {credential=await command(m.runtime.omp,['token','openai-codex'],{maxBuffer:1024*1024});}
+  catch {throw new Error('Host credential acquisition failed (secret output suppressed)');}
+  ensure(credential && !credential.includes('\n'),'Credential CLI returned an invalid token');
+  return credential;
+}
 async function setup(o) {
   ensure(o.out && path.isAbsolute(o.out) && o.custodian && o.reviewers && o['review-probe'] && path.isAbsolute(o['review-probe']) && o['oracle-validation'] && path.isAbsolute(o['oracle-validation']) && o['arms-freeze'] && path.isAbsolute(o['arms-freeze']), HELP);
   const out = path.resolve(o.out);
@@ -157,22 +178,11 @@ async function setup(o) {
   ensure(reviewProbe.schema_version==='peccable-review-probe-v1' && reviewProbe.model?.provider==='openai-codex' && reviewProbe.model?.id==='gpt-6.1-sol','Review probe has an unsupported schema or model');
   ensure(reviewProbe.reviewer_script_sha256===reviewers.script_sha256,'Review probe used a different reviewer script');
   ensure(Number.isFinite(Date.parse(reviewProbe.finished_at)) && Date.parse(reviewProbe.finished_at)<=Date.now(),'Review probe must finish before manifest freeze');
-  const runtime = {
-    bun: await executable(o.bun || 'bun'), omp: await executable(o.omp || 'omp'), bwrap: await executable(o.bwrap || 'bwrap'), flock: await executable('flock'),
-    modules: await realpath(o.modules || '/home/bbferko/.local/share/reflex/bun/install/global/node_modules'),
-    chrome: await realpath(o.chrome || '/home/bbferko/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome'),
-  };
-  const versions = { bun: await command(runtime.bun, ['--version']), chrome: await command(runtime.chrome, ['--version']), bwrap: await command(runtime.bwrap, ['--version']), flock: await command(runtime.flock,['--version']), packages: {} };
-  for (const name of ['@oh-my-pi/pi-ai','@oh-my-pi/pi-agent-core','@oh-my-pi/pi-catalog','@oh-my-pi/pi-coding-agent','puppeteer-core']) {
-    const p = path.join(runtime.modules, name, 'package.json');
-    const bytes = await readFile(p); const pkg = JSON.parse(bytes);
-    versions.packages[name] = { version: pkg.version, package_sha256: sha(bytes) };
-    if (['@oh-my-pi/pi-ai','@oh-my-pi/pi-agent-core','@oh-my-pi/pi-catalog'].includes(name)) versions.packages[name].source = await inventory(path.join(runtime.modules,name,'src'));
-  }
+  const {runtime,versions}=await runtimeDescription(o);
   const holdoutSource=path.resolve(o.holdouts || path.join(HERE,'fixtures/pilot-v3.json'));
   const evaluatorSource=path.resolve(o.evaluator || path.join(HERE,'fixtures/pilot-v3-evaluator.mjs'));
   const oracleValidationBytes=await readFile(o['oracle-validation']), oracleValidation=JSON.parse(oracleValidationBytes);
-  verifyOracleReceipt(oracleValidation,{holdouts:sha(await readFile(holdoutSource)),evaluator:sha(await readFile(evaluatorSource)),browser:sha(await readFile(path.join(HERE,'pilot-browser.mjs'))),runner:sha(await readFile(fileURLToPath(import.meta.url))),reviewer:sha(await readFile(path.join(HERE,'review-pilot.mjs'))),chrome:sha(await readFile(runtime.chrome)),driver:versions.packages['puppeteer-core'].package_sha256},Date.now());
+  verifyOracleReceipt(oracleValidation,{holdouts:sha(await readFile(holdoutSource)),evaluator:sha(await readFile(evaluatorSource)),browser:sha(await readFile(path.join(HERE,'pilot-browser.mjs'))),runner:sha(await readFile(fileURLToPath(import.meta.url))),reviewer:sha(await readFile(path.join(HERE,'review-pilot.mjs'))),agent:sha(await readFile(path.join(HERE,'pilot-agent.mjs'))),worker:sha(await readFile(path.join(HERE,'pilot-worker.mjs'))),chrome:sha(await readFile(runtime.chrome)),driver:versions.packages['puppeteer-core'].package_sha256},Date.now());
   const oracleResults=await readFile(oracleValidation.results.path), oracleValidator=await readFile(oracleValidation.validator.path);
   ensure(sha(oracleResults)===oracleValidation.results.sha256 && sha(oracleValidator)===oracleValidation.validator.sha256, 'Oracle validation records or validator changed');
   await mkdir(out, { mode: 0o700 });
@@ -248,7 +258,7 @@ async function loadManifest(o) {
   const oracleBytes=await readFile(path.join(manifest.storage,'frozen/oracle-validation.json')), oracle=JSON.parse(oracleBytes);
   ensure(sha(oracleBytes)===manifest.oracle_validation?.sha256, 'Frozen oracle receipt differs');
   const frozenHash=name=>manifest.frozen.files.find(record=>record.path===name)?.sha256;
-  verifyOracleReceipt(oracle,{holdouts:frozenHash('holdouts.json'),evaluator:frozenHash('evaluator.mjs'),browser:frozenHash('harness/pilot-browser.mjs'),runner:frozenHash('harness/run-pilot.mjs'),reviewer:frozenHash('harness/review-pilot.mjs'),chrome:manifest.runtime_files.chrome.sha256,driver:manifest.versions.packages['puppeteer-core'].package_sha256},Date.parse(manifest.created_at));
+  verifyOracleReceipt(oracle,{holdouts:frozenHash('holdouts.json'),evaluator:frozenHash('evaluator.mjs'),browser:frozenHash('harness/pilot-browser.mjs'),runner:frozenHash('harness/run-pilot.mjs'),reviewer:frozenHash('harness/review-pilot.mjs'),agent:frozenHash('harness/pilot-agent.mjs'),worker:frozenHash('harness/pilot-worker.mjs'),chrome:manifest.runtime_files.chrome.sha256,driver:manifest.versions.packages['puppeteer-core'].package_sha256},Date.parse(manifest.created_at));
   ensure(frozenHash('oracle-validation-results.json')===oracle.results.sha256 && frozenHash('oracle-validator.mjs')===oracle.validator.sha256, 'Frozen oracle evidence differs');
   return { manifest, hash };
 }
@@ -413,12 +423,12 @@ async function captureEvaluation(m, scenario, artifact, evidence, author, before
     if(browser) try {await browser.close();} catch(error) {observations.push({cleanup_error:errors(error)});}
   }
 }
-function aggregateAssertions(scenario,evaluation) {
-  return scenario.evaluator_assertions.map(assertion=>{
-    const evidence=evaluation.contexts.flatMap(c=>(c.result?.assertions || []).filter(a=>a.id===assertion.id).map(a=>({context_id:c.context_id,...a})));
-    const results=evidence.map(e=>e.result);
-    const result=results.includes('fail')?'fail':results.length!==evaluation.contexts.length||results.includes('unverified')?'unverified':results.every(r=>r==='not_applicable')?'not_applicable':results.includes('pass')?'pass':'unverified';
-    return {id:assertion.id,category:assertion.category,result,evidence};
+// Preserve packet evidence while delegating all coverage/result decisions to the
+// frozen reviewer. Planning has a source-only scope, never native viewport proof.
+function trialAssertions(scenario,evaluation,runtimeRecord,expectedContexts) {
+  return scenario.evaluator_assertions.map(spec=>{
+    const {observations,...record}=runtimeRecord(spec,{evaluation,neutral:{permission_mode:scenario.permission_mode}},expectedContexts);
+    return {id:spec.id,category:spec.category,...record,evidence:observations};
   });
 }
 function reviewPacket(scenario,row,result,evaluation={contexts:[]},handoff='') {
@@ -434,7 +444,7 @@ function reviewPacket(scenario,row,result,evaluation={contexts:[]},handoff='') {
     review_status:'pending independent registered panel; release ONLY this packet, source artifact, sanitized review-trace, and explicitly listed evidence. Raw author/provider traces and outcome arm map are custodian-only.',
   };
 }
-async function trial(m, hash, row, scenario, attempt, credential, browserModule, evaluator, abortSignal, retryReason) {
+async function trial(m, hash, row, scenario, attempt, credential, browserModule, evaluator, abortSignal, retryReason, runtimeRecord) {
   const base=path.join(m.storage,'trials',row.taskId,`attempt-${attempt}`);
   await mkdir(base,{recursive:true,mode:0o700});
   const scratch=path.join(base,'scratch'),data=path.join(scratch,'data'),workspace=path.join(data,'workspace'),evidence=path.join(base,'evidence');
@@ -470,10 +480,20 @@ async function trial(m, hash, row, scenario, attempt, credential, browserModule,
     }
     catch(error) {evaluation={contexts:[{context_id:'unavailable',error:errors(error),result:{assertions:[]}}],observations:[]};result.unverified.push(`Evaluator unavailable: ${errors(error)}`);}
     if(evaluation.observations.some(observation=>observation.cleanup_error)) {retainScratch=true;result.unverified.push(`Evaluator cleanup failed; owned scratch retained: ${scratch}`);}
-    result.assertions=aggregateAssertions(scenario,evaluation);
+    const expectedContexts=mode==='read-only'?['planning']:['wide','narrow','text200'];
+    result.assertions=trialAssertions(scenario,evaluation,runtimeRecord,expectedContexts);
     if(mode==='read-only' && before.sha256!==after.sha256) result.assertions.push({id:'planning-unchanged-workspace',category:'authority',result:'fail',evidence:[{before:before.sha256,after:after.sha256}]});
-    const required=result.assertions.filter(a=>a.category!=='design');
-    result.task_outcome=required.some(a=>a.result==='fail')?'failed':required.every(a=>a.result==='pass'||a.result==='not_applicable') && author.status==='completed'?'verified_success':'incomplete_evidence';
+    // Design negatives remain evidence for independent review, not noncompensable task failures.
+    result.task_outcome=result.assertions.some(assertion=>assertion.result==='fail' && ['task','authority','data','accessibility'].includes(assertion.category))?'failed':'incomplete_evidence';
+      const tracePath=path.join(evidence,'author/session.jsonl');
+      const records=(await readFile(tracePath,'utf8')).split('\n').filter(line=>line.trim()).map(line=>{try{return JSON.parse(line);}catch{return {type:'invalid_trace_record'};}});
+      const configurations=records.filter(record=>record.type==='configuration'),configuration=configurations[0];
+      const agentSha256=m.frozen.files.find(record=>record.path==='harness/pilot-agent.mjs')?.sha256;
+      const contextBound=configurations.length===1 && !records.some(record=>record.type==='invalid_trace_record') && Array.isArray(configuration.automaticContext) && configuration.automaticContext.length===0 && configuration.isolation?.manifestHash===hash && configuration.isolation?.armSnapshot===(row.arm==='no-skill'?null:m.arms[row.arm].snapshot.sha256) && configuration.versions?.harnessSha256===agentSha256 && configuration.model?.provider===m.model.provider && configuration.model?.id===m.model.id && ['pi-ai','pi-agent-core','pi-catalog','pi-coding-agent'].every(name=>configuration.versions?.[name]?.version==='18.14.2' && configuration.versions[name].packageSha256===m.versions.packages[`@oh-my-pi/${name}`].package_sha256);
+      result.author_context_evidence={reference:'evidence/author/session.jsonl#configuration',observed:configurations.length===1,source_and_contract_bound:contextBound,automaticContext:configuration?.automaticContext ?? null,worker_isolation:configuration?.isolation ?? null,versions:configuration?.versions ?? null,scope:'Actual isolated worker configuration and agent source attestation; not independent kernel attestation or provider-only egress enforcement'};
+      const native=result.assertions.filter(assertion=>mode!=='read-only' && scenario.evaluator_assertions.some(spec=>spec.id===assertion.id && spec.method==='runtime'));
+      result.native_primary_path={scope:mode==='read-only'?'Not exercised: source-only planning; no native viewport measurement':'Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption',expected_contexts:mode==='read-only'?[]:expectedContexts,assertion_ids:native.map(assertion=>assertion.id),outcome:native.some(assertion=>assertion.result==='fail')?'failed':native.length>0 && native.every(assertion=>assertion.result==='pass') && author.status==='completed' && author.worker?.result?.observedLimits?.traceComplete===true && contextBound?'measured_pass':'incomplete_evidence'};
+      result.unverified.push('Independent manual, design, broad assistive-technology and author-time claims have not been reviewed; scoped native measurements do not certify whole-task success.');
     result.context=author.worker?.result?.context || {measurement_semantics:'unknown; worker did not return context'};
     result.usage=author.worker?.result?.usage || null;
     result.elapsed_seconds=(Date.now()-Date.parse(result.started_at))/1000;
@@ -500,6 +520,11 @@ async function trial(m, hash, row, scenario, attempt, credential, browserModule,
     }
     result.artifact_hashes=await inventory(path.join(base,'artifact')).catch(()=>null);
     result.evidence_hashes=await inventory(evidence).catch(()=>null);
+    if(!result.artifact_hashes || !result.evidence_hashes) {
+      result.unverified.push('Retained artifact or evidence inventory is unavailable.');
+      if(result.native_primary_path?.outcome==='measured_pass') result.native_primary_path.outcome='incomplete_evidence';
+      if(m.schema_version==='peccable-development-manifest-v1') result.partial_attempt_seal=await developmentPartialSnapshot(base);
+    }
     await put(path.join(base,'outcome.json'),result);
   }
   return result;
@@ -548,10 +573,11 @@ async function run(o) {
     const evaluator=await import(pathToFileURL(path.join(m.storage,'frozen/evaluator.mjs')).href);
     ensure(typeof evaluator.evaluate==='function' && typeof evaluator.preparePage==='function','Custodian module must export evaluate(page,scenario,context) and preparePage(page,scenario)');
     const browserModule=await import(pathToFileURL(path.join(m.storage,'frozen/harness/pilot-browser.mjs')).href);
+    // Import only after manifest validation and module initialization: reviewer imports runner.
+    const reviewer=await import(pathToFileURL(path.join(m.storage,'frozen/harness/review-pilot.mjs')).href);
+    ensure(typeof reviewer.runtimeRecord==='function','Invalid frozen runtime assertion consumer');
     // Capture credential in memory only. Never print child stdout/error objects from this call.
-    let credential;
-    try {credential=await command(m.runtime.omp,['token','openai-codex'],{maxBuffer:1024*1024});} catch {throw new Error('Host credential acquisition failed (secret output suppressed)');}
-    ensure(credential && !credential.includes('\n'),'Credential CLI returned an invalid token');
+    let credential=await authorCredential(m);
     const results=[];let cursor=0;
     async function consume() {
       while(cursor<m.order.length) {
@@ -577,7 +603,7 @@ async function run(o) {
           await put(path.join(attemptPath,'outcome.json'),interrupted);results.push(interrupted);continue;
         }
         let result;
-        try {result=await trial(m,hash,row,suite.scenarios[row.briefIndex],attempt,credential,browserModule,evaluator,abortController.signal,o['retry-reason']);}
+        try {result=await trial(m,hash,row,suite.scenarios[row.briefIndex],attempt,credential,browserModule,evaluator,abortController.signal,o['retry-reason'],reviewer.runtimeRecord);}
         catch(error) {result={manifest_hash:hash,...row,attempt,agent_status:'infrastructure_interrupted',task_outcome:'incomplete_evidence',error:errors(error),assertions:[]};await put(path.join(m.storage,`retained-interruption-${row.taskId}-${Date.now()}.json`),result);}
         results.push(result);
         process.stdout.write(`${JSON.stringify({task_id:row.taskId,attempt,status:result.agent_status,outcome:result.task_outcome})}\n`);
@@ -594,6 +620,229 @@ async function run(o) {
     await put(path.join(m.storage,`cohort-${Date.now()}.json`),summary);
     process.stdout.write(`${JSON.stringify({recorded_tasks:results.length,adoption:summary.adoption})}\n`);
   } finally {process.removeListener('SIGINT',interrupt);process.removeListener('SIGTERM',interrupt);await lock.close();}
+}
+// Development is separate from the frozen pilot manifest and unchanged CLI.
+const DEVELOPMENT_CASES = ['V3-01','V3-04','V3-07'];
+const DEVELOPMENT_CHECKS = ['native_names','text200','trace_ceiling','runtime_coverage','isolation'];
+function developmentOrder(seed) {
+  return DEVELOPMENT_CASES.flatMap((briefId,briefIndex)=>[1,2].map(repetition=>{
+    const identity=`development:${seed}:${briefId}:${repetition}`;
+    return {ordinal:briefIndex*2+repetition-1,briefIndex,briefId,repetition,arm:'candidate',generationSeed:seed+repetition-1,taskId:sha(`${identity}:task`).slice(0,20),artifactId:sha(`${identity}:artifact`).slice(0,20)};
+  }));
+}
+function developmentScenario(scenario) {
+  ensure(scenario && permission(scenario.permission_mode)==='edit' && typeof scenario.agent_brief==='string' && scenario.agent_brief.length && scenario.input_fixture && scenario.starter_files && Array.isArray(scenario.evaluator_assertions) && scenario.evaluator_assertions.length && new Set(scenario.evaluator_assertions.map(spec=>spec.id)).size===scenario.evaluator_assertions.length,'Invalid development scenario');
+  ensure(Array.isArray(scenario.review_states) && scenario.review_states.length<=8 && new Set(scenario.review_states).size===scenario.review_states.length && scenario.review_states.every(label=>typeof label==='string' && /^[a-z0-9-]{1,48}$/.test(label)),'Invalid development review states');
+  for(const [name,content] of Object.entries(scenario.starter_files)) {safeRelative(name);ensure(typeof content==='string','Invalid development starter bytes');}
+}
+function developmentReceipts(oracle,probe,bindings,cutoff) {
+  const {validator,...oracleBindings}=bindings;
+  verifyOracleReceipt(oracle,oracleBindings,cutoff);
+  ensure(oracle.validator?.sha256===validator,'Oracle validator source differs');
+  for(const name of ['runtime_coverage','browser_facade','trace_ceiling','text_scale']) ensure(Number.isSafeInteger(oracle.calibration_counts?.[name]) && oracle.calibration_counts[name]>0,`Missing current-source calibration: ${name}`);
+  for(const name of ['runtime_coverage_safety','browser_facade_safety','trace_ceiling_safety','text_scale_safety','reconciliation_safety']) ensure(Array.isArray(oracle[name]) && oracle[name].length>0 && oracle[name].every(check=>Object.hasOwn(check,'want') && Object.hasOwn(check,'got') && digest(check.want)===digest(check.got)),`Missing or red calibration: ${name}`);
+  ensure(probe.schema_version==='peccable-development-probe-v1' && probe.ready===true && probe.mismatches===0,'Successful development probe required');
+  ensure(Number.isFinite(Date.parse(probe.finished_at)) && Date.parse(probe.finished_at)<=cutoff,'Development probe must predate freeze');
+  for(const [key,value] of Object.entries(bindings)) ensure(probe.bindings?.[key]===value,`Development probe source/environment differs: ${key}`);
+  ensure(DEVELOPMENT_CHECKS.every(name=>probe.checks?.[name]===true),'Development probe is missing a required successful control');
+  ensure(probe.check_scopes && typeof probe.check_scopes==='object' && Array.isArray(probe.limitations),'Development probe must retain actual check scopes and limitations');
+  ensure(Array.isArray(probe.evidence) && probe.evidence.length>0 && probe.evidence.every(record=>path.isAbsolute(record.path) && /^[a-f0-9]{64}$/.test(record.sha256)),'Development probe needs retained source-bound evidence');
+}
+/** Freeze six exposed candidate tasks, without auth, custodian imports or author calls. */
+export async function prepareDevelopment(o) {
+  const allowed=['out','custodian','candidateRoot','oracleValidation','probe','modules','chrome','bun','omp','bwrap','concurrency','seed','wallSeconds','maxTurns','maxToolCalls','maxOutputTokensPerCall','holdouts','evaluator'];
+  ensure(o && Object.keys(o).every(key=>allowed.includes(key)),'Unknown development preparation option');
+  for(const name of ['out','candidateRoot','oracleValidation','probe']) ensure(typeof o[name]==='string' && path.isAbsolute(o[name]),`Development ${name} must be absolute`);
+  ensure(typeof o.custodian==='string' && o.custodian.trim(),'Development custodian required');
+  const out=path.resolve(o.out);
+  ensure(out!==REPO && !out.startsWith(`${REPO}${path.sep}`) && !await exists(out),'Development storage must be a new directory outside the checkout');
+  const {runtime,versions}=await runtimeDescription(o);
+  for(const [name,record] of Object.entries(versions.packages)) ensure(record.version===(name==='puppeteer-core'?'25.3.0':'18.14.2'),`Unsupported development package: ${name}`);
+  const sources={};
+  for(const name of SCRIPT_FILES) sources[`harness/${name}`]=await fileRecord(path.join(HERE,name));
+  sources['holdouts.json']=await fileRecord(o.holdouts || path.join(HERE,'fixtures/pilot-v3.json'));
+  sources['evaluator.mjs']=await fileRecord(o.evaluator || path.join(HERE,'fixtures/pilot-v3-evaluator.mjs'));
+  sources['oracle-validator.mjs']=await fileRecord(path.join(HERE,'validate-oracles.mjs'));
+  const candidateRoot=await realpath(o.candidateRoot),candidate=await inventory(candidateRoot);
+  ensure(candidate.files.some(record=>record.path==='SKILL.md'),'Candidate root must contain SKILL.md');
+  const runtime_files=Object.fromEntries(await Promise.all(['bun','omp','bwrap','flock','chrome'].map(async name=>[name,await fileRecord(runtime[name])])));
+  const bindings={holdouts:sources['holdouts.json'].sha256,evaluator:sources['evaluator.mjs'].sha256,browser:sources['harness/pilot-browser.mjs'].sha256,runner:sources['harness/run-pilot.mjs'].sha256,reviewer:sources['harness/review-pilot.mjs'].sha256,agent:sources['harness/pilot-agent.mjs'].sha256,worker:sources['harness/pilot-worker.mjs'].sha256,validator:sources['oracle-validator.mjs'].sha256,chrome:runtime_files.chrome.sha256,driver:versions.packages['puppeteer-core'].package_sha256};
+  const oracleBytes=await readFile(o.oracleValidation),oracle=JSON.parse(oracleBytes),probeBytes=await readFile(o.probe),probe=JSON.parse(probeBytes);
+  developmentReceipts(oracle,probe,bindings,Date.now());
+  const oracleResults=await readFile(oracle.results.path);
+  ensure(sha(oracleResults)===oracle.results.sha256 && sha(await readFile(oracle.validator.path))===bindings.validator,'Oracle records or validator changed');
+  const probeEvidence=await Promise.all(probe.evidence.map(async record=>{
+    const bytes=await readFile(record.path);ensure(sha(bytes)===record.sha256,'Development probe evidence changed');return bytes;
+  }));
+  const suite=JSON.parse(await readFile(sources['holdouts.json'].path,'utf8'));
+  ensure(Array.isArray(suite.scenarios) && new Set(suite.scenarios.map(scenario=>scenario.id)).size===suite.scenarios.length,'Invalid development source suite');
+  const selected={protocol:suite.protocol,scenarios:DEVELOPMENT_CASES.map(id=>suite.scenarios.find(scenario=>scenario.id===id))};
+  selected.scenarios.forEach(developmentScenario);
+  const seed=integer(o.seed,682149,0,2147483644);
+  const limits={wallSeconds:integer(o.wallSeconds,900,30,7200),maxTurns:integer(o.maxTurns,80,1,500),maxToolCalls:integer(o.maxToolCalls,200,1,2000),maxOutputTokensPerCall:integer(o.maxOutputTokensPerCall,16000,100,64000),outputTokenLimitEnforcement:'requested SDK hint only; Codex ignores maxTokens; actual output usage retained',workerOutputBytes:64*1024*1024,rpcRequestBytes:65536,infrastructureRetries:0,scratchBytesPerTrial:160*1024*1024,scratchBytesTotal:500*1024*1024,evaluatorSecondsPerContext:180,maxResponseBytesPerCall:262144,maxTraceBytes:25165824,evaluatorScreenshotBytes:8*1024*1024,evaluatorScreenshotPixels:24000000,evaluatorStateCapturesPerContext:8,scratchEnforcement:'Owned per-trial scratch monitored every two seconds; not an OS quota. At most three 160MiB trial thresholds under the 500MiB active policy.'};
+  const environment={platform:process.platform,arch:process.arch,release:os.release(),hostname:os.hostname(),theme:'light',viewports:[{name:'wide',width:1440,height:1000,textScale:1},{name:'narrow',width:320,height:900,textScale:1},{name:'text200',width:320,height:900,textScale:2}],textScale:2,textScalingMethod:'pilot-browser computed-font-size snapshot; browser zoom unchanged',fonts:await exists('/usr/share/fonts')?await inventory('/usr/share/fonts',{systemFileLinks:true}):null,locale:'en-US',timezone:'UTC',workerLocale:'C.UTF-8',fixtureClock:'Fixed inline input values; wall clock recorded, not virtualized.'};
+  const runtime_inventory={modules:await inventory(runtime.modules,{systemFileLinks:true}),chrome:await inventory(path.dirname(runtime.chrome),{systemFileLinks:true})};
+  await mkdir(path.join(out,'frozen/harness'),{recursive:true,mode:0o700});
+  for(const [name,record] of Object.entries(sources)) {await copyFile(record.path,path.join(out,'frozen',name));ensure(sha(await readFile(path.join(out,'frozen',name)))===record.sha256,`Source changed while freezing: ${name}`);}
+  await copyTree(candidateRoot,path.join(out,'frozen/candidate'));
+  ensure((await inventory(path.join(out,'frozen/candidate'))).sha256===candidate.sha256,'Candidate changed while freezing');
+  await put(path.join(out,'frozen/selected.json'),selected);
+  await put(path.join(out,'frozen/oracle-validation.json'),oracleBytes.toString('utf8'));
+  await put(path.join(out,'frozen/oracle-validation-results.json'),oracleResults.toString('utf8'));
+  await put(path.join(out,'frozen/development-probe.json'),probeBytes.toString('utf8'));
+  for(let index=0;index<probeEvidence.length;index++) await writeFile(path.join(out,'frozen',`probe-evidence-${index}`),probeEvidence[index],{flag:'wx',mode:0o600});
+  const manifest={schema_version:'peccable-development-manifest-v1',run_id:`development-${randomBytes(8).toString('hex')}`,created_at:new Date().toISOString(),custodian:o.custodian,storage:out,kind:'development-only; exposed cases; not adoption evidence',model:{provider:'openai-codex',id:'gpt-6.1-sol'},thinking:'low',commonSystemPrompt:SYSTEM,runtime,versions,runtime_files,runtime_inventory,environment,sources,candidate_source:{path:candidateRoot,inventory:candidate},arms:{candidate:{snapshot:candidate}},bindings,limits,concurrency:integer(o.concurrency,3,1,3),seed,order:developmentOrder(seed),cohort:{cases:DEVELOPMENT_CASES,repetitions:2,arms:['candidate'],tasks:6},generation:{seedSupported:false,pairedSeeds:[seed,seed+1],disclosure:'Seeds identify fixed order only, not deterministic provider generation.'},isolation:{kind:'bwrap',engine:'bwrap',filesystem:'Existing pilot sandbox; one writable isolated trial, selected skill only, no checkout/home/other trials/oracle/reviewer/Beads mounted',tools:['bounded source read/list/write/edit','bounded local browser adapter'],network:'SDK provider HTTPS; browser exact loopback app origin; no model HTTP/exec/eval tool; not a provider-only egress ACL',discovery:'No ambient skills/configuration/sessions or credential files',auth:'Existing omp token path; credential in scrubbed worker environment only, never argv/disk',preflight_scope:probe.check_scopes.isolation,limitations:probe.limitations},context_instrumentation:'Retain raw provider context/payload, every tool attempt/result/denial, actual loaded source/skill bytes and hashes, usage/model metadata. Unavailable attribution remains unknown; no per-skill token inference.',outcome_policy:'Whole-task outcome remains incomplete without manual review; native_primary_path is scoped runtime measurement only; every failed/incomplete slot retained without replacement.',retention:{purpose:'Development diagnosis and rollback, not historical regrading or adoption',failures:'All six slots, traces, source snapshots, tool denials and unknowns retained; no retry/replacement',cleanup:'Only existing trial scratch disposable after evidence capture; preserve frozen sources, artifacts, outcomes and raw evidence.'},frozen:await inventory(path.join(out,'frozen'))};
+  await readonly(path.join(out,'frozen'));
+  await put(path.join(out,'manifest.json'),manifest);await chmod(path.join(out,'manifest.json'),0o400);
+  const hash=sha(await readFile(path.join(out,'manifest.json')));
+  await put(path.join(out,'manifest.sha256'),`${hash}\n`);
+  return {manifest:path.join(out,'manifest.json'),sha256:hash};
+}
+async function loadDevelopment(o) {
+  ensure(o && path.isAbsolute(o.manifest),'Supply an absolute development manifest');
+  const manifestPath=await realpath(o.manifest),bytes=await readFile(manifestPath),m=JSON.parse(bytes),hash=sha(bytes);
+  ensure(m.schema_version==='peccable-development-manifest-v1' && path.dirname(manifestPath)===m.storage,'Invalid or relocated development manifest');
+  ensure(o.acceptFreeze===hash && (await readFile(path.join(m.storage,'manifest.sha256'),'utf8')).trim()===hash,'Explicit accepted development freeze hash differs');
+  ensure(digest(await inventory(path.join(m.storage,'frozen')))===digest(m.frozen),'Frozen development bytes changed');
+  ensure(sha(await readFile(fileURLToPath(import.meta.url)))===m.bindings.runner,'Executing development runner differs from freeze');
+  ensure(digest(m.order)===digest(developmentOrder(m.seed)) && m.cohort.tasks===6 && digest(m.cohort.cases)===digest(DEVELOPMENT_CASES) && m.concurrency>=1 && m.concurrency<=3 && m.limits.maxTraceBytes===25165824 && m.limits.infrastructureRetries===0 && m.model.provider==='openai-codex' && m.model.id==='gpt-6.1-sol','Development protocol differs');
+  for(const record of Object.values(m.sources)) ensure(sha(await readFile(record.path))===record.sha256,`Development source drift: ${record.path}`);
+  ensure((await inventory(m.candidate_source.path)).sha256===m.candidate_source.inventory.sha256,'Candidate source drift');
+  for(const record of Object.values(m.runtime_files)) ensure(sha(await readFile(record.path))===record.sha256,`Development executable drift: ${record.path}`);
+  ensure((await inventory(m.runtime.modules,{systemFileLinks:true})).sha256===m.runtime_inventory.modules.sha256,'Development installed runtime drift');
+  ensure((await inventory(path.dirname(m.runtime.chrome),{systemFileLinks:true})).sha256===m.runtime_inventory.chrome.sha256,'Development browser runtime drift');
+  ensure(['platform','arch'].every(key=>process[key]===m.environment[key]) && os.release()===m.environment.release && os.hostname()===m.environment.hostname,'Development host environment drift');
+  if(m.environment.fonts) ensure((await inventory('/usr/share/fonts',{systemFileLinks:true})).sha256===m.environment.fonts.sha256,'Development fonts drift');
+  const oracle=JSON.parse(await readFile(path.join(m.storage,'frozen/oracle-validation.json'),'utf8')),probe=JSON.parse(await readFile(path.join(m.storage,'frozen/development-probe.json'),'utf8'));
+  developmentReceipts(oracle,probe,m.bindings,Date.parse(m.created_at));
+  ensure(sha(await readFile(path.join(m.storage,'frozen/oracle-validation-results.json')))===oracle.results.sha256,'Frozen development oracle results differ');
+  for(let index=0;index<probe.evidence.length;index++) ensure(sha(await readFile(path.join(m.storage,'frozen',`probe-evidence-${index}`)))===probe.evidence[index].sha256,'Frozen development probe evidence differs');
+  return {manifest:m,hash};
+}
+// All trial-owned roots (including scratch/data/workspace and browser profiles) live
+// below the attempt. Bind regular-file bytes, link targets without traversal, and
+// opaque IPC/device kind/presence metadata (not mutable kernel endpoint contents).
+// Directory entries also bind empty/absent trees.
+async function developmentPartialSnapshot(base) {
+  const entries=[];
+  async function visit(relative) {
+    const full=path.join(base,relative),stat=await lstat(full);
+    if(stat.isDirectory()) {
+      entries.push({path:relative,type:'directory'});
+      for(const name of (await readdir(full)).sort()) {
+        if(relative==='' && name==='outcome.json') continue;
+        await visit(relative?`${relative}/${name}`:name);
+      }
+    } else if(stat.isSymbolicLink()) {
+      entries.push({path:relative,type:'symlink',target_base64:(await readlink(full,{encoding:'buffer'})).toString('base64')});
+    } else if(stat.isFile()) {
+      const bytes=await readFile(full);
+      entries.push({path:relative,type:'file',bytes:bytes.length,sha256:sha(bytes)});
+    } else {
+      const type=stat.isSocket()?'socket':stat.isFIFO()?'fifo':stat.isBlockDevice()?'block-device':stat.isCharacterDevice()?'character-device':null;
+      ensure(type,`Unknown retained development attempt entry: ${relative}`);
+      entries.push({path:relative,type,mode:stat.mode,rdev:stat.rdev});
+    }
+  }
+  await visit('');
+  return {schema_version:'peccable-development-partial-seal-v1',excluded:['outcome.json'],entries,sha256:digest(entries)};
+}
+async function developmentOutcome(m,hash,row) {
+  const base=path.join(m.storage,'trials',row.taskId,'attempt-1'),filename=path.join(base,'outcome.json');
+  if(!await exists(base)) return null;
+  if(!await exists(filename)) {
+    const partial_attempt_seal=await developmentPartialSnapshot(base);
+    await put(filename,{manifest_hash:hash,...row,attempt:1,agent_status:'infrastructure_interrupted',task_outcome:'incomplete_evidence',assertions:[],error:'Owner stopped before finalization; original partial attempt retained, never replaced',retained_attempt:base,partial_attempt_seal});
+  }
+  const result=JSON.parse(await readFile(filename,'utf8'));
+  ensure(result.manifest_hash===hash && result.taskId===row.taskId && result.ordinal===row.ordinal,'Retained development outcome differs from assigned slot');
+  ensure(result.partial_attempt_seal || (!result.retained_attempt && result.artifact_hashes && result.evidence_hashes),'Retained development partial seal missing');
+  if(result.partial_attempt_seal) ensure(digest(await developmentPartialSnapshot(base))===digest(result.partial_attempt_seal),'Retained development partial evidence changed');
+  if(result.artifact_hashes) ensure(digest(await inventory(path.join(base,'artifact')))===digest(result.artifact_hashes),'Retained development artifact changed');
+  if(result.evidence_hashes) ensure(digest(await inventory(path.join(base,'evidence')))===digest(result.evidence_hashes),'Retained development evidence changed');
+  return result;
+}
+async function publishDevelopmentFinal(filename,summary) {
+  const record={schema_version:'peccable-development-final-v1',summary_serialization:'json-indent-2-lf-utf8-v1',summary_sha256:digest(summary),summary};
+  const stage=path.join(path.dirname(filename),`.${path.basename(filename)}.${process.pid}.${randomBytes(16).toString('hex')}.tmp`);
+  const handle=await open(stage,'wx',0o600);
+  // An interrupted staging file is retained; only the completed publication owns this cleanup.
+  try {await handle.writeFile(json(record));await handle.chmod(0o400);await handle.sync();}
+  finally {await handle.close();}
+  await link(stage,filename); // Atomic, same-directory, and never overwrites a committed record.
+  await rm(stage);
+  const directory=await open(path.dirname(filename),'r');
+  try {await directory.sync();} finally {await directory.close();}
+}
+/** Accepted-hash release. Finalized resume performs no auth, browser or author calls. */
+export async function runDevelopment(o) {
+  ensure(o && Object.keys(o).every(key=>['manifest','acceptFreeze'].includes(key)),'Unknown development execution option');
+  const {manifest:m,hash}=await loadDevelopment(o),lock=await acquireRunLock(m,hash);
+  const abortController=new AbortController(),interrupt=()=>abortController.abort();
+  process.once('SIGINT',interrupt);process.once('SIGTERM',interrupt);
+  let credential=null;
+  try {
+    const finalPath=path.join(m.storage,'development-result.json');
+    if(await exists(finalPath)) {
+      const stat=await lstat(finalPath),bytes=await readFile(finalPath),record=JSON.parse(bytes),summary=record.summary;
+      ensure(stat.isFile() && !stat.isSymbolicLink() && stat.uid===process.getuid() && (stat.mode&0o777)===0o400,'Unsafe finalized development record');
+      ensure(record.schema_version==='peccable-development-final-v1' && record.summary_serialization==='json-indent-2-lf-utf8-v1' && Object.keys(record).length===4 && bytes.equals(Buffer.from(json(record))) && record.summary_sha256===digest(summary),'Finalized development record differs');
+      ensure(summary.manifest_hash===hash && Array.isArray(summary.results) && summary.results.length===6,'Finalized development summary differs');
+      for(const row of m.order) ensure(digest(await developmentOutcome(m,hash,row))===digest(summary.results.find(result=>result.taskId===row.taskId)),'Finalized development outcome differs');
+      return summary;
+    }
+    const suite=JSON.parse(await readFile(path.join(m.storage,'frozen/selected.json'),'utf8'));
+    ensure(digest(suite.scenarios.map(scenario=>scenario.id))===digest(DEVELOPMENT_CASES),'Selected development cases differ');
+    suite.scenarios.forEach(developmentScenario);
+    const results=[];
+    for(const row of m.order) {const retained=await developmentOutcome(m,hash,row);if(retained) results.push(retained);}
+    const pending=m.order.filter(row=>!results.some(result=>result.taskId===row.taskId));
+    let releaseError=null;
+    if(pending.length) {
+      try {
+      const evaluator=await import(pathToFileURL(path.join(m.storage,'frozen/evaluator.mjs')).href),browserModule=await import(pathToFileURL(path.join(m.storage,'frozen/harness/pilot-browser.mjs')).href),reviewer=await import(pathToFileURL(path.join(m.storage,'frozen/harness/review-pilot.mjs')).href);
+      ensure(typeof evaluator.evaluate==='function' && typeof evaluator.preparePage==='function' && typeof reviewer.runtimeRecord==='function','Invalid frozen development evaluator/consumer');
+      credential=await authorCredential(m);
+      let cursor=0;
+      async function consume() {
+        while(cursor<pending.length && !abortController.signal.aborted) {
+          const row=pending[cursor++];
+          let result;
+          try {
+            await loadDevelopment(o);
+            if(abortController.signal.aborted) break;
+            result=await trial(m,hash,row,suite.scenarios[row.briefIndex],1,credential,browserModule,evaluator,abortController.signal,null,reviewer.runtimeRecord);
+          } catch(error) {
+            releaseError=errors(error);
+            abortController.abort();
+            const retained=await developmentOutcome(m,hash,row);
+            const base=path.join(m.storage,'trials',row.taskId,'attempt-1');
+            if(!retained) await mkdir(base,{recursive:true,mode:0o700});
+            result=retained || {manifest_hash:hash,...row,attempt:1,agent_status:'infrastructure_interrupted',task_outcome:'incomplete_evidence',assertions:[],error:errors(error),partial_attempt_seal:await developmentPartialSnapshot(base)};
+            if(!retained) await put(path.join(base,'outcome.json'),result);
+          }
+          results.push(result);
+        }
+      }
+      await Promise.all(Array.from({length:m.concurrency},consume));
+      } catch(error) {
+        releaseError=errors(error);abortController.abort();
+        await put(path.join(m.storage,`release-error-${Date.now()}.json`),{manifest_hash:hash,error:releaseError,author_replacements:false});
+      }
+    }
+    credential=null;
+    for(const row of m.order.filter(row=>!results.some(result=>result.taskId===row.taskId))) {
+      const base=path.join(m.storage,'trials',row.taskId,'attempt-1');
+      await mkdir(base,{recursive:true,mode:0o700});
+      const result={manifest_hash:hash,...row,attempt:1,agent_status:'infrastructure_interrupted',task_outcome:'incomplete_evidence',not_started:true,assertions:[],error:releaseError || 'Owner interrupted before author launch; no replacement or later launch permitted after finalization',partial_attempt_seal:await developmentPartialSnapshot(base)};
+      await put(path.join(base,'outcome.json'),result);results.push(result);
+    }
+    let drift=null;
+    try {await loadDevelopment(o);} catch(error) {drift=errors(error);}
+    const summary={schema_version:'peccable-development-result-v1',manifest_hash:hash,completed_at:new Date().toISOString(),expected_tasks:6,recorded_tasks:results.length,kind:m.kind,adoption:'not evaluated',task_outcome:results.some(result=>result.task_outcome==='failed')?'failed':'incomplete_evidence',source_environment_drift:drift,native_primary_paths:{scope:'Declared runtime assertions in wide/narrow/text200 only; no manual/AT/whole-task/adoption certification',measured_pass:results.filter(result=>result.native_primary_path?.outcome==='measured_pass').length,failed:results.filter(result=>result.native_primary_path?.outcome==='failed').length,incomplete_evidence:results.filter(result=>!result.native_primary_path || result.native_primary_path.outcome==='incomplete_evidence').length,zero_observed_noncompensable_failures:drift===null && results.length===6 && results.every(result=>result.native_primary_path?.outcome==='measured_pass')},usage:results.map(result=>({taskId:result.taskId,usage:result.usage ?? null,context:result.context ?? null,attribution:'Use retained worker/provider records; unavailable attribution is unknown, not zero'})),reason:'Development-only exposed candidate tasks. Independent manual review absent; failures and incomplete results retained without replacement.',results:results.sort((a,b)=>a.ordinal-b.ordinal)};
+    await publishDevelopmentFinal(finalPath,summary);
+    return summary;
+  } finally {credential=null;process.removeListener('SIGINT',interrupt);process.removeListener('SIGTERM',interrupt);await lock.close();}
 }
 if (import.meta.main) {
   try {

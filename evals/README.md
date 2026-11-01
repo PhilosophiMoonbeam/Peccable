@@ -115,6 +115,44 @@ Report supplemental context and cost separately. New judgments on unchanged, alr
 The [final V3 recovery report](results/pilot-v3-final-recovery.md) records completed native collection, strict recovery of rejected canonical-set responses, blind adjudication, remaining gaps, and measured cost. All historical failures remain unchanged. The [rejected-panel protocol](PILOT-HARNESS.md#recovering-a-rejected-panel-without-new-individual-reviews) freezes first-valid selection before new adjudication, validates canonical extras before ignoring them, and makes no replacement individual or author calls.
 
 
+### Bounded exposed-case development API
+
+`run-pilot.mjs` separately exports `prepareDevelopment(options)` and `runDevelopment({manifest, acceptFreeze})`. These are optional programmatic owner interfaces, not new CLI commands or installed resources. The ordinary pilot CLI, its defaults, and its 63-task adoption procedure remain unchanged.
+
+Preparation fixes V3-01, V3-04, and V3-07 to two fresh candidate-only authors each. Its preset is low thinking, 900 seconds, 80 turns, 200 tool calls, a requested 16000-output-token hint, a hard 24 MiB trace ceiling, concurrency three, and zero author retries. This is exposed-case development, not a no-skill comparison or adoption experiment. The canonical candidate payload remains byte-identical to the recorded baseline; this maintenance work adds no optional installed resources.
+
+Use an owner-controlled Bun module to call the real exports; supply actual absolute paths rather than a cache-specific driver:
+
+```js
+import { prepareDevelopment } from './evals/run-pilot.mjs';
+import { pathToFileURL } from 'node:url';
+
+const prepared = await prepareDevelopment({
+  out: '/absolute/new-development-run',
+  custodian: 'OWNER',
+  candidateRoot: '/absolute/frozen-candidate',
+  oracleValidation: '/absolute/current-oracle-validation/receipt.json',
+  probe: '/absolute/current-development-probe.json',
+  modules: '/absolute/installed/node_modules',
+  chrome: '/absolute/bin/chrome',
+  bun: '/absolute/bin/bun',
+  omp: '/absolute/bin/omp',
+  bwrap: '/absolute/bin/bwrap',
+});
+const { runDevelopment } = await import(pathToFileURL(
+  '/absolute/new-development-run/frozen/harness/run-pilot.mjs').href);
+const summary = await runDevelopment({
+  manifest: prepared.manifest,
+  acceptFreeze: prepared.sha256,
+});
+```
+
+The import above is relative to an owner module at the repository root; it is an API example, not a supplied wrapper. On a later invocation, import the same frozen runner and pass the retained absolute manifest and explicitly accepted SHA-256.
+
+Preparation requires genuine source-bound native/calibration receipts and retained hashed probe evidence for native names, text200, trace ceiling, exact runtime coverage, and isolation. Typed expected results alone are not a probe. Preserve actual scopes and limitations; this does not certify broad assistive-technology behavior or host egress. Preparation performs no authentication or author calls. Execution rejects an unaccepted SHA, stale source bindings, changed candidate/frozen bytes, or runtime/environment drift before authentication; zero author retries also applies to interrupted slots.
+
+The [development integrity protocol](PILOT-HARNESS.md#development-finalization-and-resume) describes atomic final publication and retained partial evidence. The [assertion-refinement report](results/assertion-refinement-2026-11-01.md) is the separate publication location for executed controls and author results, not evidence that they have already passed. Original reports, votes, adoption rule, and inconclusive/nonadoption conclusions remain unchanged. Native `measured_pass` is not whole-task `verified_success`; independent manual review is still required. No guide-attributable token savings, comparative benefit, or recovery of lost historical events is inferred.
+
 
 ## Running one task
 

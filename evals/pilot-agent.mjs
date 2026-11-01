@@ -138,8 +138,7 @@ export async function runTask(contract) {
       observedLimits.omittedTraceUtf8Bytes += lineBytes;
       return;
     }
-    const ceiling = limits.maxTraceBytes == null ? Infinity
-      : limits.maxTraceBytes - (terminal ? 0 : traceReserveBytes);
+    const ceiling = limits.maxTraceBytes - (terminal ? 0 : traceReserveBytes);
     if (observedLimits.traceBytes + lineBytes > ceiling) {
       observedLimits.traceComplete = false;
       observedLimits.omittedTraceEvents++;
@@ -170,6 +169,10 @@ export async function runTask(contract) {
   };
 
   try {
+    // Establish the hard ceiling and terminal reserve before even run_start.
+    limits.maxTraceBytes = positiveInteger(contract.maxTraceBytes ?? DEFAULT_TRACE_BYTES, 'maxTraceBytes');
+    if (limits.maxTraceBytes < 64 * 1024) throw new Error('maxTraceBytes must be at least 65536 bytes');
+    traceReserveBytes = Math.min(1024 * 1024, Math.floor(limits.maxTraceBytes / 4));
     // Fail closed on accidental trace reuse; never append one trial to another.
     logFd = openSync(contract.logPath, 'wx', 0o600);
     emit('run_start', { sessionId, taskId: contract.taskId ?? null });
@@ -178,9 +181,6 @@ export async function runTask(contract) {
     limits.maxToolCalls = positiveInteger(contract.maxToolCalls ?? 200, 'maxToolCalls');
     limits.maxOutputTokensPerCall = positiveInteger(contract.maxOutputTokensPerCall ?? 16000, 'maxOutputTokensPerCall');
     limits.maxResponseBytesPerCall = positiveInteger(contract.maxResponseBytesPerCall ?? DEFAULT_RESPONSE_BYTES, 'maxResponseBytesPerCall');
-    limits.maxTraceBytes = positiveInteger(contract.maxTraceBytes ?? DEFAULT_TRACE_BYTES, 'maxTraceBytes');
-    if (limits.maxTraceBytes < 64 * 1024) throw new Error('maxTraceBytes must be at least 65536 bytes');
-    traceReserveBytes = Math.min(1024 * 1024, Math.floor(limits.maxTraceBytes / 4));
     if (!['edit', 'read-only', 'no-runtime'].includes(contract.mode)) throw new Error('Unknown permission mode');
     if (!Array.isArray(contract.allowedWritePaths)
       || contract.allowedWritePaths.some(value => typeof value !== 'string' || !value || path.isAbsolute(value)
@@ -290,7 +290,7 @@ export async function runTask(contract) {
     if (contract.browserAdapter) {
       if (typeof contract.browserAdapter.invoke !== 'function' || !Array.isArray(contract.browserAdapter.actions)
         || contract.browserAdapter.actions.some(action => !BROWSER_ACTIONS.includes(action))) throw new Error('Invalid browser adapter');
-      tools.push(makeTool('browser', `Inspect the isolated local app only. Allowed actions: ${contract.browserAdapter.actions.join(', ')}. argsJson encodes ONE JSON object. Arguments: navigate {"path":"/"} (workspace preview; relative paths stay local); viewport {"name":"wide"} or {"name":"narrow"}; click {"selector":"CSS selector"}; fill {"selector":"CSS selector","value":"text or ISO date"}; select {"selector":"CSS selector","values":["option-value"]}; keyboard {"key":"Tab"} (also Shift+Tab, Enter, Space, Escape, arrows, Control+a); read {} for body or {"selector":"CSS selector"}; screenshot {} for the current viewport. Read/navigation results expose the actual local URL. No JavaScript evaluation, terminal, or external navigation.`,
+      tools.push(makeTool('browser', `Inspect the isolated local app only. Allowed actions: ${contract.browserAdapter.actions.join(', ')}. argsJson encodes ONE JSON object. Arguments: navigate {"path":"/"} (workspace preview; relative paths stay local); viewport {"name":"wide"}, {"name":"narrow"} or {"name":"text200"} (text200: 320x900 with 2x computed text, not browser zoom; wide/narrow restore 1x); click {"selector":"CSS selector"}; fill {"selector":"CSS selector","value":"text or ISO date"}; select {"selector":"CSS selector","values":["option-value"]}; keyboard {"key":"Tab"} (also Shift+Tab, Enter, Space, Escape, arrows, Control+a); read {} for body or {"selector":"CSS selector"}; screenshot {} for the current viewport. Read nodes[].name/role are native accessibility-tree values, not visible DOM text or screen-reader speech; authoredRole is separate, axStatus and nativeAX describe scope, and unavailable scope is unknown. authorContext reports text-scale verification and uncertainty. Read/navigation results expose the actual local URL. No JavaScript evaluation, terminal, or external navigation.`,
         { action: 'string', argsJson: 'string' }, async (_id, args, signal) => {
           if (!contract.browserAdapter.actions.includes(args.action)) throw new Error('Browser action is forbidden');
           const actionArgs = JSON.parse(args.argsJson);

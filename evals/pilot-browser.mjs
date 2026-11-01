@@ -12,8 +12,10 @@
  * Give the author ONLY tools.actions/tools.invoke (bind with the owner's SDK).
  * Keep browser/page, scale/reset, evidence and close in the evaluator context.
  * Wide/narrow are CSS viewport sizes at deviceScaleFactor=1, mobile=false;
- * viewport resizing is NOT pinch zoom. CDP page scale is reset to 1. Actual
- * inner dimensions, visual viewport scale and DPR are returned, not assumed.
+ * text200 is narrow with controlled 2x computed text, NOT browser zoom.
+ * Explicit author modes persist across actions; unselected owner sessions stay
+ * observational. Read never reapplies scaling. Native names/roles come only
+ * from Chrome's AX tree; ignored/unavailable/truncated scope stays explicit.
  * scaleText(page,2) is a controlled computed-font snapshot override, NOT browser
  * zoom: every element receives twice its OWN baseline font size in CSS px, so
  * nested inherited text does not compound to 4x. Numeric line heights double;
@@ -51,6 +53,7 @@ const VERSION = '25.3.0';
 export const VIEWPORTS = Object.freeze({
   wide: Object.freeze({width: 1440, height: 1000, deviceScaleFactor: 1, isMobile: false, hasTouch: false}),
   narrow: Object.freeze({width: 320, height: 900, deviceScaleFactor: 1, isMobile: false, hasTouch: false}),
+  text200: Object.freeze({width: 320, height: 900, deviceScaleFactor: 1, isMobile: false, hasTouch: false}),
 });
 const LIMITS = Object.freeze({requests: 2000, concurrent: 32, networkBytes: 64 * 1024 * 1024,
   fileBytes: 8 * 1024 * 1024, requestBytes: 1024 * 1024, captures: 32,
@@ -432,6 +435,72 @@ export async function resetTextScale(page) {
   });
 }
 
+/** Bounded DOM facts joined to native AX by backend node identity, never text. */
+async function readNative(page, selector) {
+  const root = await page.$(selector);
+  if (!root) throw new Error(`Read selector did not match: ${selector}`);
+  let collection, session;
+  const handles = new Map();
+  try {
+    collection = await root.evaluateHandle((node,max) =>
+      [node,...node.querySelectorAll('a,button,input,select,textarea,summary,[role],[tabindex],h1,h2,h3,[aria-live]')].slice(0,max),
+    LIMITS.readNodes);
+    for (const [key,handle] of await collection.getProperties()) handles.set(key,handle);
+    const observation = await collection.evaluate((nodes,limits) => {
+      const root = nodes[0];
+      const text = typeof root.innerText === 'string' ? root.innerText : root.textContent || '';
+      const clip = value => String(value ?? '').slice(0,1024);
+      const attribute = (node,name) => node.hasAttribute(name) ? clip(node.getAttribute(name)) : null;
+      const nodeCount = 1 + root.querySelectorAll('a,button,input,select,textarea,summary,[role],[tabindex],h1,h2,h3,[aria-live]').length;
+      return {url:location.href,title:clip(document.title),text:text.slice(0,limits.readChars),
+        textTruncated:text.length > limits.readChars,nodeCount,nodesTruncated:nodeCount > limits.readNodes,
+        nodes:nodes.map(node => {const rect = node.getBoundingClientRect();return {
+          tag:node.tagName.toLowerCase(),id:clip(node.id),authoredRole:attribute(node,'role'),
+          value:'value' in node ? clip(node.value) : null,checked:'checked' in node ? node.checked : null,
+          disabled:'disabled' in node ? node.disabled : null,expanded:attribute(node,'aria-expanded'),
+          invalid:attribute(node,'aria-invalid'),focused:node === document.activeElement,
+          box:{x:rect.x,y:rect.y,width:rect.width,height:rect.height}};})};
+    },LIMITS);
+    session = await page.createCDPSession();
+    for (const [index,node] of observation.nodes.entries()) {
+      Object.assign(node,{name:null,role:null,axStatus:'unavailable',nameTruncated:false,roleTruncated:false});
+      try {
+        const handle = handles.get(String(index))?.asElement();
+        if (!handle) throw new Error('DOM node handle unavailable');
+        const backendNodeId = await handle.backendNodeId();
+        const {nodes} = await session.send('Accessibility.getPartialAXTree',{backendNodeId,fetchRelatives:false});
+        const ax = nodes.find(value => value.backendDOMNodeId === backendNodeId);
+        if (!ax) {node.axUncertainty = 'Native AX node unavailable for this DOM identity';continue;}
+        node.axStatus = ax.ignored ? 'ignored' : 'available';
+        // Ignored names are not exposed as a successful accessible-name read.
+        const name = !ax.ignored && typeof ax.name?.value === 'string' ? ax.name.value : null;
+        const role = typeof ax.role?.value === 'string' ? ax.role.value : null;
+        node.name = name === null ? null : name.slice(0,1024);
+        node.role = role === null ? null : role.slice(0,1024);
+        node.nameTruncated = name !== null && name.length > 1024;
+        node.roleTruncated = role !== null && role.length > 1024;
+        if (ax.ignored) {
+          node.ignoredReasons = (ax.ignoredReasons || []).slice(0,8).map(reason => String(reason.name).slice(0,128));
+          node.ignoredReasonsTruncated = (ax.ignoredReasons || []).length > 8;
+        } else if (name === null || role === null) node.axUncertainty = 'Native AX response omitted name or role';
+      } catch (error) {node.axUncertainty = String(error.message).slice(0,256);}
+    }
+    return {...observation,nameSource:'native-accessibility-tree',nativeAX:{
+      scope:'Selected DOM root and bounded matching descendants in its document; no iframe or shadow-root traversal; not screen-reader speech',
+      available:observation.nodes.filter(node => node.axStatus === 'available').length,
+      ignored:observation.nodes.filter(node => node.axStatus === 'ignored').length,
+      unavailable:observation.nodes.filter(node => node.axStatus === 'unavailable').length,
+      truncated:observation.nodesTruncated || observation.nodes.some(node => node.nameTruncated || node.roleTruncated),
+    }};
+  } finally {
+    try {await session?.detach();}
+    finally {
+      try {await Promise.all([...handles.values()].map(handle => handle.dispose()));}
+      finally {try {await collection?.dispose();} finally {await root.dispose();}}
+    }
+  }
+}
+
 /** Fresh owned Chrome, profile, static preview and bounded author tool facade. */
 export async function startBrowser({workspace, scratch, allowedOrigin, executablePath, codingAgentPackage, bwrapPath = '/usr/bin/bwrap', navigateOnStart = true} = {}) {
   if (process.platform !== 'linux') throw new Error('Pilot browser ownership is implemented for Linux only');
@@ -478,7 +547,7 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
     mounts.push({type:'read-write',source,destination});
   }
   mounts.unshift({type:'proc',destination:'/proc'},{type:'dev',destination:'/dev'},{type:'tmpfs',destination:'/tmp'});
-  let browser, page, context, chrome, closing, disconnected = false, wrapperClosed = false;
+  let browser, page, context, chrome, cdp, closing, disconnected = false, wrapperClosed = false;
   let transport, sandboxPid, sandboxNamespace, namespaceEvidence;
   let chromeStderr = Buffer.alloc(0);
   let statusBuffer = '';
@@ -499,6 +568,8 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
       let cleanupError;
       try {
         if (browser && !disconnected) {
+          // Keep environment emulation attached for the trial, then dispose it.
+          if (cdp) await cdp.detach().catch(error => {cleanupError = error;});
           await Promise.race([browser.close().catch(error => {cleanupError = error;}),delay(3000)]);
         }
         killOwned();
@@ -705,7 +776,7 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
     browser.on('targetcreated',target => {if (target.type() === 'page') {
       void target.page().then(popup => {if (popup && popup !== page) return popup.close();}).catch(() => {});
     }});
-    const cdp = await page.createCDPSession();
+    cdp = await page.createCDPSession();
     await cdp.send('Emulation.setPageScaleFactor',{pageScaleFactor:1});
     await cdp.send('Emulation.setLocaleOverride',{locale:'en-US'});
     await cdp.send('Emulation.setTimezoneOverride',{timezoneId:'UTC'});
@@ -734,6 +805,36 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
       networkPolicy:'exact HTTP loopback origins via dedicated deny-CONNECT/deny-WebSocket proxy; page interception; host network retained, not an OS network ACL',
       isolation:'bubblewrap mount/user/PID/IPC/UTS namespaces; capabilities dropped; read-only system/browser mounts; only owned profile/home/tmp host writes; fresh incognito context'};
     let queue = Promise.resolve();
+    let authorMode = null;
+    async function applyAuthorMode() {
+      // Owner-controlled pages may already carry a custodian's 2x snapshot.
+      if (authorMode === null) return;
+      if (authorMode === 'text200') await ensureTextScale(page,2);
+      else await resetTextScale(page);
+    }
+    async function authorContext() {
+      const current = await page.evaluate(() => ({active:Boolean(window.__peccableTextResize),width:innerWidth,height:innerHeight}));
+      const observation = current.active ? await observeTextScale(page) : null;
+      const uncertainty = [];
+      if (observation && !observation.verified) {
+        for (const key of ['mismatches','fontSourceChanges','fontSourceUncertainty','inlineMutations','pseudoChanges','reparentedElements']) {
+          if (observation[key].length) uncertainty.push(`${key}: ${observation[key].length}`);
+        }
+        for (const key of ['addedElementCount','disconnectedElementCount']) {
+          if (observation[key]) uncertainty.push(`${key}: ${observation[key]}`);
+        }
+        if (observation.viewportChanged) uncertainty.push('Snapshot viewport changed');
+      }
+      if (authorMode === 'text200' && !observation) uncertainty.push('Selected 2x mode has no active controlled text snapshot');
+      if (authorMode && authorMode !== 'text200' && observation) uncertainty.push('Selected 1x mode has an active controlled text snapshot');
+      if (authorMode && (current.width !== VIEWPORTS[authorMode].width || current.height !== VIEWPORTS[authorMode].height)) {
+        uncertainty.push('Observed viewport differs from selected mode');
+      }
+      return {name:authorMode,ownership:authorMode === null ? 'evaluator-controlled' : 'author-selected',
+        textScale:observation ? 2 : 1,verified:(!observation || observation.verified) && uncertainty.length === 0,
+        method:observation?.method || 'unscaled-css-px',snapshotId:observation?.snapshotId || null,
+        uncertainty:uncertainty.slice(0,16),uncertaintyTruncated:uncertainty.length > 16};
+    }
     const actions = Object.freeze(['navigate','viewport','click','fill','select','keyboard','read','screenshot']);
     async function perform(action,input) {
       if (closing) throw new Error('Browser trial is closed');
@@ -743,16 +844,20 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
           const destination = new URL(boundedString(input.path,'path',2048),origin);
           if (!permitted(destination.href)) throw new Error('Navigation outside trial origins denied');
           await page.goto(destination.href,{waitUntil:'domcontentloaded'});
+          await applyAuthorMode();
           return jsonResult(await dimensions(page));
         }
         case 'viewport': {
-          if (!Object.hasOwn(VIEWPORTS,input.name)) throw new Error('Viewport must be wide or narrow');
+          if (!Object.hasOwn(VIEWPORTS,input.name)) throw new Error('Viewport must be wide, narrow or text200');
           await page.setViewport(VIEWPORTS[input.name]);
           await cdp.send('Emulation.setPageScaleFactor',{pageScaleFactor:1});
+          authorMode = input.name;
+          await applyAuthorMode();
           return jsonResult({name:input.name,requested:VIEWPORTS[input.name],observed:await dimensions(page)});
         }
         case 'click': {
           await page.click(boundedString(input.selector,'selector'));
+          await applyAuthorMode();
           return jsonResult({action,url:page.url()});
         }
         case 'fill': {
@@ -769,11 +874,14 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
             // simulated Ctrl+A/type is not equivalent for segmented controls.
             await element.asLocator().fill(input.value);
           } finally {await element?.dispose();}
+          await applyAuthorMode();
           return jsonResult({action,url:page.url(),characters:input.value.length});
         }
         case 'select': {
           if (!Array.isArray(input.values) || input.values.length > 100 || input.values.some(value => typeof value !== 'string' || value.length > 1024)) throw new Error('Invalid select values');
-          return jsonResult({selected:await page.select(boundedString(input.selector,'selector'),...input.values)});
+          const selected = await page.select(boundedString(input.selector,'selector'),...input.values);
+          await applyAuthorMode();
+          return jsonResult({selected});
         }
         case 'keyboard': {
           const pieces = boundedString(input.key,'key',100).split('+');
@@ -783,28 +891,17 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
               !/^(?:[a-zA-Z0-9]|Tab|Enter|Space|Escape|Backspace|Delete|ArrowUp|ArrowDown|ArrowLeft|ArrowRight|Home|End|PageUp|PageDown)$/.test(key)) throw new Error('Unsupported keyboard key');
           try {for (const modifier of modifiers) await page.keyboard.down(modifier);await page.keyboard.press(key);}
           finally {for (const modifier of modifiers.reverse()) await page.keyboard.up(modifier);}
+          await applyAuthorMode();
           return jsonResult({key:input.key,url:page.url()});
         }
         case 'read': {
           const selector = input.selector === undefined ? 'body' : boundedString(input.selector,'selector');
-          const observation = await page.$eval(selector,(root,limits) => {
-            const nodes = [root,...root.querySelectorAll('a,button,input,select,textarea,[role],[tabindex],h1,h2,h3,[aria-live]')];
-            const clip = value => String(value || '').slice(0,1024);
-            return {url:location.href,title:document.title,text:(root.innerText || root.textContent || '').slice(0,limits.readChars),
-              textTruncated:(root.innerText || root.textContent || '').length > limits.readChars,
-              nodeCount:nodes.length,nodesTruncated:nodes.length > limits.readNodes,
-              nodes:nodes.slice(0,limits.readNodes).map(node => {const rect = node.getBoundingClientRect();return {
-                tag:node.tagName.toLowerCase(),id:clip(node.id),role:node.getAttribute('role'),
-                name:clip(node.getAttribute('aria-label') || node.getAttribute('alt') || node.innerText || node.textContent),
-                value:'value' in node ? clip(node.value) : null,checked:'checked' in node ? node.checked : null,
-                disabled:'disabled' in node ? node.disabled : null,expanded:node.getAttribute('aria-expanded'),
-                invalid:node.getAttribute('aria-invalid'),focused:node === document.activeElement,
-                box:{x:rect.x,y:rect.y,width:rect.width,height:rect.height}};})};
-          },LIMITS);
+          const observation = await readNative(page,selector);
           return jsonResult({ ...observation,dimensions:await dimensions(page)});
         }
         case 'screenshot': {
           if (captures >= LIMITS.captures) throw new Error('Capture count bound reached');
+          await applyAuthorMode();
           const image = await page.screenshot({type:'png',fullPage:false,captureBeyondViewport:false});
           if (image.length > LIMITS.captureBytes || captureBytes + image.length > LIMITS.totalCaptureBytes) throw new Error('Capture byte bound reached');
           captures++;captureBytes += image.length;
@@ -822,7 +919,12 @@ export async function startBrowser({workspace, scratch, allowedOrigin, executabl
         if (signal?.aborted) throw signal.reason || new Error('Browser tool aborted');
         const abort = () => {void close().catch(() => {});};
         signal?.addEventListener('abort',abort,{once:true});
-        try {return await perform(action,input);}
+        try {
+          const result = await perform(action,input);
+          result.details = {...result.details,authorContext:await authorContext()};
+          result.content[0] = {type:'text',text:JSON.stringify(result.details)};
+          return result;
+        }
         catch (error) {
           // An action failure is evidence, never a source/artifact repair.
           if (!browser.connected) await close().catch(() => {});

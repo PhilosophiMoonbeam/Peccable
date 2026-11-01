@@ -49,10 +49,11 @@ function consumerControls(merge) {
   check('unknown-adjudication-is-not-manual-failure', 'unverified', { bundle }, disputed, adjudication);
   const runtime = structuredClone(bundle);
   runtime.specs[0].method = 'runtime';
-  runtime.evaluation.contexts = [{ context_id: 'wide', result: { assertions: [{ id: spec.id, result: 'fail', actual: false, evidence: { kind: 'behavioral' } }] } }];
+  runtime.neutral.permission_mode.source_writes = ['index.html'];
+  runtime.evaluation.contexts = ['wide', 'narrow', 'text200'].map(context_id => ({ context_id, result: { assertions: [{ id: spec.id, result: 'fail', actual: false, evidence: { kind: 'behavioral' } }] } }));
   check('runtime-failure-survives-unknown-adjudication', 'fail', { bundle: runtime }, disputed, adjudication);
-  runtime.evaluation.contexts[0].result.assertions[0].result = 'pass';
-  check('audited-runtime-survives-packet-rejection', 'pass', { bundle: null, specs: runtime.specs, runtimeBundle: runtime, outcome: { assertions: [] } }, [null, null]);
+  for (const context of runtime.evaluation.contexts) context.result.assertions[0].result = 'pass';
+  check('audited-runtime-survives-packet-rejection', 'pass', { bundle: null, specs: runtime.specs, runtimeBundle: { evaluation: runtime.evaluation, expectedContexts: ['wide', 'narrow', 'text200'] }, outcome: { assertions: [] } }, [null, null]);
   check('summary-is-not-runtime-proof', 'unverified', { bundle: null, specs: runtime.specs, outcome: { assertions: [{ id: spec.id, result: 'pass' }] } }, [null, null]);
   runtime.evaluation.contexts = [];
   check('source-votes-do-not-substitute-runtime', 'unverified', { bundle: runtime }, [vote('input_fixture'), vote('input_fixture')]);
@@ -79,6 +80,254 @@ function consumerControls(merge) {
   print.resources[printLocation]={accepted:false,scope:'Native PDF failed'};print.supplementalMeasuredLocations=new Set([printLocation]);
   check('failed-print-capture-is-not-proof','unverified',{bundle:print},[vote(printLocation,'measured'),vote(printLocation,'measured')]);
   return checks;
+}
+
+/** Context coverage is checked by identity and per-context rows, not totals. */
+export function runtimeCoverageControls(runtimeRecord, mergedAssertions) {
+  const spec={id:'coverage',category:'task',method:'runtime',requirement:'Observe each declared context.'};
+  const context=context_id=>({context_id,result:{assertions:[{id:spec.id,result:'pass',actual:{observed:true},evidence:{kind:'measured'}}]}});
+  const bundle={specs:[spec],evaluation:{contexts:['wide','narrow','text200'].map(context)},neutral:{permission_mode:{source_writes:['index.html']}},resources:{},trace:{complete:true,events:[]}};
+  const checks=[];
+  const check=(name,want,value,scope)=>checks.push({name,want,got:runtimeRecord(spec,value,scope).result});
+  const mutation=(name,change,want='unverified')=>{
+    const value=structuredClone(bundle);change(value.evaluation.contexts);
+    check(name,want,value);
+    checks.push({name:`${name}-merged`,want,got:mergedAssertions({bundle:value},[null,null])[0].result});
+    const failed=structuredClone(value);
+    failed.evaluation.contexts[0].result.assertions.push({id:spec.id,result:'fail',actual:{observed:false},evidence:{kind:'behavioral'}});
+    const unknown={assertions:[{id:spec.id,result:'unverified',evidence_records:[]}]};
+    const manual={assertions:[{id:spec.id,result:'pass',evidence_location:'',evidence_records:[]}]};
+    checks.push({name:`${name}-native-failure-precedence`,want:'fail',got:mergedAssertions({bundle:failed},[unknown,manual],unknown)[0].result});
+  };
+  check('complete-three-context-measurements','pass',bundle);
+  check('context-order-is-not-significant','pass',{...bundle,evaluation:{contexts:[...bundle.evaluation.contexts].reverse()}});
+  for(const id of ['wide','narrow','text200']) {
+    const single={...bundle,evaluation:{contexts:[context(id)]}};
+    check(`whole-task-missing-other-contexts-${id}`,'unverified',single);
+    check(`explicit-native-preflight-${id}`,'pass',single,[id]);
+    mutation(`missing-whole-context-${id}`,contexts=>contexts.splice(contexts.findIndex(row=>row.context_id===id),1));
+  }
+  mutation('duplicate-row-compensates-missing-row',contexts=>{contexts[0].result.assertions.push(structuredClone(contexts[0].result.assertions[0]));contexts[1].result.assertions=[];});
+  mutation('duplicate-assertion-row',contexts=>contexts[0].result.assertions.push(structuredClone(contexts[0].result.assertions[0])));
+  mutation('duplicate-context-identity',contexts=>contexts[1].context_id=contexts[0].context_id);
+  mutation('extra-context',contexts=>contexts.push(context('wide')));
+  mutation('unknown-context-identity',contexts=>contexts[1].context_id='unknown');
+  mutation('empty-context-identity',contexts=>contexts[1].context_id='');
+  mutation('absent-context-identity',contexts=>delete contexts[1].context_id);
+  mutation('empty-assertion-identity',contexts=>contexts[0].result.assertions.push({id:'',result:'pass'}));
+  mutation('duplicate-other-assertion-identities',contexts=>contexts[0].result.assertions.push({id:'other',result:'pass'},{id:'other',result:'pass'}));
+  mutation('context-error',contexts=>contexts[1].error='Capture incomplete');
+  mutation('assertion-context-error',contexts=>contexts[1].result.assertions[0].context_error='Measurement incomplete');
+  mutation('missing-actual',contexts=>delete contexts[1].result.assertions[0].actual);
+  mutation('source-is-not-native-evidence',contexts=>contexts[1].result.assertions[0].evidence.kind='source');
+  mutation('unknown-observation',contexts=>contexts[1].result.assertions[0].result='unverified');
+  mutation('mixed-not-applicable-and-real-observation',contexts=>contexts[1].result.assertions[0].result='not_applicable','pass');
+  mutation('all-not-applicable',contexts=>contexts.forEach(row=>row.result.assertions[0].result='not_applicable'),'not_applicable');
+  mutation('not-applicable-does-not-hide-context-error',contexts=>{contexts[1].result.assertions[0].result='not_applicable';contexts[1].error='Capture incomplete';});
+  for(const scope of [[],['wide','wide'],['unknown'],['planning','wide']])check(`invalid-explicit-scope-${JSON.stringify(scope)}`,'unverified',bundle,scope);
+  check('explicit-planning-measurement','pass',{...bundle,evaluation:{contexts:[context('planning')]}},['planning']);
+  check('planning-is-not-whole-runtime-task','unverified',{...bundle,evaluation:{contexts:[context('planning')]}});
+  // Match loadTrial's retained producer exactly: evaluation plus audited scope,
+  // without a neutral packet whose permissions could conceal a lost scope.
+  const planningSpec={id:'planning-inventory',category:'authority',method:'planning',requirement:'Retain the unchanged source inventory.'};
+  const designSpec={id:'planning-design',category:'design',method:'review',requirement:'Rendered design is not applicable to the source-only plan.'};
+  const inventory={...planningSpec,result:'pass',actual:{unchanged:true,inventory_reference:'artifact-freeze.json'},evidence:{kind:'measured'}};
+  const design={...designSpec,result:'not_applicable',actual:{source_only:true},evidence:{kind:'source'}};
+  const planning={evaluation:{contexts:[{context_id:'planning',result:{assertions:[inventory,design]}}]},expectedContexts:['planning']};
+  const retained=(value,outcome={assertions:[inventory,design]})=>({bundle:null,specs:[planningSpec,designSpec],runtimeBundle:value,outcome});
+  const planningCheck=(name,want,value,index=0,outcome)=>{
+    checks.push({name,want,got:mergedAssertions(retained(value,outcome),[null,null])[index].result});
+  };
+  planningCheck('retained-planning-inventory','pass',planning);
+  planningCheck('retained-planning-source-design-not-applicable','not_applicable',planning,1);
+  const admitted={specs:[planningSpec,designSpec],evaluation:planning.evaluation,neutral:{permission_mode:{source_writes:[]}},resources:{},trace:{complete:true,events:[]}};
+  checks.push({name:'retained-planning-matches-admitted-evidence',want:true,got:JSON.stringify(mergedAssertions(retained(planning),[null,null]).map(row=>row.result))===JSON.stringify(mergedAssertions({bundle:admitted},[null,null]).map(row=>row.result))});
+  for(const scope of [undefined,null,[],['planning','planning'],['unknown'],['planning','wide'],['wide','narrow','text200'],'planning']) {
+    const value={evaluation:planning.evaluation,...(scope===undefined?{}:{expectedContexts:scope})};
+    for(const index of [0,1])planningCheck(`retained-planning-invalid-scope-${JSON.stringify(scope)??'missing'}-${index}`,'unverified',value,index);
+    const failed=structuredClone(value);
+    failed.evaluation.contexts[0].result.assertions[0].result='fail';
+    planningCheck(`retained-planning-native-failure-before-invalid-scope-${JSON.stringify(scope)??'missing'}`,'fail',failed);
+  }
+  for(const [name,change] of [
+    ['unknown',value=>{value.evaluation.contexts[0].result.assertions[0].result='unverified';}],
+    ['missing-actual',value=>{delete value.evaluation.contexts[0].result.assertions[0].actual;}],
+    ['source-is-not-native-inventory',value=>{value.evaluation.contexts[0].result.assertions[0].evidence.kind='source';}],
+    ['context-error',value=>{value.evaluation.contexts[0].error='Inventory capture incomplete';}],
+    ['duplicate-context',value=>{value.evaluation.contexts.push(structuredClone(value.evaluation.contexts[0]));}],
+  ]) {
+    const value=structuredClone(planning);change(value);
+    planningCheck(`retained-planning-${name}`,'unverified',value);
+  }
+  const unknownDesign=structuredClone(planning);
+  unknownDesign.evaluation.contexts[0].result.assertions[1].result='unverified';
+  planningCheck('retained-planning-design-unknown-is-not-not-applicable','unverified',unknownDesign,1);
+  const failedDesign=structuredClone(unknownDesign);
+  failedDesign.evaluation.contexts[0].result.assertions[1].result='fail';
+  planningCheck('retained-planning-design-native-failure','fail',failedDesign,1);
+  planningCheck('retained-planning-original-failure-precedence','fail',planning,0,{assertions:[{...inventory,result:'fail'},design]});
+  const retainedEditing={evaluation:bundle.evaluation,expectedContexts:['wide','narrow','text200']};
+  const editingResult=value=>mergedAssertions({bundle:null,specs:[spec],runtimeBundle:value,outcome:{assertions:[]}},[null,null])[0].result;
+  checks.push({name:'retained-edit-and-author-no-runtime-evaluator-coverage',want:'pass',got:editingResult(retainedEditing)});
+  checks.push({name:'retained-edit-missing-scope-is-not-default-coverage',want:'unverified',got:editingResult({evaluation:bundle.evaluation})});
+  checks.push({name:'retained-edit-missing-whole-context',want:'unverified',got:editingResult({...retainedEditing,evaluation:{contexts:bundle.evaluation.contexts.slice(0,2)}})});
+  return checks;
+}
+
+/** Exercise the public recorder without resolving an SDK or provider. */
+export async function traceCeilingControls(runTask, outputDir, agentBinding, checks=[]) {
+  const ceiling=65536,allowance=ceiling-Math.floor(ceiling/4),cases=[];
+  const check=(name,got,want)=>checks.push({name,want,got});
+  const emptyStartupBytes=Buffer.byteLength(JSON.stringify({type:'run_start',at:'2000-01-01T00:00:00.000Z',sessionId:'0'.repeat(36),taskId:''})+'\n');
+  const edgeTaskId='x'.repeat(allowance-emptyStartupBytes);
+  const plans=[
+    {id:'oversized-start',taskId:'x'.repeat(70*1024),limited:true},
+    {id:'oversized-start-utf8',taskId:'界'.repeat(24*1024),limited:true},
+    {id:'oversized-terminal',taskId:'compact',model:{padding:'x'.repeat(128*1024)},compact:true},
+    {id:'oversized-start-and-terminal',taskId:'x'.repeat(70*1024),model:{padding:'x'.repeat(128*1024)},limited:true,compact:true},
+    {id:'small-pre-provider-failure',taskId:'small'},
+    {id:'ordinary-allowance-exact',taskId:edgeTaskId,startupBytes:allowance},
+    {id:'ordinary-allowance-plus-one',taskId:edgeTaskId+'x',limited:true,startupBytes:allowance+1},
+  ];
+  for(const plan of plans) {
+    const logPath=path.join(outputDir,`${plan.id}.jsonl`);
+    let runtimeEntries=0,credentialCalls=0;
+    const contract={logPath,taskId:plan.taskId,maxSeconds:1,maxTurns:1,maxToolCalls:1,maxTraceBytes:ceiling,
+      mode:'invalid-offline-probe',allowedWritePaths:[],model:plan.model,
+      getApiKey:()=>{credentialCalls++;throw new Error('Provider entry forbidden');}};
+    Object.defineProperty(contract,'runtimeRoot',{get(){runtimeEntries++;throw new Error('SDK entry forbidden');}});
+    const summary=await runTask(contract),raw=await fs.readFile(logPath);
+    check(`${plan.id}:hard-ceiling`,raw.length<=ceiling,true);
+    check(`${plan.id}:complete-jsonl`,raw.at(-1),10);
+    const events=raw.toString('utf8').trimEnd().split('\n').map(line=>JSON.parse(line)),terminal=events.at(-1);
+    check(`${plan.id}:one-terminal`,events.filter(event=>event.type==='run_end').length,1);
+    check(`${plan.id}:terminal-last`,terminal?.type,'run_end');
+    check(`${plan.id}:returned-byte-count`,summary.observedLimits.traceBytes,raw.length);
+    check(`${plan.id}:no-sdk-entry`,runtimeEntries,0);
+    check(`${plan.id}:no-credential-calls`,credentialCalls,0);
+    check(`${plan.id}:no-provider-events`,events.some(event=>event.type.startsWith('provider_')),false);
+    check(`${plan.id}:no-model-turns`,summary.turns,0);
+    check(`${plan.id}:no-tool-calls`,summary.toolCalls,0);
+    const limited=Boolean(plan.limited||plan.compact);
+    for(const[label,result]of [['returned',summary],['retained',terminal]]) {
+      check(`${plan.id}:${label}-status`,result?.status,limited?'limit_reached':'infrastructure_interrupted');
+      check(`${plan.id}:${label}-stop`,result?.stopCause,limited?'trace_byte_limit':null);
+      check(`${plan.id}:${label}-complete`,result?.observedLimits?.traceComplete,!limited);
+      check(`${plan.id}:${label}-omissions`,result?.observedLimits?.omittedTraceEvents>0,limited);
+      check(`${plan.id}:${label}-omitted-bytes`,result?.observedLimits?.omittedTraceUtf8Bytes>0,limited);
+    }
+    check(`${plan.id}:compact-terminal`,terminal?.summaryOmitted===true,Boolean(plan.compact));
+    if(plan.compact) {
+      check(`${plan.id}:compact-fields`,terminal?.omittedFields?.includes('model'),true);
+      check(`${plan.id}:compact-reason`,typeof terminal?.reason==='string'&&terminal.reason.length>0,true);
+    }
+    const limits=events.filter(event=>event.type==='trace_limit');
+    check(`${plan.id}:limit-event-count`,limits.length,plan.limited?1:0);
+    if(plan.limited) {
+      check(`${plan.id}:startup-not-written`,events.some(event=>event.type==='run_start'),false);
+      check(`${plan.id}:rejected-event-type`,limits[0]?.rejectedEventType,'run_start');
+      check(`${plan.id}:rejected-stop`,limits[0]?.stopCause,'trace_byte_limit');
+      check(`${plan.id}:rejected-over-allowance`,limits[0]?.rejectedUtf8Bytes>allowance,true);
+      check(`${plan.id}:rejected-hash`,/^[a-f0-9]{64}$/.test(limits[0]?.rejectedSha256),true);
+      check(`${plan.id}:trace-exception`,summary.exception?.code,'TRACE_BYTE_LIMIT');
+      if(plan.startupBytes)check(`${plan.id}:startup-size`,limits[0]?.rejectedUtf8Bytes,plan.startupBytes);
+    } else {
+      check(`${plan.id}:startup-written`,events[0]?.type,'run_start');
+      if(plan.startupBytes)check(`${plan.id}:startup-size`,Buffer.byteLength(JSON.stringify(events[0])+'\n'),plan.startupBytes);
+    }
+    await put(path.join(outputDir,`${plan.id}.result.json`),summary);
+    cases.push({id:plan.id,logPath,sha256:sha(raw),bytes:raw.length,status:summary.status,stopCause:summary.stopCause});
+  }
+  return {source:agentBinding,checks,cases};
+}
+
+/** Native author facade controls, independently compared with Chromium AX. */
+export async function browserFacadeControls({startBrowser,ensureTextScale,workspace,scratch,launch={},onBrowser=()=>{}},checks=[]) {
+  await put(path.join(workspace,'index.html'),`<!doctype html><html lang="en"><meta charset="utf-8"><title>Native facade controls</title>
+<style>body{margin:8px;font-size:16px}button,input,select,textarea{font-size:16px}#glyph::after{content:' +'}#label{font-size:16px}#fixed{font-size:18px;line-height:24px}#fixed.changed{font-size:22px}#inherited{font-size:20px}#child{font-size:inherit}.space{height:1200px}</style>
+<button id="glyph">Add</button><button id="hidden-glyph">Add<span aria-hidden="true"> +</span></button>
+<span id="reference">Resolved <span aria-hidden="true">decoration</span>label</span><button id="labelled" aria-labelledby="reference">Wrong fallback</button>
+<label id="label" for="field">Native field</label><input id="field" value="initial"><label for="choice">Choice</label><select id="choice"><option value="one">One</option><option value="two">Two</option></select>
+<details open><summary id="summary">More options</summary><p>Details</p></details>
+<div id="custom" role="button" tabindex="0" aria-label="Custom action">Wrong fallback</div><div id="unknown" role="not-a-real-role" tabindex="0">Unknown role text</div>
+<button id="hidden" hidden>Never native success</button><button id="aria-hidden" aria-hidden="true">Hidden AX</button>
+<button id="long" aria-label="${'L'.repeat(1100)}">Short</button>
+<p id="fixed">Fixed pixels</p><div id="inherited"><span id="child">Inherited text</span></div>
+<button id="change" onclick="document.getElementById('fixed').classList.toggle('changed')">Change font</button><a id="next" href="/next.html">Next</a><div class="space"></div>
+</html>`);
+  await put(path.join(workspace,'next.html'),'<!doctype html><html lang="en"><meta charset="utf-8"><title>Next</title><style>#next-fixed{font-size:19px}</style><p id="next-fixed">Navigation text</p><a href="/">Back</a></html>');
+  const check=(name,got,actual)=>checks.push({name,want:true,got:Boolean(got),actual});
+  const near=(a,b)=>Math.abs(a-b)<0.05,evidence=[];
+  const owner=await startBrowser({workspace,scratch:path.join(scratch,'author'),...launch});onBrowser(owner);
+  const {page,tools}=owner;
+  const invoke=async(action,args={})=>(await tools.invoke(action,args)).details;
+  const oracle=async selector=>{
+    const handle=await page.$(selector);
+    try{return await page.accessibility.snapshot({root:handle,interestingOnly:false});}
+    finally{await handle.dispose();}
+  };
+  const fonts=()=>page.evaluate(()=>Object.fromEntries(['fixed','inherited','child'].map(id=>[id,parseFloat(getComputedStyle(document.getElementById(id)).fontSize)])));
+  const geometry=()=>page.evaluate(()=>({focus:document.activeElement.id,scroll:{x:scrollX,y:scrollY},nodes:['fixed','inherited','child'].map(id=>{
+    const element=document.getElementById(id),rect=element.getBoundingClientRect();
+    return {id,font:getComputedStyle(element).fontSize,inline:element.getAttribute('style'),box:{x:rect.x,y:rect.y,width:rect.width,height:rect.height}};
+  })}));
+  try{
+    const nativeRead=await invoke('read');
+    check('native-root-source',nativeRead.nameSource==='native-accessibility-tree',nativeRead.nativeAX);
+    for(const id of ['glyph','hidden-glyph','labelled','field','summary','custom','unknown']) {
+      const native=await oracle('#'+id),node=nativeRead.nodes.find(value=>value.id===id);
+      check('native-identity-'+id,node?.axStatus==='available'&&node.name===native?.name&&node.role===native?.role,{node,native});
+    }
+    const byId=id=>nativeRead.nodes.find(node=>node.id===id);
+    check('native-exposed-glyph',byId('glyph')?.name.includes('+'),byId('glyph'));
+    check('native-hidden-glyph',!byId('hidden-glyph')?.name.includes('+'),byId('hidden-glyph'));
+    check('native-labelledby',byId('labelled')?.name==='Resolved label',byId('labelled'));
+    check('native-label',byId('field')?.name==='Native field',byId('field'));
+    check('native-summary-included',byId('summary')?.name.includes('More options'),byId('summary'));
+    for(const id of ['hidden','aria-hidden'])check('native-ignored-'+id,byId(id)?.axStatus==='ignored'&&byId(id).name===null,byId(id));
+    const unknown=byId('unknown');
+    check('native-authored-role-distinct',unknown?.authoredRole==='not-a-real-role'&&unknown.role!=='not-a-real-role',unknown);
+    check('native-name-truncation',byId('long')?.name.length===1024&&byId('long').nameTruncated&&nativeRead.nativeAX.truncated,byId('long'));
+    const scoped=await invoke('read',{selector:'#summary'});
+    check('native-selector-scope',scoped.nodes.length===1&&scoped.nodes[0].id==='summary'&&scoped.nodes[0].name===byId('summary').name&&scoped.nodes[0].role===byId('summary').role,scoped.nativeAX);
+    const baseline=await fonts(),scaled=await invoke('viewport',{name:'text200'}),doubled=await fonts();
+    check('text200-fixed-inherited',Object.keys(baseline).every(id=>near(doubled[id],baseline[id]*2)),{baseline,doubled});
+    check('text200-context',scaled.authorContext.name==='text200'&&scaled.authorContext.textScale===2&&scaled.authorContext.verified&&scaled.authorContext.method==='computed-font-snapshot-css-px'&&scaled.observed.innerWidth===320&&scaled.observed.innerHeight===900&&scaled.observed.visualViewport.scale===1,scaled);
+    await page.focus('#field');
+    await page.evaluate(()=>{window.scrollTo(0,100);window.__readMutationCount=0;window.__readObserver=new MutationObserver(records=>window.__readMutationCount+=records.length);window.__readObserver.observe(document,{attributes:true,childList:true,characterData:true,subtree:true});});
+    const before=await geometry(),first=await invoke('read'),second=await invoke('read'),after=await geometry();
+    const mutations=await page.evaluate(()=>{window.__readObserver.disconnect();return window.__readMutationCount;});
+    check('read-observational-geometry',JSON.stringify(before)===JSON.stringify(after)&&mutations===0&&first.authorContext.snapshotId===second.authorContext.snapshotId&&first.authorContext.snapshotId===scaled.authorContext.snapshotId,{before,after,mutations,first:first.authorContext,second:second.authorContext});
+    await page.evaluate(()=>document.getElementById('fixed').classList.add('changed'));
+    const stale=await invoke('read');
+    check('read-stale-observational',!stale.authorContext.verified&&stale.authorContext.snapshotId===scaled.authorContext.snapshotId,stale.authorContext);
+    await invoke('click',{selector:'#change'});
+    const changed=await invoke('click',{selector:'#change'}),changedFonts=await fonts();
+    check('dynamic-font-rebase',changed.authorContext.verified&&changed.authorContext.snapshotId!==scaled.authorContext.snapshotId&&near(changedFonts.fixed,44),{context:changed.authorContext,fonts:changedFonts});
+    const filled=await invoke('fill',{selector:'#field',value:'updated'}),selected=await invoke('select',{selector:'#choice',values:['two']}),keyed=await invoke('keyboard',{key:'Tab'});
+    check('text200-actions-persist',[filled,selected,keyed].every(value=>value.authorContext.name==='text200'&&value.authorContext.textScale===2&&value.authorContext.verified),{filled:filled.authorContext,selected:selected.authorContext,keyed:keyed.authorContext});
+    const shot=await invoke('screenshot');
+    check('text200-screenshot',shot.authorContext.verified&&shot.authorContext.snapshotId===keyed.authorContext.snapshotId,shot.authorContext);
+    const next=await invoke('navigate',{path:'/next.html'}),nextFont=await page.$eval('#next-fixed',element=>parseFloat(getComputedStyle(element).fontSize));
+    check('text200-navigation',next.authorContext.name==='text200'&&next.authorContext.verified&&near(nextFont,38),{context:next.authorContext,nextFont});
+    const narrow=await invoke('viewport',{name:'narrow'}),restored=await page.$eval('#next-fixed',element=>parseFloat(getComputedStyle(element).fontSize));
+    check('narrow-restores-one',narrow.authorContext.textScale===1&&narrow.authorContext.verified&&near(restored,19),{context:narrow.authorContext,restored});
+    await invoke('viewport',{name:'text200'});
+    const wide=await invoke('viewport',{name:'wide'}),wideFont=await page.$eval('#next-fixed',element=>parseFloat(getComputedStyle(element).fontSize));
+    check('wide-restores-one',wide.authorContext.textScale===1&&wide.authorContext.verified&&near(wideFont,19),{context:wide.authorContext,wideFont});
+    evidence.push({fixture:'maintenance-browser-facade-author',...await owner.evidence()});
+  }finally{try{await owner.close();}finally{onBrowser(null);}}
+  const custodian=await startBrowser({workspace,scratch:path.join(scratch,'custodian'),...launch});onBrowser(custodian);
+  try{
+    await custodian.page.setViewport({width:320,height:900,deviceScaleFactor:1,isMobile:false,hasTouch:false});
+    const ownedScale=await ensureTextScale(custodian.page,2);
+    const before=await custodian.page.$eval('#fixed',element=>({font:getComputedStyle(element).fontSize,inline:element.getAttribute('style')}));
+    const read=(await custodian.tools.invoke('read')).details,capture=(await custodian.tools.invoke('screenshot')).details;
+    const after=await custodian.page.$eval('#fixed',element=>({font:getComputedStyle(element).fontSize,inline:element.getAttribute('style')}));
+    check('custodian-scale-noninterference',JSON.stringify(before)===JSON.stringify(after)&&read.authorContext.name===null&&read.authorContext.ownership==='evaluator-controlled'&&read.authorContext.textScale===2&&capture.authorContext.textScale===2&&capture.authorContext.verified&&read.authorContext.snapshotId===ownedScale.snapshotId&&capture.authorContext.snapshotId===ownedScale.snapshotId,{before,after,read:read.authorContext,capture:capture.authorContext});
+    evidence.push({fixture:'maintenance-browser-facade-custodian',...await custodian.evidence()});
+  }finally{try{await custodian.close();}finally{onBrowser(null);}}
+  return {checks,evidence};
 }
 
 /** Native behavioral controls; no oracle fixture, author trial, or model call. */
@@ -284,7 +533,7 @@ async function run(options){
   ensure(options.out&&path.isAbsolute(options.out)&&options.modules&&path.isAbsolute(options.modules)&&options.chrome&&path.isAbsolute(options.chrome),HELP);
   const root=path.resolve(options.out), modules=await fs.realpath(options.modules), chrome=await fs.realpath(options.chrome);
   const harness=path.resolve(options.harness||HERE);
-  const sources={holdouts:path.resolve(options.holdouts||path.join(HERE,'fixtures/pilot-v3.json')),evaluator:path.resolve(options.evaluator||path.join(HERE,'fixtures/pilot-v3-evaluator.mjs')),browser:path.join(harness,'pilot-browser.mjs'),runner:path.join(harness,'run-pilot.mjs'),reviewer:path.join(harness,'review-pilot.mjs'),rubric:path.join(harness,path.basename(harness)==='harness'?'../RUBRIC.md':'RUBRIC.md')};
+  const sources={holdouts:path.resolve(options.holdouts||path.join(HERE,'fixtures/pilot-v3.json')),evaluator:path.resolve(options.evaluator||path.join(HERE,'fixtures/pilot-v3-evaluator.mjs')),browser:path.join(harness,'pilot-browser.mjs'),runner:path.join(harness,'run-pilot.mjs'),reviewer:path.join(harness,'review-pilot.mjs'),agent:path.join(harness,'pilot-agent.mjs'),worker:path.join(harness,'pilot-worker.mjs'),rubric:path.join(harness,path.basename(harness)==='harness'?'../RUBRIC.md':'RUBRIC.md')};
   const checkout=path.dirname(harness);
   ensure(root!==checkout&&!root.startsWith(`${checkout}${path.sep}`),'Validation storage must be outside the harness checkout');
   await fs.mkdir(root,{mode:0o700});
@@ -295,11 +544,10 @@ async function run(options){
     await fs.mkdir(path.dirname(destination),{recursive:true});await fs.copyFile(source,destination);await fs.chmod(destination,0o400);
     frozenPaths[name]=destination;bindings[name]=sha(await fs.readFile(destination));
   }
-  for(const name of ['pilot-agent.mjs','pilot-worker.mjs']){const target=path.join(frozen,'harness',name);await fs.copyFile(path.join(harness,name),target);await fs.chmod(target,0o400);}
   const validatorSnapshot=path.join(frozen,'validator.mjs');await fs.copyFile(fileURLToPath(import.meta.url),validatorSnapshot);await fs.chmod(validatorSnapshot,0o400);
   bindings.chrome=sha(await fs.readFile(chrome));bindings.driver=sha(await fs.readFile(path.join(modules,'puppeteer-core/package.json')));
-  const [{startBrowser,scaleText,ensureTextScale,observeTextScale,resetTextScale},{evaluate,preparePage,oracleFixtures,protocol},{runtimeRecord,mergedAssertions,projectReviewPacket,registry},{captureEvidence}]=await Promise.all([import(pathToFileURL(frozenPaths.browser).href),import(pathToFileURL(frozenPaths.evaluator).href),import(pathToFileURL(frozenPaths.reviewer).href),import(pathToFileURL(frozenPaths.runner).href)]);
-  ensure([startBrowser,scaleText,ensureTextScale,observeTextScale,resetTextScale,evaluate,preparePage,oracleFixtures,runtimeRecord,mergedAssertions,projectReviewPacket,registry,captureEvidence].every(value=>typeof value==='function'),'Incomplete oracle/harness interface');
+  const [{startBrowser,scaleText,ensureTextScale,observeTextScale,resetTextScale},{evaluate,preparePage,oracleFixtures,protocol},{runtimeRecord,mergedAssertions,projectReviewPacket,registry},{captureEvidence},{runTask}]=await Promise.all([import(pathToFileURL(frozenPaths.browser).href),import(pathToFileURL(frozenPaths.evaluator).href),import(pathToFileURL(frozenPaths.reviewer).href),import(pathToFileURL(frozenPaths.runner).href),import(pathToFileURL(frozenPaths.agent).href)]);
+  ensure([startBrowser,scaleText,ensureTextScale,observeTextScale,resetTextScale,evaluate,preparePage,oracleFixtures,runtimeRecord,mergedAssertions,projectReviewPacket,registry,captureEvidence,runTask].every(value=>typeof value==='function'),'Incomplete oracle/harness interface');
   const reviewPolicy=(await registry()).evidence_policy;
   const suite=JSON.parse(await fs.readFile(frozenPaths.holdouts,'utf8')), cases=suite.scenarios;
   ensure(Array.isArray(cases)&&cases.length===7,'Exactly seven independently authored cases are required');
@@ -317,17 +565,34 @@ async function run(options){
     for(const{fixture}of controls.filter(entry=>entry.fixture.control_type==='positive'))ensure(scenario.evaluator_assertions.filter(spec=>spec.method==='runtime').every(spec=>fixture.expected_assertions[spec.id]==='pass'),'A compliant positive must expect passing runtime observations');
     ensure(controls.some(entry=>entry.fixture.control_type==='negative'&&Object.values(entry.fixture.expected_assertions).includes('fail')),'Each case requires an observable negative control; manual challenges alone are insufficient');
   }
-  const safety=[{kind:'behavioral',state:'pass',actual:true,want:'pass'},{kind:'measured',state:'pass',actual:true,want:'pass'},{kind:'source',state:'pass',actual:true,want:'unverified'},{kind:'rendered',state:'pass',actual:true,want:'unverified'},{kind:null,state:'pass',actual:true,want:'unverified'},{kind:'behavioral',state:'unverified',actual:true,want:'unverified'},{kind:'behavioral',state:'fail',actual:true,want:'fail'},{kind:'behavioral',state:'pass',actual:false,want:'unverified'}].map(value=>({...value,got:runtimeRecord({id:'probe',method:'runtime'},{evaluation:{contexts:[{context_id:'wide',result:{assertions:[{id:'probe',result:value.state,evidence:value.kind?{kind:value.kind}:undefined,...(value.actual?{actual:{probe:true}}:{})}]}}]}}).result}));
-  const results=[],errors=[],browsers=[],visualGaps=[];let textScalingSafety=[],activeBrowser=null,interrupted=false;
+  const safety=[{kind:'behavioral',state:'pass',actual:true,want:'pass'},{kind:'measured',state:'pass',actual:true,want:'pass'},{kind:'source',state:'pass',actual:true,want:'unverified'},{kind:'rendered',state:'pass',actual:true,want:'unverified'},{kind:null,state:'pass',actual:true,want:'unverified'},{kind:'behavioral',state:'unverified',actual:true,want:'unverified'},{kind:'behavioral',state:'fail',actual:true,want:'fail'},{kind:'behavioral',state:'pass',actual:false,want:'unverified'}].map(value=>({...value,got:runtimeRecord({id:'probe',method:'runtime'},{evaluation:{contexts:[{context_id:'wide',result:{assertions:[{id:'probe',result:value.state,evidence:value.kind?{kind:value.kind}:undefined,...(value.actual?{actual:{probe:true}}:{})}]}}]}},['wide']).result}));
+  const results=[],errors=[],browsers=[],visualGaps=[],textScalingSafety=[],browserFacadeSafety=[],traceCeilingSafety=[];
+  const runtimeCoverageSafety=runtimeCoverageControls(runtimeRecord,mergedAssertions);
+  let traceCeilingEvidence=null,activeBrowser=null,interrupted=false;
   const interrupt=()=>{interrupted=true;void activeBrowser?.close().catch(error=>errors.push({cleanup_error:String(error)}));};
   process.once('SIGINT',interrupt);process.once('SIGTERM',interrupt);
   const record=async(scenario,fixture,context,result,frames=[])=>{
-    const consumer=scenario.evaluator_assertions.filter(spec=>spec.method==='runtime').map(spec=>{const observed=result.assertions.find(assertion=>assertion.id===spec.id);return{id:spec.id,want:observed?.result,got:runtimeRecord(spec,{evaluation:{contexts:[{context_id:context,result}]}}).result};});
+    const consumer=scenario.evaluator_assertions.filter(spec=>spec.method==='runtime').map(spec=>{const observed=result.assertions.find(assertion=>assertion.id===spec.id);return{id:spec.id,want:observed?.result,got:runtimeRecord(spec,{evaluation:{contexts:[{context_id:context,result}]}},[context]).result};});
     if(fixture.control_type==='positive'&&context!=='planning')for(const label of scenario.review_states)if(!frames.some(frame=>frame.label===label))visualGaps.push({fixture:fixture.id,context,label});
     const row={id:fixture.id,control_type:fixture.control_type,context,expected:fixture.expected_assertions,result,consumer,stateScreenshots:frames};
     results.push(row);await fs.appendFile(path.join(root,'observations.jsonl'),`${JSON.stringify(row)}\n`);
   };
   try{
+    try{
+      const directory=path.join(root,'trace-ceiling-boundaries');await fs.mkdir(directory);
+      traceCeilingEvidence=await traceCeilingControls(runTask,directory,{path:frozenPaths.agent,sha256:bindings.agent},traceCeilingSafety);
+      await put(path.join(directory,'observations.json'),traceCeilingEvidence);
+    }catch(error){errors.push({fixture:'maintenance-trace-ceiling',error:String(error.stack||error)});}
+    try{
+      const directory=path.join(root,'browser-facade-boundaries');
+      const facade=await browserFacadeControls({startBrowser,ensureTextScale,workspace:path.join(directory,'workspace'),scratch:path.join(directory,'scratch'),
+        launch:{executablePath:chrome,codingAgentPackage:path.join(modules,'@oh-my-pi/pi-coding-agent/package.json')},onBrowser:value=>{activeBrowser=value;}},browserFacadeSafety);
+      browsers.push(...facade.evidence);
+    }catch(error){errors.push({fixture:'maintenance-browser-facade',error:String(error.stack||error)});}
+    finally{
+      try{await put(path.join(root,'browser-facade-boundaries/observations.json'),browserFacadeSafety);}
+      catch(error){errors.push({fixture:'maintenance-browser-facade',evidence_error:String(error)});}
+    }
     let controlBrowser;
     try{
       const directory=path.join(root,'text-scale-boundaries'),workspace=path.join(directory,'workspace');
@@ -388,6 +653,17 @@ async function run(options){
   const reconciliationSafety=consumerControls(mergedAssertions);
   mismatches.push(...reconciliationSafety.filter(check=>check.want!==check.got).map(check=>({reconciliation_safety:true,...check})));
   mismatches.push(...textScalingSafety.filter(check=>check.want!==check.got).map(check=>({text_scale_safety:true,...check})));
+  mismatches.push(...runtimeCoverageSafety.filter(check=>check.want!==check.got).map(check=>({runtime_coverage_safety:true,...check})));
+  mismatches.push(...browserFacadeSafety.filter(check=>check.want!==check.got).map(check=>({browser_facade_safety:true,...check})));
+  mismatches.push(...traceCeilingSafety.filter(check=>check.want!==check.got).map(check=>({trace_ceiling_safety:true,...check})));
+  // These two retained V3-01 alternatives were observation-only in an earlier
+  // throwaway probe; the full validator must compare their actual expectations.
+  const nativePositiveCoverage=['V3-01-positive-native','V3-01-positive-alternate'].flatMap(id=>expectedContexts.map(({context_id})=>{
+    const row=results.find(value=>value.id===id&&value.context===context_id);
+    const pass=Boolean(row)&&Object.entries(row.expected).every(([key,want])=>row.result.assertions.find(assertion=>assertion.id===key)?.result===want);
+    return {name:`${id}:${context_id}:expected-observations`,want:true,got:pass};
+  }));
+  mismatches.push(...nativePositiveCoverage.filter(check=>check.want!==check.got).map(check=>({native_positive_coverage:true,...check})));
   const packetTextChecks=[];
   for(const{scenario,fixture}of entries){
     const observations=results.filter(row=>row.id===fixture.id);
@@ -401,11 +677,12 @@ async function run(options){
     if(fixture.control_type==='positive'&&!check.within_bound)mismatches.push({packet_text_bound:true,...check});
   }
   for(const browser of browsers)if(browser.binarySha256!==bindings.chrome||browser.observedEnvironment?.locale!=='en-US'||browser.observedEnvironment?.timezone!=='UTC'||browser.observedEnvironment?.light!==true)errors.push({fixture:browser.fixture,error:'Actual browser identity/environment differs from validation registration'});
-  const resultPath=path.join(root,'results.json');await put(resultPath,{results,errors,browsers,safety,reconciliationSafety,textScalingSafety,packetTextChecks,visualGaps});await put(path.join(root,'mismatches.json'),mismatches);
+  const resultPath=path.join(root,'results.json');await put(resultPath,{results,errors,browsers,safety,reconciliationSafety,runtimeCoverageSafety,textScalingSafety,browserFacadeSafety,traceCeilingSafety,traceCeilingEvidence,nativePositiveCoverage,packetTextChecks,visualGaps});await put(path.join(root,'mismatches.json'),mismatches);
   const expectedObservations=entries.reduce((count,{fixture})=>count+(fixture.kind==='planning'?1:protocol.contexts.length),0);
+  const calibrationCounts={runtime_coverage:runtimeCoverageSafety.length,browser_facade:browserFacadeSafety.length,trace_ceiling:traceCeilingSafety.length,text_scale:textScalingSafety.length};
   const receipt={
     schema_version:'peccable-oracle-validation-v1',
-    ready:!interrupted&&!mismatches.length&&!errors.length&&!visualGaps.length&&results.length===expectedObservations,
+    ready:!interrupted&&!mismatches.length&&!errors.length&&!visualGaps.length&&results.length===expectedObservations&&Object.values(calibrationCounts).every(count=>count>0),
     finished_at:new Date().toISOString(),cases:cases.length,
     positive_controls:entries.filter(entry=>entry.fixture.control_type==='positive').length,
     negative_controls:entries.filter(entry=>entry.fixture.control_type==='negative').length,
@@ -413,6 +690,8 @@ async function run(options){
     observations:results.length,expected_observations:expectedObservations,mismatches:mismatches.length,
     errors,visual_gaps:visualGaps,interrupted,bindings,protocol,consumer_safety:safety,
     reconciliation_safety:reconciliationSafety,text_scale_safety:textScalingSafety.map(({name,want,got})=>({name,want,got})),packet_text_checks:packetTextChecks,
+    runtime_coverage_safety:runtimeCoverageSafety,browser_facade_safety:browserFacadeSafety.map(({name,want,got})=>({name,want,got})),
+    trace_ceiling_safety:traceCeilingSafety,calibration_counts:calibrationCounts,native_positive_coverage:nativePositiveCoverage,
     results:{path:resultPath,sha256:sha(await fs.readFile(resultPath))},
     validator:{path:validatorSnapshot,sha256:sha(await fs.readFile(validatorSnapshot))},
     source_snapshot:frozen,runtime:{bun:Bun.version,chrome,modules},

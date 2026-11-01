@@ -1,0 +1,4366 @@
+{
+  "schema_version": "peccable-assertion-refinement-final-v1",
+  "date": "2026-11-01",
+  "scope": "Verification correction and exposed candidate-only development, not a new adoption experiment",
+  "beads": {
+    "root": "Peccable-11i",
+    "node_count": 65,
+    "milestones": 8,
+    "populated_leaves": 56,
+    "pruned_slots": 8,
+    "max_depth": 2,
+    "max_arity": 8,
+    "blocks_edges": 87,
+    "cycles_at_wiring": 0,
+    "grid_sha256": "02ff0d9e5effbdc82dea40d569bbc323ccd25e1c6000726d5371525985347d4b",
+    "cross_edges_added_only_after_all_slot_decisions": true,
+    "status": "closed",
+    "closed_issues": 65,
+    "closed_milestones": 8,
+    "closed_leaf_enablers": 56,
+    "final_cycles": 0,
+    "dependency_and_container_chronology_errors": 0,
+    "closure_verified_at": "2026-11-01T13:55:47.777504+00:00",
+    "records": [
+      {
+        "id": "Peccable-11i",
+        "title": "Verify and refine Peccable assertions through an evidence-first parallel DAG",
+        "status": "closed",
+        "issue_type": "epic",
+        "closed_at": "2026-11-01T13:55:31Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.1",
+        "title": "Verify evidence and contract baseline",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T09:12:22Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.1.1",
+        "title": "Freeze objective and no-rewrite constraints",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T08:38:35Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.1.2",
+        "title": "Pin repository, payload, license, and environment",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T08:38:37Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.1.3",
+        "title": "Verify and project retained evidence inputs",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T08:38:40Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.2",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.1.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.1.4",
+        "title": "Freeze complete assertion-classification inputs",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T08:38:42Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.1.5",
+        "title": "Classify all assertion units with judge_batch",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T08:38:44Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.4",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.1.6",
+        "title": "Confirm escalated assertions against their contracts",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T09:12:20Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.1.7",
+        "title": "Verify graph orthogonality and memory contracts",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.1",
+        "closed_at": "2026-11-01T08:38:46Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2",
+        "title": "Verify accessible task controls",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T10:43:40Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.2.1",
+        "title": "Trace control-name requirements to authorized briefs",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T09:12:25Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2.2",
+        "title": "Reproduce flagged native accessible-name outcomes",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T09:12:27Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2.3",
+        "title": "Exercise conforming disclosure alternatives",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T09:12:30Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2.4",
+        "title": "Verify name propagation and state transitions",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T09:12:32Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.3",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.2.2",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2.5",
+        "title": "Resolve naming skill-versus-oracle action",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T09:15:53Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.4",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2.6",
+        "title": "Specify candidate observable naming invariants",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T09:15:56Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.2.7",
+        "title": "Verify naming closure independently",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.2",
+        "closed_at": "2026-11-01T10:43:27Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.5.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3",
+        "title": "Verify scaled-content access and communication",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T10:43:40Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.3.1",
+        "title": "Trace viewport and scaling requirements",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T09:15:58Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3.2",
+        "title": "Reproduce flagged clipped settings surfaces",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T10:43:15Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.3.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3.3",
+        "title": "Verify observational text-scaling behavior",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T10:43:17Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3.4",
+        "title": "Separate essential access from cosmetic clipping",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T10:43:18Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.3.2",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.3.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3.5",
+        "title": "Resolve scoped communication evidence",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T10:43:20Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.3.4",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3.6",
+        "title": "Specify resilient candidate guidance",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T10:43:21Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.3.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.3.7",
+        "title": "Verify scaled-content closure independently",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.3",
+        "closed_at": "2026-11-01T10:43:28Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.3.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4",
+        "title": "Verify authority and evidence fidelity",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T10:43:41Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.4.1",
+        "title": "Trace authority claims to actual allowed actions",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T09:16:00Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4.2",
+        "title": "Document irrecoverable trace boundaries",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T08:48:10Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4.3",
+        "title": "Verify future trace-limit behavior",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T10:43:23Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.4.2",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4.4",
+        "title": "Verify actual resource delivery and outbound inclusion",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T09:16:03Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.4.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4.5",
+        "title": "Verify no-runtime handoff scope",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T09:16:05Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.4.4",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.4.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4.6",
+        "title": "Verify token, byte, cache, and cost semantics",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T08:50:33Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.4.7",
+        "title": "Verify projected-memory and evidence isolation",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.4",
+        "closed_at": "2026-11-01T10:43:24Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.4.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.4.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5",
+        "title": "Verify oracle validity and review admission",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T11:21:27Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.5.1",
+        "title": "Build requirement-to-check traceability",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T09:16:07Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5.2",
+        "title": "Verify canonical-versus-target response admission",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T09:16:09Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.1.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5.3",
+        "title": "Verify citation and request bindings",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T09:16:12Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.2",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5.4",
+        "title": "Verify evidence-kind and uncertainty precedence",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T09:16:14Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5.5",
+        "title": "Verify task outcome aggregation",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T09:16:16Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.4",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5.6",
+        "title": "Verify positive and negative control coverage",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T10:43:26Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.4",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.3.4",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.5.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.5.7",
+        "title": "Freeze separately versioned verification corrections",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.5",
+        "closed_at": "2026-11-01T11:21:26Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6",
+        "title": "Verify skill-context precision and disclosure",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T10:43:42Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.6.1",
+        "title": "Project evidence-supported instruction gaps",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:30Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.5",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.3.5",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.4.5",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.2.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6.2",
+        "title": "Refine autonomous contract readback only if needed",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:31Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6.3",
+        "title": "Refine accessible-control guidance only if needed",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:33Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6.4",
+        "title": "Refine scaled-content guidance only if needed",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:34Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6.5",
+        "title": "Refine evidence and handoff guidance only if needed",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:36Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6.6",
+        "title": "Verify terse complete Standard Technical English",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:37Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.2",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.6.3",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.6.5",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.6.4",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.6.7",
+        "title": "Freeze the new candidate and context delta",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.6",
+        "closed_at": "2026-11-01T10:43:39Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7",
+        "title": "Verify new-candidate development outcomes",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T13:30:26Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.7.1",
+        "title": "Freeze a bounded development validation protocol",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T11:21:29Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.2.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.3.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.5.7",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7.2",
+        "title": "Replay immutable current-artifact controls",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T11:48:01Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.7.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7.3",
+        "title": "Run fresh isolated candidate development authors",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T13:16:49Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.6.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.7.5",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.7.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7.4",
+        "title": "Verify generated primary paths independently",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T13:28:27Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.7.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7.5",
+        "title": "Exercise fault controls before result acceptance",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T12:17:09Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.5.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.7.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7.6",
+        "title": "Compensate regressions and verify corrections",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T13:28:29Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.7.4",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.7.7",
+        "title": "Report every development result and uncertainty",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.7",
+        "closed_at": "2026-11-01T13:30:26Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.7.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.4.6",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8",
+        "title": "Verify integration rollback and durable closure",
+        "status": "closed",
+        "issue_type": "milestone",
+        "parent": "Peccable-11i",
+        "closed_at": "2026-11-01T13:55:30Z",
+        "dependencies": []
+      },
+      {
+        "id": "Peccable-11i.8.1",
+        "title": "Independently verify all milestone evidence",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:40:56Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.7.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.3.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.5.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.6.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.2.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.1.7",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.4.7",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8.2",
+        "title": "Update affected documentation and notices",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:40:57Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.8.1",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8.3",
+        "title": "Run final repository maintenance gates",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:42:28Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.8.2",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8.4",
+        "title": "Verify actual installed payload behavior",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:46:14Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.8.3",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8.5",
+        "title": "Verify fail-closed and compensating rollback paths",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:35:15Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.7.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.1.7",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8.6",
+        "title": "Verify bounded resource handoff and retirement",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:53:20Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.8.4",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.8.5",
+            "type": "blocks"
+          }
+        ]
+      },
+      {
+        "id": "Peccable-11i.8.7",
+        "title": "Verify Beads closure and durable projected memory",
+        "status": "closed",
+        "issue_type": "task",
+        "parent": "Peccable-11i.8",
+        "closed_at": "2026-11-01T13:55:30Z",
+        "dependencies": [
+          {
+            "id": "Peccable-11i.8.3",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.8.4",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.8.1",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.8.6",
+            "type": "blocks"
+          },
+          {
+            "id": "Peccable-11i.8.5",
+            "type": "blocks"
+          }
+        ]
+      }
+    ],
+    "durable_memory_key": "assertion-refinement-active"
+  },
+  "payload": {
+    "snapshot_sha256": "0a8335d1c8012c6dd6fbba412be59aa2b3d66582493a215c8854d47bd698a461",
+    "files": 15,
+    "entrypoint_utf8_bytes": 12822,
+    "entrypoint_byte_delta": 0,
+    "total_payload_byte_delta": 0,
+    "optional_resources_added": 0,
+    "license_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812"
+  },
+  "source_pins": {
+    "evals/pilot-browser.mjs": "cab19c32a3c21b585e8adc22e2340f4c8a68f8da3a24a33ece1c8676a80630d4",
+    "evals/pilot-agent.mjs": "3c6854ffdedac2d5407a68cafd32498f6e4de7299cf382d3af3a5120446f8c3b",
+    "evals/review-pilot.mjs": "a4203b6a0ea1ace2140462c94b9dfdf6ad06fea85aeb590dccd36f84ea7e0e84",
+    "evals/validate-oracles.mjs": "d75d94373938c480f9df0cae05ba222a3d20f00e11ccd79d3c230e7fb0827ea0",
+    "evals/run-pilot.mjs": "0fe1f1d0016a80f3737323863ec504076c3209c0dce0cf08db57e325d54499b8",
+    "evals/pilot-worker.mjs": "7e36a5627d084dc23d3a09840b6d59f5ccadac6b7f29f7f96bfb3e32db57e09b",
+    "evals/fixtures/pilot-v3-evaluator.mjs": "4d5d836a3e04beb92b1145cd8288560d2c0ad2f068835c42c4970a8dd3fa1ed4",
+    "evals/fixtures/pilot-v3.json": "18d5d9a4f9bf1300e579ca77da33947c05916390ac552c34d2f2282a65e6339d"
+  },
+  "classifier": {
+    "model": "typesafe/jev-1.14.0",
+    "batch": "jdgb-15bcdd573065368c",
+    "units": 342,
+    "supported_success": 155,
+    "artifact_defect": 16,
+    "evidence_gap": 108,
+    "design_only": 63,
+    "flagged_for_independent_confirmation": 232,
+    "unflagged_not_hand_scanned": 110,
+    "bounded_truncations": 45,
+    "observed_tool_reported_cost_usd": 0.103,
+    "meaning": "Routing only, not ground truth or an adoption judge"
+  },
+  "historical_findings": {
+    "confirmed_native_name_artifacts": 9,
+    "confirmed_native_name_assertion_units": 12,
+    "confirmed_text200_flow_failure_artifact": "4150d75d02a52191e518",
+    "clipping_only_critical_claims_reclassified_separately_unknown": [
+      "43cae132638f61aad6bd",
+      "4a0c2dd294579381813e",
+      "829a49dd98d64599226c"
+    ],
+    "genuine_current_replay_failures_preserved": [
+      {
+        "artifact": "b83745c02676b2c8b079",
+        "case": "V3-01",
+        "assertion": "V3-01-disclosure"
+      },
+      {
+        "artifact": "b83745c02676b2c8b079",
+        "case": "V3-01",
+        "assertion": "V3-01-name"
+      },
+      {
+        "artifact": "4150d75d02a52191e518",
+        "case": "V3-07",
+        "assertion": "V3-07-flow"
+      },
+      {
+        "artifact": "4150d75d02a52191e518",
+        "case": "V3-07",
+        "assertion": "V3-07-method"
+      },
+      {
+        "artifact": "ee93f2c72e2544445b51",
+        "case": "V3-07",
+        "assertion": "V3-07-method"
+      }
+    ],
+    "old_missing_trace_events": 5,
+    "old_reports_scores_votes_fixtures_unchanged": true
+  },
+  "native_validation": {
+    "receipt": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/validation-release/receipt.json",
+      "sha256": "1cb4ab4138fa97b3b4625e14cfbb6c4366ed18b755f431004e80b4bebb3407af"
+    },
+    "ready": true,
+    "cases": 7,
+    "fixtures": 67,
+    "positive_controls": 26,
+    "negative_controls": 41,
+    "fixture_context_observations": 193,
+    "gaps_or_mismatches": 0
+  },
+  "development": {
+    "schema_version": "peccable-complete-development-report-v2",
+    "ready": true,
+    "scope": "Exposed3casecandidate-only development,not adoption",
+    "protocol_v1": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-protocol.json",
+      "sha256": "9ddec271b2882c62ffa36bed4d2d3ff643b433028c904e317b609ac564f10335"
+    },
+    "protocol_v2": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-protocol-v2.json",
+      "sha256": "81cf2e98a940695037e0f77817f79004829b11a4364c5da6aa852a94aea4ef12"
+    },
+    "original_cohort": {
+      "manifest_sha256": "6e94bc90b5b3cae974003e322455133f21883ab9753ca4fe59c00fecf158142f",
+      "slots": [
+        {
+          "brief_id": "V3-01",
+          "repetition": 1,
+          "taskId": "fe57d2aac31b861a4c78",
+          "agent_status": "completed",
+          "not_started": false,
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-01-data",
+              "V3-01-disclosure",
+              "V3-01-name"
+            ],
+            "outcome": "measured_pass"
+          },
+          "state_evidence": "immutable committed original summary + three retained original trace prefixes"
+        },
+        {
+          "brief_id": "V3-01",
+          "repetition": 2,
+          "taskId": "9fa5cf0dc09a49128545",
+          "agent_status": "infrastructure_interrupted",
+          "not_started": false,
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": null,
+          "state_evidence": "immutable committed original summary + three retained original trace prefixes"
+        },
+        {
+          "brief_id": "V3-04",
+          "repetition": 1,
+          "taskId": "d6d8f67a404e564036a5",
+          "agent_status": "infrastructure_interrupted",
+          "not_started": false,
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": null,
+          "state_evidence": "immutable committed original summary + three retained original trace prefixes"
+        },
+        {
+          "brief_id": "V3-04",
+          "repetition": 2,
+          "taskId": "4002c56dc26a085286ee",
+          "agent_status": "infrastructure_interrupted",
+          "not_started": true,
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": null,
+          "state_evidence": "immutable committed original summary + three retained original trace prefixes"
+        },
+        {
+          "brief_id": "V3-07",
+          "repetition": 1,
+          "taskId": "dbede7fa5ade38668f83",
+          "agent_status": "infrastructure_interrupted",
+          "not_started": true,
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": null,
+          "state_evidence": "immutable committed original summary + three retained original trace prefixes"
+        },
+        {
+          "brief_id": "V3-07",
+          "repetition": 2,
+          "taskId": "38e8d1e94505461581cb",
+          "agent_status": "infrastructure_interrupted",
+          "not_started": true,
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": null,
+          "state_evidence": "immutable committed original summary + three retained original trace prefixes"
+        }
+      ],
+      "native": {
+        "scope": "Declared runtime assertions in wide/narrow/text200 only; no manual/AT/whole-task/adoption certification",
+        "measured_pass": 1,
+        "failed": 0,
+        "incomplete_evidence": 5,
+        "zero_observed_noncompensable_failures": false
+      },
+      "preservation": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v1-retention-summary.json",
+        "sha256": "7d4e735ec9e31b1333eb5a762e4132581c3dd6f8f3ccd0e6c6e6e7547bce8ebc"
+      },
+      "known_usage": {
+        "schema_version": "peccable-original-prefix-cost-v1",
+        "actual_authors_started": 3,
+        "completed": 1,
+        "interrupted": 2,
+        "not_started": 3,
+        "retained_assistant_usage_records": 48,
+        "sdk_usage_buckets": {
+          "input": {
+            "observed_sum": 54702,
+            "records_reporting": 48,
+            "records": 48
+          },
+          "cacheRead": {
+            "observed_sum": 264832,
+            "records_reporting": 48,
+            "records": 48
+          },
+          "cacheWrite": {
+            "observed_sum": 0,
+            "records_reporting": 48,
+            "records": 48
+          },
+          "output": {
+            "observed_sum": 6323,
+            "records_reporting": 48,
+            "records": 48
+          },
+          "totalTokens": {
+            "observed_sum": 325857,
+            "records_reporting": 48,
+            "records": 48
+          }
+        },
+        "sdk_catalog_cost_reported_sum": 0.1991172,
+        "cost_records_reporting": 48,
+        "semantics": "Observed completed-assistant-message usage prefix. Complete for the one completed author only; interrupted/inflight/server-continuation totals and invoice unknown,never zero. No actual guide-token attribution.",
+        "source": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v1-prefix-evidence.json",
+          "sha256": "7b390cfc6e88edf50376d30bf95d8c1767e9293bb0c38d3607feb9ca737973bc"
+        }
+      },
+      "retained_provider_payloads": 50,
+      "backend_continuation_and_invoice": "unknown"
+    },
+    "corrected_cohort": {
+      "manifest": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/manifest.json",
+        "sha256": "9665956fefe1eb7b45ce5689e6ba3c726903987535284dab8937a277ee7cbecc"
+      },
+      "slots": [
+        {
+          "ordinal": 0,
+          "brief_id": "V3-01",
+          "repetition": 1,
+          "taskId": "5492db8dbd782820a49f",
+          "artifactId": "9c80cbffa5561cab48e2",
+          "agent_status": "completed",
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-01-data",
+              "V3-01-disclosure",
+              "V3-01-name"
+            ],
+            "outcome": "measured_pass"
+          },
+          "elapsed_seconds": 55.534
+        },
+        {
+          "ordinal": 1,
+          "brief_id": "V3-01",
+          "repetition": 2,
+          "taskId": "94ee371bf7d870f32992",
+          "artifactId": "fccf5b05ba30ce26b809",
+          "agent_status": "completed",
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-01-data",
+              "V3-01-disclosure",
+              "V3-01-name"
+            ],
+            "outcome": "measured_pass"
+          },
+          "elapsed_seconds": 84.382
+        },
+        {
+          "ordinal": 2,
+          "brief_id": "V3-04",
+          "repetition": 1,
+          "taskId": "6f427b50843f4bcb9339",
+          "artifactId": "a209439934b1340a689b",
+          "agent_status": "completed",
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-04-dialog",
+              "V3-04-size"
+            ],
+            "outcome": "measured_pass"
+          },
+          "elapsed_seconds": 89.014
+        },
+        {
+          "ordinal": 3,
+          "brief_id": "V3-04",
+          "repetition": 2,
+          "taskId": "bc71fd7053b2c100ddab",
+          "artifactId": "9104a4263c3bf304d6c6",
+          "agent_status": "completed",
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-04-dialog",
+              "V3-04-size"
+            ],
+            "outcome": "measured_pass"
+          },
+          "elapsed_seconds": 87.988
+        },
+        {
+          "ordinal": 4,
+          "brief_id": "V3-07",
+          "repetition": 1,
+          "taskId": "2d673f8e96f20efc2484",
+          "artifactId": "1de57c78b8ac2e52ce59",
+          "agent_status": "completed",
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-07-data",
+              "V3-07-flow",
+              "V3-07-method"
+            ],
+            "outcome": "measured_pass"
+          },
+          "elapsed_seconds": 66.165
+        },
+        {
+          "ordinal": 5,
+          "brief_id": "V3-07",
+          "repetition": 2,
+          "taskId": "7c3e7b4d919cc5675767",
+          "artifactId": "bb953c073fc05195c43a",
+          "agent_status": "completed",
+          "task_outcome": "incomplete_evidence",
+          "native_primary_path": {
+            "scope": "Declared runtime assertions in wide/narrow/text200 only; not manual review, screen-reader speech, whole-task success or adoption",
+            "expected_contexts": [
+              "wide",
+              "narrow",
+              "text200"
+            ],
+            "assertion_ids": [
+              "V3-07-data",
+              "V3-07-flow",
+              "V3-07-method"
+            ],
+            "outcome": "measured_pass"
+          },
+          "elapsed_seconds": 78.952
+        }
+      ],
+      "native": {
+        "scope": "Declared runtime assertions in wide/narrow/text200 only; no manual/AT/whole-task/adoption certification",
+        "measured_pass": 6,
+        "failed": 0,
+        "incomplete_evidence": 0,
+        "zero_observed_noncompensable_failures": true
+      },
+      "context": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/fresh-context-cost.json",
+        "sha256": "a03a2e53f580ec0964dc9718d2408615ff8dc4e3f4d776d009ef023fddfa6a57"
+      },
+      "resource_audit": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/fresh-independent-review/resource-audit-v2.json",
+        "sha256": "ba4a035ca743e41c6e5ecc0d0e91b9be573257f9b4b048e60a86dda5f300a87e"
+      },
+      "independent_verification": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/fresh-primary-closure.json",
+        "sha256": "ff8e05e289b7ed5831ea5e506fc6c1a39921cbba35518b3f8b8a87b58d686a35"
+      },
+      "whole_task_outcome": "incomplete_evidence",
+      "retained_provider_payloads": 91,
+      "sdk_cost_estimate": 0.3722056
+    },
+    "aggregate_known": {
+      "author_starts": 9,
+      "retained_provider_payloads": 141,
+      "assistant_usage_records": 139,
+      "tokens": 920743,
+      "sdk_catalog_estimate": 0.5713228,
+      "not_a_complete_original_cost_or_invoice": true
+    },
+    "all_operational_failures": [
+      {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/failure-ledger.json",
+        "sha256": "b19257cbecc6940a109fe922d6a6246ef46d70a17e595ef943d2fde44919d6d2"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/failure-ledger-supplement.json",
+        "sha256": "2edf6239feca853d368c9868944c498d0a0f9edfdb79d10160c3eb0f6e90cf6c"
+      }
+    ],
+    "uncertainties": [
+      "Unknown originalinflightservercost",
+      "Exposedcases,no causalcomparison orblindadoption",
+      "Whole-taskmanual/authority/designassurance incomplete",
+      "At2x closedStandardselectedlabeltruncateddespitecompletepopupoptionsandscrollaccess",
+      "No ATspeech/universalusabilitycertification",
+      "Modelweightsandguidetokensunknown",
+      "Old5omittedtraceeventsirrecoverable"
+    ],
+    "payload_change_bytes": 0,
+    "entrypoint_change_bytes": 0,
+    "optional_payload_resources_added": 0,
+    "adoption_rule_applied": "Ineligibleforadoption;retainoriginaldecisionandvalidfailures. Maintenanceverificationcorrectionsaccepted onpositive/negative/liveAPIproofs,notfavorableauthorscores.",
+    "supersedes_projection": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/complete-development-report.json",
+      "sha256": "4664daad36f4f87649b623d0b3264f405b8d95eee1fc4eab0319b8f595d2edfc"
+    },
+    "projection_correction": "Retain briefId when brief_id is absent and carry explicit not_started state; no raw outcome,slot,score,cohortorcostchange"
+  },
+  "fresh_context": {
+    "schema_version": "peccable-fresh-context-v1",
+    "scope": "All six completed R2 authors; per-assistant SDK reported usage and UTF8 byte delivery, not invoice or skill-attributable tokens",
+    "authors": [
+      {
+        "case": "V3-01",
+        "repetition": 1,
+        "task_id": "5492db8dbd782820a49f",
+        "responses": 15,
+        "usage_records": 15,
+        "usage": {
+          "input": 22669,
+          "cacheRead": 85504,
+          "cacheWrite": 0,
+          "output": 2040,
+          "totalTokens": 110213
+        },
+        "sdk_catalog_cost_estimate": 0.0742884,
+        "automatic_skill_bytes": 0,
+        "delivered_skill_utf8_bytes": 12822,
+        "unique_skill_utf8_bytes": 12822,
+        "loaded_resources": [
+          {
+            "toolCallId": "call_07249d55e2f84662b1fa95f8a9724085|fc_0cf47c6073b8e922016ae73abe883c819097c59dfcba158800",
+            "root": "skill",
+            "path": "SKILL.md",
+            "startLine": 1,
+            "endLine": 133,
+            "sourceBytes": 12822,
+            "sourceSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "startByte": 0,
+            "endByte": 12822,
+            "deliveredUtf8Bytes": 12822,
+            "deliveredSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          },
+          {
+            "toolCallId": "call_e839ebe3927644358e904964d986ce18|fc_066ee23c3e323b41016ae73ac059fc81909aa4c114f0ecbe84",
+            "root": "workspace",
+            "path": "index.html",
+            "startLine": 1,
+            "endLine": 1,
+            "sourceBytes": 1001,
+            "sourceSha256": "43fa2809063fb2ffa609a17f6d4f37d4c51706a5417bd18cbc640df138242f7c",
+            "startByte": 0,
+            "endByte": 1001,
+            "deliveredUtf8Bytes": 1001,
+            "deliveredSha256": "43fa2809063fb2ffa609a17f6d4f37d4c51706a5417bd18cbc640df138242f7c",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          }
+        ],
+        "trace_complete": true,
+        "omitted_trace_events": 0,
+        "author_result": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/5492db8dbd782820a49f/attempt-1/evidence/author/result.json",
+          "sha256": "97c1653d82784ba97a2fdbf8ec7a581ddf4d61d26192fe34bf7c8d364beec4f8"
+        },
+        "trace": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/5492db8dbd782820a49f/attempt-1/evidence/author/session.jsonl",
+          "sha256": "d69d5adf652158b3ba5ac9e8b279af43f3285f23e62fbfcea8d5eac4533b8b3c"
+        }
+      },
+      {
+        "case": "V3-01",
+        "repetition": 2,
+        "task_id": "94ee371bf7d870f32992",
+        "responses": 18,
+        "usage_records": 18,
+        "usage": {
+          "input": 19105,
+          "cacheRead": 109312,
+          "cacheWrite": 0,
+          "output": 2039,
+          "totalTokens": 130456
+        },
+        "sdk_catalog_cost_estimate": 0.0695312,
+        "automatic_skill_bytes": 0,
+        "delivered_skill_utf8_bytes": 12822,
+        "unique_skill_utf8_bytes": 12822,
+        "loaded_resources": [
+          {
+            "toolCallId": "call_79afb3316a554a199513fd666ad02355|fc_0c104ad98b3dc271016ae73abe8f648197ab87bf514fdc8361",
+            "root": "skill",
+            "path": "SKILL.md",
+            "startLine": 1,
+            "endLine": 133,
+            "sourceBytes": 12822,
+            "sourceSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "startByte": 0,
+            "endByte": 12822,
+            "deliveredUtf8Bytes": 12822,
+            "deliveredSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          },
+          {
+            "toolCallId": "call_f1ee9761b7df456382d2061aa77c3781|fc_00a5282ffee82819016ae73ac234b081938abd8929412abe93",
+            "root": "workspace",
+            "path": "index.html",
+            "startLine": 1,
+            "endLine": 1,
+            "sourceBytes": 1001,
+            "sourceSha256": "43fa2809063fb2ffa609a17f6d4f37d4c51706a5417bd18cbc640df138242f7c",
+            "startByte": 0,
+            "endByte": 1001,
+            "deliveredUtf8Bytes": 1001,
+            "deliveredSha256": "43fa2809063fb2ffa609a17f6d4f37d4c51706a5417bd18cbc640df138242f7c",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          }
+        ],
+        "trace_complete": true,
+        "omitted_trace_events": 0,
+        "author_result": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/94ee371bf7d870f32992/attempt-1/evidence/author/result.json",
+          "sha256": "fe2c392fbf32caedb1254c9258d8225109472a5d2a8ce0e5d5b3871ef7827320"
+        },
+        "trace": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/94ee371bf7d870f32992/attempt-1/evidence/author/session.jsonl",
+          "sha256": "066727cce77ac5b73103219a227504b760f9186af803a9ecddbe40a643cd5d53"
+        }
+      },
+      {
+        "case": "V3-04",
+        "repetition": 1,
+        "task_id": "6f427b50843f4bcb9339",
+        "responses": 18,
+        "usage_records": 18,
+        "usage": {
+          "input": 15952,
+          "cacheRead": 93696,
+          "cacheWrite": 0,
+          "output": 2189,
+          "totalTokens": 111837
+        },
+        "sdk_catalog_cost_estimate": 0.0631636,
+        "automatic_skill_bytes": 0,
+        "delivered_skill_utf8_bytes": 12822,
+        "unique_skill_utf8_bytes": 12822,
+        "loaded_resources": [
+          {
+            "toolCallId": "call_c83bb16936d6483f832fdd5c4d419820|fc_064d0ac6b133777b016ae73abe9c448193969785580b4e6ba8",
+            "root": "skill",
+            "path": "SKILL.md",
+            "startLine": 1,
+            "endLine": 133,
+            "sourceBytes": 12822,
+            "sourceSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "startByte": 0,
+            "endByte": 12822,
+            "deliveredUtf8Bytes": 12822,
+            "deliveredSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          },
+          {
+            "toolCallId": "call_85a2ff66a51944f38d2f16250ebe1290|fc_0d589293d2f103d8016ae73ac0e1c8819796716100bde7b4eb",
+            "root": "workspace",
+            "path": "index.html",
+            "startLine": 1,
+            "endLine": 1,
+            "sourceBytes": 668,
+            "sourceSha256": "b63433cbce2f2e4f89e9e257065d66d1335aadeca6f3b03964392b267f8bf59f",
+            "startByte": 0,
+            "endByte": 668,
+            "deliveredUtf8Bytes": 668,
+            "deliveredSha256": "b63433cbce2f2e4f89e9e257065d66d1335aadeca6f3b03964392b267f8bf59f",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          }
+        ],
+        "trace_complete": true,
+        "omitted_trace_events": 0,
+        "author_result": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/6f427b50843f4bcb9339/attempt-1/evidence/author/result.json",
+          "sha256": "c516eff1b9d5cf0a1ad49b3674aa367c70e1ddd43611561e1f889011519efce9"
+        },
+        "trace": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/6f427b50843f4bcb9339/attempt-1/evidence/author/session.jsonl",
+          "sha256": "816594497111ce0942d4ee43bcdbdbc21fcec34197f70ebbc99e6895507972da"
+        }
+      },
+      {
+        "case": "V3-04",
+        "repetition": 2,
+        "task_id": "bc71fd7053b2c100ddab",
+        "responses": 18,
+        "usage_records": 18,
+        "usage": {
+          "input": 18814,
+          "cacheRead": 89344,
+          "cacheWrite": 0,
+          "output": 1875,
+          "totalTokens": 110033
+        },
+        "sdk_catalog_cost_estimate": 0.06531239999999999,
+        "automatic_skill_bytes": 0,
+        "delivered_skill_utf8_bytes": 12822,
+        "unique_skill_utf8_bytes": 12822,
+        "loaded_resources": [
+          {
+            "toolCallId": "call_0ef07594b7524103a7eb356f4d7c9bef|fc_0b272368e6b36c1f016ae73af8de548194af274d258b4d3bf3",
+            "root": "skill",
+            "path": "SKILL.md",
+            "startLine": 1,
+            "endLine": 133,
+            "sourceBytes": 12822,
+            "sourceSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "startByte": 0,
+            "endByte": 12822,
+            "deliveredUtf8Bytes": 12822,
+            "deliveredSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          },
+          {
+            "toolCallId": "call_f480bd3e61924653beab71433d05d447|fc_0ce3d529a242ff2e016ae73afcaae08195875bb010b262d5d2",
+            "root": "workspace",
+            "path": "index.html",
+            "startLine": 1,
+            "endLine": 1,
+            "sourceBytes": 668,
+            "sourceSha256": "b63433cbce2f2e4f89e9e257065d66d1335aadeca6f3b03964392b267f8bf59f",
+            "startByte": 0,
+            "endByte": 668,
+            "deliveredUtf8Bytes": 668,
+            "deliveredSha256": "b63433cbce2f2e4f89e9e257065d66d1335aadeca6f3b03964392b267f8bf59f",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          }
+        ],
+        "trace_complete": true,
+        "omitted_trace_events": 0,
+        "author_result": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/bc71fd7053b2c100ddab/attempt-1/evidence/author/result.json",
+          "sha256": "548ea0350af24975dd7a81b03438811578be87a7838711676b94472ef4eb1fbb"
+        },
+        "trace": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/bc71fd7053b2c100ddab/attempt-1/evidence/author/session.jsonl",
+          "sha256": "2f82d40f3506e034fd591645abfb165b934d86217b3f13e6e078ca519eb3da44"
+        }
+      },
+      {
+        "case": "V3-07",
+        "repetition": 1,
+        "task_id": "2d673f8e96f20efc2484",
+        "responses": 10,
+        "usage_records": 10,
+        "usage": {
+          "input": 13649,
+          "cacheRead": 42752,
+          "cacheWrite": 0,
+          "output": 2382,
+          "totalTokens": 58783
+        },
+        "sdk_catalog_cost_estimate": 0.055393200000000004,
+        "automatic_skill_bytes": 0,
+        "delivered_skill_utf8_bytes": 12822,
+        "unique_skill_utf8_bytes": 12822,
+        "loaded_resources": [
+          {
+            "toolCallId": "call_7fb3090f716d42918ce630f5bdfcbca5|fc_08d0694ff85da8b8016ae73b15a804819788cc5c050eb3ee03",
+            "root": "skill",
+            "path": "SKILL.md",
+            "startLine": 1,
+            "endLine": 133,
+            "sourceBytes": 12822,
+            "sourceSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "startByte": 0,
+            "endByte": 12822,
+            "deliveredUtf8Bytes": 12822,
+            "deliveredSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          },
+          {
+            "toolCallId": "call_6443e4444d22449a951310770ab24e68|fc_0ac0b1aa82f0c420016ae73b1827f481979a960e2d77399eb4",
+            "root": "workspace",
+            "path": "index.html",
+            "startLine": 1,
+            "endLine": 1,
+            "sourceBytes": 1052,
+            "sourceSha256": "e16635bd8fa3fbfd17e8a347b5951b08b5e53ffb08c7f1c6d4c9bb7fb5ea4764",
+            "startByte": 0,
+            "endByte": 1052,
+            "deliveredUtf8Bytes": 1052,
+            "deliveredSha256": "e16635bd8fa3fbfd17e8a347b5951b08b5e53ffb08c7f1c6d4c9bb7fb5ea4764",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          }
+        ],
+        "trace_complete": true,
+        "omitted_trace_events": 0,
+        "author_result": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/2d673f8e96f20efc2484/attempt-1/evidence/author/result.json",
+          "sha256": "dc6c0b21cc5cd9f809fc7c3555c99e0647f37a0a2678d9073601c250b11edb25"
+        },
+        "trace": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/2d673f8e96f20efc2484/attempt-1/evidence/author/session.jsonl",
+          "sha256": "cc662f0f21673262be2e64d150b3342790f4ed86031797c3cf59327c7bfcd4ed"
+        }
+      },
+      {
+        "case": "V3-07",
+        "repetition": 2,
+        "task_id": "7c3e7b4d919cc5675767",
+        "responses": 12,
+        "usage_records": 12,
+        "usage": {
+          "input": 7032,
+          "cacheRead": 64128,
+          "cacheWrite": 0,
+          "output": 2404,
+          "totalTokens": 73564
+        },
+        "sdk_catalog_cost_estimate": 0.0445168,
+        "automatic_skill_bytes": 0,
+        "delivered_skill_utf8_bytes": 12822,
+        "unique_skill_utf8_bytes": 12822,
+        "loaded_resources": [
+          {
+            "toolCallId": "call_5e802f03047149d198c8406a8608569a|fc_0e6f687409be7b0a016ae73b1a69a08196a97c7529e6ed5f4d",
+            "root": "skill",
+            "path": "SKILL.md",
+            "startLine": 1,
+            "endLine": 133,
+            "sourceBytes": 12822,
+            "sourceSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "startByte": 0,
+            "endByte": 12822,
+            "deliveredUtf8Bytes": 12822,
+            "deliveredSha256": "b06b6803e121083799dc85fd980ca61cc574fe8d768ac4e943436eb875d28084",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          },
+          {
+            "toolCallId": "call_fc96d42e49854edf84664e11996b01c8|fc_089ab5f238402175016ae73b1d3af4819483e116db076ba8fb",
+            "root": "workspace",
+            "path": "index.html",
+            "startLine": 1,
+            "endLine": 1,
+            "sourceBytes": 1052,
+            "sourceSha256": "e16635bd8fa3fbfd17e8a347b5951b08b5e53ffb08c7f1c6d4c9bb7fb5ea4764",
+            "startByte": 0,
+            "endByte": 1052,
+            "deliveredUtf8Bytes": 1052,
+            "deliveredSha256": "e16635bd8fa3fbfd17e8a347b5951b08b5e53ffb08c7f1c6d4c9bb7fb5ea4764",
+            "delivery": "full",
+            "deliveredToTranscript": true,
+            "skillAttributableTokens": null
+          }
+        ],
+        "trace_complete": true,
+        "omitted_trace_events": 0,
+        "author_result": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/7c3e7b4d919cc5675767/attempt-1/evidence/author/result.json",
+          "sha256": "d29adef91d783989b430aae775621c105caded6f0d59b6b55bacb1f5c4b43589"
+        },
+        "trace": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/trials/7c3e7b4d919cc5675767/attempt-1/evidence/author/session.jsonl",
+          "sha256": "0f9f6252f11d1ca4873c29f81fe1edd740012c54bdf5bb169b849c84fadf5711"
+        }
+      }
+    ],
+    "totals": {
+      "authors": 6,
+      "assistant_usage_records": 91,
+      "usage": {
+        "input": 97221,
+        "cacheRead": 484736,
+        "cacheWrite": 0,
+        "output": 12929,
+        "totalTokens": 594886
+      },
+      "sdk_catalog_cost_estimate": 0.3722056,
+      "delivered_skill_utf8_bytes": 76932,
+      "all_traces_complete": true
+    },
+    "unknowns": [
+      "Immutable provider weight identity",
+      "Invoice and provider billing reconciliation",
+      "Marginal tokens attributable to skill prose",
+      "Hard provider output or invoice cap; installed Codex ignores the requested maxTokens hint"
+    ]
+  },
+  "historical_context": {
+    "scope": "Independent typed recomputation of retained historical metadata; no new author or reviewer calls yet.",
+    "source_report": "evals/results/pilot-v3-final-recovery.json",
+    "source_sha256": "49849d52b0e8397a41d7fa93b444f9e910354b56bd738924e02e1bc94146b8e2",
+    "attempt_count": 160,
+    "usage": {
+      "input": 28964221,
+      "output": 262239,
+      "cacheRead": 547072,
+      "cacheWrite": 0,
+      "totalTokens": 29773532
+    },
+    "sdk_catalog_estimate": 60.605539199999996,
+    "provider_usage_observed": 160,
+    "independent_context_count": 160,
+    "all_outbound_inclusion_observed": true,
+    "guide_attributable_tokens": null,
+    "semantics": "Normalized input excludes cacheRead; raw provider input includes it. Tool/source bytes are not tokens or installed-size measures. Incomplete historical author backend usage remains unknown; SDK estimate is not an invoice; backend weights and orchestration cost unknown.",
+    "new_round_judge": {
+      "batch_id": "jdgb-15bcdd573065368c",
+      "model": "typesafe/jev-1.14.0",
+      "host_reported_cost": 0.103,
+      "call_scope": "Bulk routing, not new independent scored artifact review."
+    }
+  },
+  "operational_failures": [
+    {
+      "id": "browser-driver-argument",
+      "kind": "throwaway probe prerequisite",
+      "observed": "navigate url argument rejected; required path",
+      "resolution": "Separate corrected driver;actual ownerSIGKILL observed4links1socket",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/browser-interruption/failed-launch.json"
+    },
+    {
+      "id": "component-python-preparation",
+      "kind": "throwaway script construction",
+      "observed": "Python SyntaxError before any statement ran",
+      "resolution": "Separate source/data preparation;final component controls passed",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-component-controls/sources.json"
+    },
+    {
+      "id": "syscall-decoder",
+      "kind": "throwaway observer",
+      "observed": "fsdecode received bytearray before first child exec",
+      "resolution": "Version2 bytes conversion;no author replacement",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/fault-control-revision.json"
+    },
+    {
+      "id": "syscall-exit-race",
+      "kind": "throwaway observer",
+      "observed": "ESRCH during malformedchild teardown afterfourcontrols passed",
+      "resolution": "Preserved actualbothSIGKILLbarriers;remainingpubliccorruptioncontrols completed separately without claiming syscallcoverage",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/atomic-publication-continuation/receipt.json"
+    },
+    {
+      "id": "replay-wrapper",
+      "kind": "throwaway consumer misuse",
+      "observed": "Raw evaluation omitted required evaluation bundle key;failclosedconsumer returnedunknown",
+      "resolution": "Reconsumedsame9immutablebrowsermeasurements withcorrectshape,noUIrerun",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/current-artifact-replay/receipt-reconciled.json"
+    },
+    {
+      "id": "integrity-stdout-retention",
+      "kind": "evidence retention limitation",
+      "observed": "Jobexpiredbeforeproc retrieval",
+      "resolution": "Explicitstructuredtranscriptionofactualdeliveredresult;no rawbyteattestation",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/interrupted-integrity-execution.json"
+    },
+    {
+      "id": "first-real-supervisor",
+      "kind": "actual development infrastructure failure",
+      "observed": "du returned1;stderrnotretained;oldownerhard-killedcontroller after83seconds",
+      "resolution": "Originalonecomplete/twointerrupted/threenotstartedsealed/archived;newwholecohortaftercorrectedobserver,notselectivereplacements",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v1-retention-summary.json"
+    },
+    {
+      "id": "broad-process-ownership",
+      "kind": "resource verification false blocker",
+      "observed": "SameUIDsystemd1949cwdprotected;notanownedworker",
+      "resolution": "Explicitownedregistration/rootlabel/mountscope;protectedsharedservicespreservedandlimitsreported",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v1-inactivity.json"
+    },
+    {
+      "id": "archive-preallocation",
+      "kind": "resource acquisition guard",
+      "observed": "Ext4physicalpreallocation exceededlogicaldatacap by4096bytes;originalsourcesnotdeleted",
+      "resolution": "Chargephysicalmetadataagainstexistingreserve/global2GiB,retainfailedregistration,verifyarchivebeforeretirement",
+      "evidence": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v1-retirement.json"
+    },
+    {
+      "id": "final-result-reader-path",
+      "observed": "Parent initially attempted nonexistent development-summary.json despite actual directory containing development-result.json",
+      "scope": "Read-only reporting error;no source,artifact,score,providerorbrowsermutation",
+      "resolution": "Read actual observed development-result.json;6slotcommittedsummaryused",
+      "evidence": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors-v2/development-result.json",
+        "sha256": "75ffd7472bd7884c139417d7e873a863675821b5e497c416fb593a1e5b249da8"
+      }
+    },
+    {
+      "id": "native-field-reader",
+      "observed": "Parent reporting initially requested native_primary_path.status; actual public field is outcome",
+      "scope": "Read-only PythonKeyError;no acceptance decision",
+      "resolution": "Read actual native_primary_path.outcome for all6",
+      "evidence": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v2-completion.json",
+        "sha256": "7d9390fc0bd3a96484d030914bbfcaa35ffa88bc549f8ee74da2272017f06956"
+      }
+    },
+    {
+      "id": "acquisition-not-delivery",
+      "observed": "Firstthrowawayresourceaudit wronglyrequired acquisition-time deliveredToTranscript:true. All6 rejectedbeforeoutboundhashchecks.",
+      "scope": "Audit misuse,notrealresourceorharnessfailure;originalfailedreceiptretained",
+      "resolution": "Verifyfalseacquisition\u2192matchedsuccessfulmessage_end/tool_deliveryhash\u2192truefinalizedloadedResource and actual postdelivery requestinclusion;182recordsbound",
+      "evidence": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/fresh-independent-review/resource-audit-v2.json",
+        "sha256": "ba4a035ca743e41c6e5ecc0d0e91b9be573257f9b4b048e60a86dda5f300a87e"
+      }
+    },
+    {
+      "id": "final-report-premature-integration",
+      "observed": "Independent final report audit rejected future receipt/retirement wording before observations existed",
+      "resolution": "Explicit pending language first; only now replaced by actual final gate,installed,retirementandBeadsreceipts",
+      "evidence": {
+        "graph": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-independent-audit/graph-evidence.json",
+          "sha256": "2904959fd77e27fd26a290f5f6d685ba1a188a0ffcd2b1df01fb6e5f8c48d706"
+        },
+        "report": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-independent-audit/report-scope.json",
+          "sha256": "31a4e6f6cc04242f352fa55f61dc889466ff1d8114a46b972cba0bcadcc9f21d"
+        },
+        "resolution": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+          "sha256": "5724d92a9144a6491a37fd0cb209419c31181a7bbcb76c593a9304174c2808c7"
+        },
+        "findings": "TwoP2projection/temporallanguagefindingscorrected;originalauditreportsretained;finalintegrationgatesnotprecertified"
+      }
+    },
+    {
+      "id": "original-slot-projection-metadata",
+      "observed": "Independent graph audit found five missing originalcaseIDsand absent not_started flags in initialper-slotprojection;rawoutcomespreserved",
+      "resolution": "Newv2projection carries actualbriefId andexplicitnot_startedforall6slots; counts/oldoutcomes unchanged",
+      "evidence": {
+        "graph": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-independent-audit/graph-evidence.json",
+          "sha256": "2904959fd77e27fd26a290f5f6d685ba1a188a0ffcd2b1df01fb6e5f8c48d706"
+        },
+        "report": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-independent-audit/report-scope.json",
+          "sha256": "31a4e6f6cc04242f352fa55f61dc889466ff1d8114a46b972cba0bcadcc9f21d"
+        },
+        "resolution": {
+          "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+          "sha256": "5724d92a9144a6491a37fd0cb209419c31181a7bbcb76c593a9304174c2808c7"
+        },
+        "findings": "TwoP2projection/temporallanguagefindingscorrected;originalauditreportsretained;finalintegrationgatesnotprecertified"
+      }
+    },
+    {
+      "id": "legacy-retention-sidecar-path",
+      "observed": "Postretirementreader assumed archive.tar.gz.json for oldrepairarchive; actualregisteredmetadataisroot.json",
+      "resolution": "Specializedknownnamespaceglobresolved legacyrootmetadata; ownedexpiryfieldsrenewed;archivebytesneverchanged",
+      "evidence": {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-beads-closure.json",
+        "sha256": "ac540c8fa9fc434e2fe459830a259f58b392b7fbf56c54e71c350846b8596677"
+      }
+    }
+  ],
+  "decision": {
+    "canonical_guidance": "Unchanged; no isolated, evidenced instruction gap. Existing terse Standard Technical English already covers the confirmed requirements.",
+    "maintenance_corrections": "Accept separately versioned evaluator/harness corrections on live positive/negative/control evidence. Exact native labels, real task actions, zero/unknown semantics, flow and authority constraints remain required.",
+    "adoption": "Not evaluated. The exposed one-arm development cohort cannot meet the frozen matched repeated no-skill/current/candidate and blind-adjudication adoption rule. Preserve the prior inconclusive result; do not turn unknown into success.",
+    "optional_payload_resources": "None added; no demonstrated recurring need justifies an installed resource."
+  },
+  "evidence": {
+    "M1.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/grid-before-edges.json",
+      "sha256": "5a6a3bea159a5e3b8de10a9af7456b9f2c99130a376c29b8e166ef81ba1202a6",
+      "scope": "Complete objective, immutable historical boundaries, 64 explicit orthogonal slot decisions, resource and rollback contracts frozen before cross-edge wiring.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/grid-before-edges.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M1.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/baseline.json",
+      "sha256": "40beb057d2385ed3ac93dd9c49bf991ed523a490260a0eccb379206992be12dc",
+      "scope": "Clean starting revision and exact payload/code/license hashes pinned; Bun, Chrome and bubblewrap actual versions observed.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/baseline.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M1.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/classification-input-manifest.json",
+      "sha256": "ae3b80ae93da6799b5b5e4a4c113c9ecc010fc9f183623ab42c7d0993ad3911a",
+      "scope": "Raw archive hash and exact historical report/case digests verified; only needed records loaded; no historical files changed.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/classification-input-manifest.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M1.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/classification-rubric.json",
+      "sha256": "497c9e4f2350f9f2454fe5dd90b965368ed339bf9d9385d41c468ac726500af7",
+      "scope": "Rubric frozen before partition; all342unique artifact/assertion units retained with0exclusions and45explicit truncations.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/classification-rubric.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M1.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/classification.json",
+      "sha256": "cc0299d73c25dfc41904900cd7f8d219e129669394b8e2e3abe558608157f0e6",
+      "scope": "One judge_batch completed342/342 with0errors; counts,45truncations,232escalations and110unscanned units retained.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/classification.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M1.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/graph.json",
+      "sha256": "3194d67bd205524d81ad9278bdbd0d37a9a3b226b409d8dbfbb0e54608a89aec",
+      "scope": "65nodes,8pure-verification milestones,56leaf enablers,8explicit prunes,87acyclic cross-node edges; all64slot decisions stored before wiring.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/graph.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/trace-boundary.json",
+      "sha256": "1316b9dc95840c86f854349f7934ffc81d577b4d394ec9fa468d0fbf7f1e8853",
+      "scope": "Exact original6286040byte trace and terminal truncation metadata preserved; absent five events cannot be reconstructed and original authority remains unknown.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/trace-boundary.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/context-cost-baseline.json",
+      "sha256": "303d597a764293e639a25081ab197283a692a9c1e06e4ef85726189dd09c3056",
+      "scope": "Recomputed160retained calls, normalized/cache buckets and SDK60.6055392estimate; actual inclusion and independent contexts recorded; missing author/guide attribution remains unknown.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/context-cost-baseline.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M1.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/confirmation-intake.json",
+      "sha256": "a3784d7f54f54e5adedd651620f84c4226c3a38e30232e1e51b03a79eecdd615",
+      "scope": "All232flagged IDs covered exactly once by four independent domain projections; parent reproduced native-name mismatch, trace-overrun and coverage-counterexamples; no unflagged bulk scanned or historical scores changed.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/confirmation-intake.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M2.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/names/findings.json",
+      "sha256": "e810dffe0d47d5df573f9791b5572368b10fe3e6f717d609d733ae32ab4e1a8f",
+      "scope": "Exact accessible names are explicitly stated in completeV3-01/V3-07briefs; no substring or glyph stripping relaxation justified.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/work/names/findings.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M2.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/naming-runtime-summary.json",
+      "sha256": "bd193eb051138f35d103bfd52e951321ed3b819cb4ba0f93d9535ad41c069528",
+      "scope": "Nine immutable artifacts reproduced native name violations across54context/key trials while keyboard disclosure mechanics pass.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/naming-runtime-summary.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M2.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/naming-runtime-summary.json",
+      "sha256": "bd193eb051138f35d103bfd52e951321ed3b819cb4ba0f93d9535ad41c069528",
+      "scope": "Ten independently authored native/custom/label/decorative/mislabeled/inert controls exercised; all declared positive/negative expectations match.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/naming-runtime-summary.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M2.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/naming-runtime-summary.json",
+      "sha256": "bd193eb051138f35d103bfd52e951321ed3b819cb4ba0f93d9535ad41c069528",
+      "scope": "111observations prove real native names/state and author tools.read mismatch, including labelledby/native labels/hidden and exposed symbols.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/naming-runtime-summary.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M2.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/repair-contract.json",
+      "sha256": "9dfed9f005e192351b92c7a6a624b7a9bf3bcba31dcce901aca5773cd756f9e4",
+      "scope": "Native111observation proof supports repairing author inspection fidelity, not weakening explicit names or adding unjustified skill prose.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/repair-contract.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M2.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/repair-contract.json",
+      "sha256": "9dfed9f005e192351b92c7a6a624b7a9bf3bcba31dcce901aca5773cd756f9e4",
+      "scope": "Native names/roles acrossstates, labels and decorative controls defined as observable candidate invariants with real positive/negative controls; no fixture-literal skill instruction.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/repair-contract.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/requirement-traceability.json",
+      "sha256": "5dd003ff9ac808c6d81d1941ce5a371430c263e6a5bb5b6f69c420e16b285126",
+      "scope": "Exact context and functional access boundaries traced to completebriefs; whole-task versus per-context coverage declared; clipping alone does not prove task exclusion.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/requirement-traceability.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/authority/findings.json",
+      "sha256": "1e6aef0a6848923cada894d3feb5f9f52d1fd41d76b767bf50641558024e018e",
+      "scope": "All96flagged authority/planning/edit-only units reconciled to allowed actions, complete traces, delivered reads and truthful handoffs; placeholders do not negate independent votes.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/work/authority/findings.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/authority/proof-run-mPjaAB/receipt.json",
+      "sha256": "5308852817ef0c11e030bb0fedde2bafbd0fb7c728d6c5274c22b8c305a4ae99",
+      "scope": "Actual exported claimAttestation and merge controls reject missing/failed/wrong-byte delivery and admit supported partial excerpts only in scope; no provider-attention claim.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/work/authority/proof-run-mPjaAB/receipt.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/authority/findings.json",
+      "sha256": "1e6aef0a6848923cada894d3feb5f9f52d1fd41d76b767bf50641558024e018e",
+      "scope": "Planning/no-runtime handoffs and permitted omissions distinguished from execution claims; eight historical authority gaps remain unknown, not misconduct.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/work/authority/findings.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/requirement-traceability.json",
+      "sha256": "5dd003ff9ac808c6d81d1941ce5a371430c263e6a5bb5b6f69c420e16b285126",
+      "scope": "Every affected noncompensable failure mechanism mapped to an explicit brief or scoped accessibility requirement; exact names/flow remainvalid, unsupported clipping inference remains unknown.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/requirement-traceability.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "sha256": "3617c467fe25f1aa159af7eaf6e1291b2600bc01edacb8cf056299f722a05d89",
+      "scope": "Current exact/canonical normalization positive/negative controls pass, including duplicates/missing/unknown IDs and ignored extra citations; coverage defect is separately retained and unresolved.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "sha256": "3617c467fe25f1aa159af7eaf6e1291b2600bc01edacb8cf056299f722a05d89",
+      "scope": "Located citation/source-kind/request-identity boundaries and fixed first-valid adverse vote preservation verified in235normal controls; no new historical response or citation repair inferred.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "sha256": "3617c467fe25f1aa159af7eaf6e1291b2600bc01edacb8cf056299f722a05d89",
+      "scope": "Actual merge controls preserve source/runtime distinctions and missing evidence; independent runtimefailure survives uncertain adjudication, with authority/provenance scope explicit.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "sha256": "3617c467fe25f1aa159af7eaf6e1291b2600bc01edacb8cf056299f722a05d89",
+      "scope": "Task-outcome source behavior correctly separates design failures, noncompensable fail/unknown/pass and absent gates; unsafe input coverage remains explicitly assigned toM5.6.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/admission-before.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "sha256": "1548db30e7f178e61798cea96206d3881dc6e0f3ad09c25348ec72712c86cb5b",
+      "scope": "Unchanged artifacts exercised through full named state and natural paths; no repair injection",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "sha256": "1548db30e7f178e61798cea96206d3881dc6e0f3ad09c25348ec72712c86cb5b",
+      "scope": "Observational scaling and reuse/rebase controls pass; real clipping retained",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "sha256": "1548db30e7f178e61798cea96206d3881dc6e0f3ad09c25348ec72712c86cb5b",
+      "scope": "Three clipping-only exclusions are diagnostic unknowns, never passes; actual flow failure retained",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "sha256": "1548db30e7f178e61798cea96206d3881dc6e0f3ad09c25348ec72712c86cb5b",
+      "scope": "Native and keyboard observations bounded; live-region declarations are not observed screen-reader speech",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "sha256": "1548db30e7f178e61798cea96206d3881dc6e0f3ad09c25348ec72712c86cb5b",
+      "scope": "No new guidance justified; existing general guidance retained without prose inflation",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/scaled-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/trace-repair/after-run-fBnaCM/receipt.json",
+      "sha256": "eb74a5999319cbab4d634e5d744f37a0756d1f8f33c6e8d8ff1796ab310c9a20",
+      "scope": "Seven public runTask controls/204 checks prove repaired hard cap and terminal behavior with zero provider calls",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/work/trace-repair/after-run-fBnaCM/receipt.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M4.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/projected-memory-verification.json",
+      "sha256": "f15e919cfb6569abb74ff1f0e95a972449052ed5dcf8792fb314329078d4c99a",
+      "scope": "Scoped path/hash projections and admission boundaries verified; future-worker claims explicitly withheld",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/projected-memory-verification.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/validation-after/receipt.json",
+      "sha256": "437f22cae0ffde49a4942956ea2506e65724188abc416809d7335392571ce050",
+      "scope": "Genuine native preflight:67fixtures193observations,112coverage29facade29scaling187trace checks and six explicit alternate-positive contexts; runner source will be revalidated after subsequent release fixes",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-native-v1.tar.gz",
+      "member": "validation-after/receipt.json",
+      "archive_sha256": "1d23944a680acb2e24b134e6c3554ac8522703640910683859568c0f12dd3b75"
+    },
+    "M2.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/evidence-closure-review.json",
+      "sha256": "736c3c06b476c0065e4fea2df25e72c75e5e2bf75adfd7175c040ade652fe6d0",
+      "scope": "Independent review confirms exact native-name contract and no requirement weakening",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/evidence-closure-review.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M3.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/evidence-closure-review.json",
+      "sha256": "736c3c06b476c0065e4fea2df25e72c75e5e2bf75adfd7175c040ade652fe6d0",
+      "scope": "Independent review confirms scoped scaling closure and preserved genuine failure",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/evidence-closure-review.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "sha256": "fe9753e850cbc77697130306077c49b26ac1b86636874f7d51997148cadbcaa6",
+      "scope": "Four confirmed mechanisms isolate harness errors, not missing general skill instructions",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "sha256": "fe9753e850cbc77697130306077c49b26ac1b86636874f7d51997148cadbcaa6",
+      "scope": "Existing autonomous task contract readback retained unchanged",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "sha256": "fe9753e850cbc77697130306077c49b26ac1b86636874f7d51997148cadbcaa6",
+      "scope": "Existing meaningful control-name/state guidance retained unchanged",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "sha256": "fe9753e850cbc77697130306077c49b26ac1b86636874f7d51997148cadbcaa6",
+      "scope": "Existing scaled-content access and adaptive-layout guidance retained unchanged",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "sha256": "fe9753e850cbc77697130306077c49b26ac1b86636874f7d51997148cadbcaa6",
+      "scope": "Existing truthful scoped evidence and handoff guidance retained unchanged",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/evidence-closure-review.json",
+      "sha256": "736c3c06b476c0065e4fea2df25e72c75e5e2bf75adfd7175c040ade652fe6d0",
+      "scope": "Independent review supports unchanged terse technical guidance; no isolated instruction gap",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/evidence-closure-review.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M6.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "sha256": "fe9753e850cbc77697130306077c49b26ac1b86636874f7d51997148cadbcaa6",
+      "scope": "Content-addressed candidate remains byte-identical; zero entry/payload context delta",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/guidance-decision.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M5.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/verification-corrections-freeze.json",
+      "sha256": "447fe9b7889b050a030f3842d5362a46fb305f0592584927eec77fe62d6236af",
+      "scope": "Final executable source union reviewed and genuinely calibrated:67fixtures193observations,zero errors/gaps/mismatches; actual author release remains gated by M7.5 process/integrity controls",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/verification-corrections-freeze.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-protocol.json",
+      "sha256": "9ddec271b2882c62ffa36bed4d2d3ff643b433028c904e317b609ac564f10335",
+      "scope": "Immutable exposed-case candidate-only6author protocol,source/limits/context/cost semantics and no-adoption rule fixed before real author release",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/development-protocol.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/current-artifact-replay/receipt-reconciled.json",
+      "sha256": "8a9cd79683572e489861acd9f97f8771dcef51b599974b42066e749fecc6aabe",
+      "scope": "Nine unchanged current artifacts/27native contexts replayed. Consumer bundle misuse was corrected by reconsuming retained measurements, not rerunning browsers; genuine names and347pxflow remain failed, no historical rescore.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/current-artifact-replay/receipt-reconciled.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/fault-acceptance.json",
+      "sha256": "f13a72523c4e0bcdd00d5095c71ed9c6944479b39fc56f8051091e69700ef8f5",
+      "scope": "Actual kill boundaries,24partial mutations,49public release rejections and producer compensation verified before authors; every probe error and observational limit retained",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/fault-acceptance.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v2-completion.json",
+      "sha256": "7d9390fc0bd3a96484d030914bbfcaa35ffa88bc549f8ee74da2272017f06956",
+      "scope": "All6newR2authors completed;3exposedcases\u00d72reps;18contexts,6native measured_pass/0failed/0incomplete. Whole-task remains incomplete pendingmanualdimensionreview, noadoptionclaim. Original1complete/2interrupted/3notstarted separatelysealed/archived;actual9startsacrossbothrevisions.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/author-v2-completion.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/fresh-primary-closure.json",
+      "sha256": "ff8e05e289b7ed5831ea5e506fc6c1a39921cbba35518b3f8b8a87b58d686a35",
+      "scope": "All6freshnativepaths independently supported across18contexts;2reviewers+parentactualcriticalimages; requested2dialogscroll/popup/keyboardfollowup completed. ClosedStandardlabeltruncation retained aslimitation,notcriticalfailureorwhole-taskpass.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/fresh-primary-closure.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/compensation-closure.json",
+      "sha256": "81f2ecd9621e54c2104cd6540e74c2f00e6c4caea9db9b857770ff3867d7a5a3",
+      "scope": "Correctedobserver controls+actual6newauthors pass; scoped49releaseguards,commit/interruptedmutationcontrols,legacybindingandproducertransitioncontrols exercised. Owned mutations restored; original1complete2partial3notstarted preserved; no skill inflation or historical rewrite.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/compensation-closure.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M7.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/complete-development-report-v2.json",
+      "sha256": "558b059047da9268fb43e2f99e7e5db524fc35bc2c046b0187c766e057e7a630",
+      "scope": "Complete original+R2cohortswithall6caseIDsandnot_startedflags. v2supersedesprojectiononly;oldreceiptandalloriginaloutcomespreserved.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/complete-development-report-v2.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M8.5": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-fail-closed-closure.json",
+      "sha256": "64baedcd27df9e2d11ae61d94a1064b02d7dc23f076f85c63ac0654dde43f2a8",
+      "scope": "Allactualcurrentreleaseguardsandownedcompensatingrestorationssupported. RealSIGKILLbarriersandBeadsopen-childcloseguardexercised. Historicaltracegaps/rawstdout/tracercoverage/powerlosslimitsretained;no test weakened orcurrentnativefailureerased.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-fail-closed-closure.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M8.1": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+      "sha256": "5724d92a9144a6491a37fd0cb209419c31181a7bbcb76c593a9304174c2808c7",
+      "scope": "Twoindependentauditsverify65node87edgeDAGandall49M1\u2013M7receipts(48direct+1archive),43frozenfiles,15payloadfiles; bothP2reportfindingscorrectedwithoutoutcomerewrite. Finalintegrationexplicitlypendinguntilactualgates/installed/handoff.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M8.2": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-docs-closure.json",
+      "sha256": "b44ce49b1883de09c9b5b617f8c3469b8d04ba9dc6b46c0000192734f12a5ad4",
+      "scope": "Affected4docs+2newreportfiles updated; independentreportaudit resolved; Unreleasedrecordsmaintenancecorrections. Canonicalpayload/licenses/notices/installrecipe/upstreamhistory intentionallyunchanged. Finalobservedintegrationmetadata remainsseparatefromdevelopment.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-docs-closure.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M8.3": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-gates/receipt.json",
+      "sha256": "a4fafeeb7bf3f3dc96ef4330c5d84b4d9a9eb2676d956855382d62210fe36dce",
+      "scope": "Finalrepositorycheck,maintenanceunittests,andversion-pinnedofficialskills-refvalidator allreturn0;license/payloadinventoriesbeforeandaftermatch. No intermediateworker gates or testrelaxation.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-gates/receipt.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M8.4": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/installed-smoke/receipt.json",
+      "sha256": "a6cace315f12352922d8d6e7c990cf5f2c0b77dccb679bb22ac4d2bed890eacb",
+      "scope": "ActualREADMEcopyrecipeinstalled15byte-identicalfilesinpathwithspaces; existingdestinationanddanglingsymlinkrefusedunchanged;portablecheckerandversion-pinnedofficialvalidatorpassfromunrelatedCWD;rootLICENSEunchanged. Exactpayloadusedbyall6freshauthors;noevery-hostautoactivationclaim.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/installed-smoke/receipt.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "M8.6": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz.retirement.json",
+      "sha256": "00138506740640bf018d46b6edb179ff426816e0a2b99ed0394b377fcb7cdd5c",
+      "scope": "Actual941825939unique filebytescompared;2890entries/8symlinks/2opaqueSocketmetadata;verified91061840byte0400archivepublishedbeforeentireRretirement. 9archivesretained,budget2GiB,expiry2026-11-02T13:46:42.995874+00:00;sharedservices/SDK/Chromecaches preserved. Alloldarchivebytesimmutable;ownedsidecarexpiryrenewed."
+    },
+    "M8.7": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-beads-closure.json",
+      "sha256": "ac540c8fa9fc434e2fe459830a259f58b392b7fbf56c54e71c350846b8596677",
+      "scope": "All55predecessorprojectedreceiptshashmatchedafterretirement(54archived+1external); bdremember/recallverifiedactualdurablehandoff,prunedgrid/87edgeDAGretained. Close thisleafandparentswithoutforce,thendirectqueryrecordsall65statusesandchronologyinpermanentreport;no unsupportedfuturestateinthisimmutableprecloseproof."
+    }
+  },
+  "retention": {
+    "owned_budget_allocated_bytes": 2147483648,
+    "maximum_archives": 9,
+    "expiry_rule": "One day after verified final handoff; exact UTC in final external retirement proof",
+    "canonical_sidecar": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz.retirement.json",
+    "shared_sdk_browser_caches_preserved": true,
+    "scope": "Regular bytes/raw symlink targets/internal hardlinks retained; sockets/other opaque entries metadata only, not endpoint identity or filesystem losslessness",
+    "status": "verified-full-root-archived-and-retired",
+    "archives": [
+      {
+        "path": "/home/bbferko/.cache/peccable-final-recovery-6e9e14517f.tar.gz",
+        "sha256": "b0ab1226ef9bbe05ead3bf20f23ea0139c21678e4446c9220a39e0c566123f64",
+        "bytes": 85331828,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-final-recovery-6e9e14517f-superseded.tar.gz",
+        "sha256": "8f16cd6c13319b1eb879dda11d77b6c9649d851616606c0bf45d08b9134386ef",
+        "bytes": 44012568,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-evidence-repair-48782644f3.tar.gz",
+        "sha256": "3bb119f6d4c38438e8cbc3a8cc3735cc6ebec0dfc4bee3df50a06f5b3079bed7",
+        "bytes": 69312731,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-pilot-evidence-2026-10-31-yofrtwp4-v3.tar.gz",
+        "sha256": "3b55ab0aad3b0eb3a8c531a49544c1e295d42d19ede74501cb4c13e3685906df",
+        "bytes": 123705835,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-pilot-evidence-2026-10-31-yofrtwp4-aux.tar.gz",
+        "sha256": "d215d9e4f4fca5d6851b741efca8644449daa85ed6890f40f96316d6753550b7",
+        "bytes": 97510216,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-scaled-before.tar.gz",
+        "sha256": "0a61fba4e41af57eee8f7261296d94553b46f7e00a4654359c2bf34c96e926a4",
+        "bytes": 87347101,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-native-v1.tar.gz",
+        "sha256": "1d23944a680acb2e24b134e6c3554ac8522703640910683859568c0f12dd3b75",
+        "bytes": 28891518,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-authors-v1.tar.gz",
+        "sha256": "89b1070708267a5d5ee2842401c1294f8e88ef16e9e62e94b6160712392122a8",
+        "bytes": 16016758,
+        "mode": "0o400"
+      },
+      {
+        "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+        "sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109",
+        "bytes": 91061840,
+        "mode": "0o400"
+      }
+    ],
+    "archive_count": 9,
+    "expiry_utc": "2026-11-02T13:46:42.995874+00:00",
+    "handoff_utc": "2026-11-01T13:46:42.995874+00:00",
+    "final_proof": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz.retirement.json",
+      "sha256": "00138506740640bf018d46b6edb179ff426816e0a2b99ed0394b377fcb7cdd5c"
+    },
+    "final_archive_member_prefix": "peccable-assertion-refinement-821e7d4f5f/",
+    "source_inventory_member": "__peccable_handoff__/source-inventory.json",
+    "source_inventory_entries": 2890,
+    "source_entry_counts": {
+      "directory": 882,
+      "file": 1998,
+      "socket": 2,
+      "symlink": 8
+    },
+    "raw_compared_unique_file_bytes": 941825939,
+    "hardlink_aliases_hash_compared": 2,
+    "opaque_entries_metadata_only": 2,
+    "source_root_absent": true,
+    "measured_owned_scope": {
+      "observed_at": "2026-11-01T13:57:40.390623+00:00",
+      "owned_allocated_bytes": 646352896,
+      "budget_bytes": 2147483648,
+      "headroom_bytes": 1501130752,
+      "archive_count": 9,
+      "maximum_archive_count": 9,
+      "owned_metadata_files_count": 13,
+      "source_root_absent": true,
+      "no_owned_partial_in_namespace": true,
+      "actual_namespace_reconciliation": "Specializedglob showedonly4currentnamespacearchives/sidecars,finalproof,registry;finalclosurefilethenregistered/created,nomissingpartialcleanup",
+      "expiry_utc": "2026-11-02T13:46:42.995874+00:00",
+      "scope": "Known9ownedarchives andallregistered/current/legacyretentionmetadata;doesnotcountsharedSDK/Chrome/tool-managedcachesorpersistentrepo/Beadsdata;notanOSquota",
+      "shared_caches_preserved": true,
+      "protected_unattributed_proc_limits": 1810,
+      "registered_unresolved_identity_limits": 0,
+      "hostwide_inactivity_certification": false
+    },
+    "metadata_paths": [
+      "/home/bbferko/.cache/peccable-pilot-evidence-2026-10-31-yofrtwp4-v3.tar.gz.json",
+      "/home/bbferko/.cache/peccable-pilot-evidence-2026-10-31-yofrtwp4-aux.tar.gz.json",
+      "/home/bbferko/.cache/peccable-final-recovery-6e9e14517f-superseded.tar.gz.json",
+      "/home/bbferko/.cache/peccable-final-recovery-6e9e14517f.tar.gz.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-scaled-before.tar.gz.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-native-v1.tar.gz.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-authors-v1.tar.gz.json",
+      "/home/bbferko/.cache/peccable-evidence-repair-48782644f3.json",
+      "/home/bbferko/.cache/peccable-final-recovery-6e9e14517f.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz.retirement.json",
+      "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-beads-closure.json"
+    ],
+    "automated_expiry_deletion_scheduled": false,
+    "limits": [
+      "Sockets and other non-file/directory/symlink entries are retained ONLY as explicit metadata: path, kind, presence, mode, uid/gid, rdev, timestamps and xattrs. No endpoint content, endpoint identity, device contents, or process state is preserved.",
+      "This is regular-byte/representable-tree preservation, NOT whole-filesystem losslessness. Inode numbers, atime/ctime, mount identity and external hardlink identities cannot be restored.",
+      "Internal regular-file hardlink relationships use tar hardlinks; external hardlink counts are recorded without traversing external paths.",
+      "Raw xattrs/ACL metadata and raw path/symlink-target bytes are retained in the inventory manifest. Standard tar extraction alone does not apply custom xattr metadata.",
+      "Inactivity evidence is scoped: explicit historical process identities and accessible path-labelled namespace references, with protected-unattributed inspection limits retained. No same-UID ownership inference or host-wide forensic completeness is claimed.",
+      "SIGKILL/power loss cannot run cleanup. --recover-only safely removes the registered unique partial and retains published archives and durable failure evidence; it never retries source retirement."
+    ]
+  },
+  "integration_evidence": {
+    "status": "verified",
+    "maintenance": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-gates/receipt.json",
+      "sha256": "a4fafeeb7bf3f3dc96ef4330c5d84b4d9a9eb2676d956855382d62210fe36dce",
+      "scope": "Finalrepositorycheck,maintenanceunittests,andversion-pinnedofficialskills-refvalidator allreturn0;license/payloadinventoriesbeforeandaftermatch. No intermediateworker gates or testrelaxation.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-gates/receipt.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "maintenance_test_count": 30,
+    "installed_copy": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/installed-smoke/receipt.json",
+      "sha256": "a6cace315f12352922d8d6e7c990cf5f2c0b77dccb679bb22ac4d2bed890eacb",
+      "scope": "ActualREADMEcopyrecipeinstalled15byte-identicalfilesinpathwithspaces; existingdestinationanddanglingsymlinkrefusedunchanged;portablecheckerandversion-pinnedofficialvalidatorpassfromunrelatedCWD;rootLICENSEunchanged. Exactpayloadusedbyall6freshauthors;noevery-hostautoactivationclaim.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/installed-smoke/receipt.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "installed_cases": 5,
+    "rollback": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-fail-closed-closure.json",
+      "sha256": "64baedcd27df9e2d11ae61d94a1064b02d7dc23f076f85c63ac0654dde43f2a8",
+      "scope": "Allactualcurrentreleaseguardsandownedcompensatingrestorationssupported. RealSIGKILLbarriersandBeadsopen-childcloseguardexercised. Historicaltracegaps/rawstdout/tracercoverage/powerlosslimitsretained;no test weakened orcurrentnativefailureerased.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-fail-closed-closure.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "resource_retirement": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz.retirement.json",
+      "sha256": "00138506740640bf018d46b6edb179ff426816e0a2b99ed0394b377fcb7cdd5c",
+      "scope": "Actual941825939unique filebytescompared;2890entries/8symlinks/2opaqueSocketmetadata;verified91061840byte0400archivepublishedbeforeentireRretirement. 9archivesretained,budget2GiB,expiry2026-11-02T13:46:42.995874+00:00;sharedservices/SDK/Chromecaches preserved. Alloldarchivebytesimmutable;ownedsidecarexpiryrenewed."
+    },
+    "durable_projected_memory": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-beads-closure.json",
+      "sha256": "ac540c8fa9fc434e2fe459830a259f58b392b7fbf56c54e71c350846b8596677",
+      "scope": "All55predecessorprojectedreceiptshashmatchedafterretirement(54archived+1external); bdremember/recallverifiedactualdurablehandoff,prunedgrid/87edgeDAGretained. Close thisleafandparentswithoutforce,thendirectqueryrecordsall65statusesandchronologyinpermanentreport;no unsupportedfuturestateinthisimmutableprecloseproof."
+    },
+    "independent_milestone_audit": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+      "sha256": "5724d92a9144a6491a37fd0cb209419c31181a7bbcb76c593a9304174c2808c7",
+      "scope": "Twoindependentauditsverify65node87edgeDAGandall49M1\u2013M7receipts(48direct+1archive),43frozenfiles,15payloadfiles; bothP2reportfindingscorrectedwithoutoutcomerewrite. Finalintegrationexplicitlypendinguntilactualgates/installed/handoff.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "documentation_scope": {
+      "receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-docs-closure.json",
+      "sha256": "b44ce49b1883de09c9b5b617f8c3469b8d04ba9dc6b46c0000192734f12a5ad4",
+      "scope": "Affected4docs+2newreportfiles updated; independentreportaudit resolved; Unreleasedrecordsmaintenancecorrections. Canonicalpayload/licenses/notices/installrecipe/upstreamhistory intentionallyunchanged. Finalobservedintegrationmetadata remainsseparatefromdevelopment.",
+      "retired": true,
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz",
+      "member": "peccable-assertion-refinement-821e7d4f5f/final-docs-closure.json",
+      "archive_sha256": "aa1350c25e085d0bbfc5fc6b6adda46f228b2ef5fe14dcb8c094cf54c6828109"
+    },
+    "trail_refresh": {
+      "schema_version": "peccable-trail-refresh-v1",
+      "command": [
+        "trail",
+        "build"
+      ],
+      "cwd": "/home/bbferko/repos/Peccable",
+      "observed_success": true,
+      "nodes": 422,
+      "edges": 1345,
+      "cards": 12,
+      "files_replayed_from_cache": 12,
+      "newly_parsed": 0,
+      "scope": "Deterministic localcontextgraphrefresh after allcodechanges; ignoredcacheonly; no providerkey/callclaim"
+    },
+    "final_metadata_only_after_gates": "Only actual integration/retention/Beads reporting metadata changed afterthecode/payloadgates; all8frozen sourcepinsandcanonicalpayloadunchanged."
+  },
+  "final_independent_audits": {
+    "graph": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-independent-audit/graph-evidence.json",
+      "sha256": "2904959fd77e27fd26a290f5f6d685ba1a188a0ffcd2b1df01fb6e5f8c48d706"
+    },
+    "report": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/final-independent-audit/report-scope.json",
+      "sha256": "31a4e6f6cc04242f352fa55f61dc889466ff1d8114a46b972cba0bcadcc9f21d"
+    },
+    "resolution": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/final-audit-resolution.json",
+      "sha256": "5724d92a9144a6491a37fd0cb209419c31181a7bbcb76c593a9304174c2808c7"
+    },
+    "findings": "TwoP2projection/temporallanguagefindingscorrected;originalauditreportsretained;finalintegrationgatesnotprecertified"
+  },
+  "frozen_graph": {
+    "root": "Peccable-11i",
+    "node_ids": {
+      "L0": "Peccable-11i",
+      "M1": "Peccable-11i.1",
+      "M1.1": "Peccable-11i.1.1",
+      "M1.2": "Peccable-11i.1.2",
+      "M1.3": "Peccable-11i.1.3",
+      "M1.4": "Peccable-11i.1.4",
+      "M1.5": "Peccable-11i.1.5",
+      "M1.6": "Peccable-11i.1.6",
+      "M1.7": "Peccable-11i.1.7",
+      "M2": "Peccable-11i.2",
+      "M2.1": "Peccable-11i.2.1",
+      "M2.2": "Peccable-11i.2.2",
+      "M2.3": "Peccable-11i.2.3",
+      "M2.4": "Peccable-11i.2.4",
+      "M2.5": "Peccable-11i.2.5",
+      "M2.6": "Peccable-11i.2.6",
+      "M2.7": "Peccable-11i.2.7",
+      "M3": "Peccable-11i.3",
+      "M3.1": "Peccable-11i.3.1",
+      "M3.2": "Peccable-11i.3.2",
+      "M3.3": "Peccable-11i.3.3",
+      "M3.4": "Peccable-11i.3.4",
+      "M3.5": "Peccable-11i.3.5",
+      "M3.6": "Peccable-11i.3.6",
+      "M3.7": "Peccable-11i.3.7",
+      "M4": "Peccable-11i.4",
+      "M4.1": "Peccable-11i.4.1",
+      "M4.2": "Peccable-11i.4.2",
+      "M4.3": "Peccable-11i.4.3",
+      "M4.4": "Peccable-11i.4.4",
+      "M4.5": "Peccable-11i.4.5",
+      "M4.6": "Peccable-11i.4.6",
+      "M4.7": "Peccable-11i.4.7",
+      "M5": "Peccable-11i.5",
+      "M5.1": "Peccable-11i.5.1",
+      "M5.2": "Peccable-11i.5.2",
+      "M5.3": "Peccable-11i.5.3",
+      "M5.4": "Peccable-11i.5.4",
+      "M5.5": "Peccable-11i.5.5",
+      "M5.6": "Peccable-11i.5.6",
+      "M5.7": "Peccable-11i.5.7",
+      "M6": "Peccable-11i.6",
+      "M6.1": "Peccable-11i.6.1",
+      "M6.2": "Peccable-11i.6.2",
+      "M6.3": "Peccable-11i.6.3",
+      "M6.4": "Peccable-11i.6.4",
+      "M6.5": "Peccable-11i.6.5",
+      "M6.6": "Peccable-11i.6.6",
+      "M6.7": "Peccable-11i.6.7",
+      "M7": "Peccable-11i.7",
+      "M7.1": "Peccable-11i.7.1",
+      "M7.2": "Peccable-11i.7.2",
+      "M7.3": "Peccable-11i.7.3",
+      "M7.4": "Peccable-11i.7.4",
+      "M7.5": "Peccable-11i.7.5",
+      "M7.6": "Peccable-11i.7.6",
+      "M7.7": "Peccable-11i.7.7",
+      "M8": "Peccable-11i.8",
+      "M8.1": "Peccable-11i.8.1",
+      "M8.2": "Peccable-11i.8.2",
+      "M8.3": "Peccable-11i.8.3",
+      "M8.4": "Peccable-11i.8.4",
+      "M8.5": "Peccable-11i.8.5",
+      "M8.6": "Peccable-11i.8.6",
+      "M8.7": "Peccable-11i.8.7"
+    },
+    "grid": {
+      "schema_version": "peccable-assertion-grid-v1",
+      "root_objective": "Verify assertions by evidence-justified skill refinement or verification correction in terse-yet-complete Standard Technical English; execute a fail-closed, depth-two, eight-slot Beads DAG in parallel waves.",
+      "milestones": [
+        {
+          "slot": "M1",
+          "title": "Verify evidence and contract baseline",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M1.1",
+              "decision": "populate",
+              "title": "Freeze objective and no-rewrite constraints",
+              "criterion_or_prune_reason": "Record the complete user objective, permitted source changes, and immutable historical boundaries."
+            },
+            {
+              "slot": "M1.2",
+              "decision": "populate",
+              "title": "Pin repository, payload, license, and environment",
+              "criterion_or_prune_reason": "Record current file hashes, clean branch baseline, installed runtime identities, and original license digest."
+            },
+            {
+              "slot": "M1.3",
+              "decision": "populate",
+              "title": "Verify and project retained evidence inputs",
+              "criterion_or_prune_reason": "Check archive hashes and extract only required records/artifacts into registered isolated scratch."
+            },
+            {
+              "slot": "M1.4",
+              "decision": "populate",
+              "title": "Freeze complete assertion-classification inputs",
+              "criterion_or_prune_reason": "Bind every artifact/assertion key, brief, evidence projection, rubric, prefilter, cap, and escalation rule."
+            },
+            {
+              "slot": "M1.5",
+              "decision": "populate",
+              "title": "Classify all assertion units with judge_batch",
+              "criterion_or_prune_reason": "Retain every verdict/error, exclusion, truncation, and label count without manual bulk scanning."
+            },
+            {
+              "slot": "M1.6",
+              "decision": "populate",
+              "title": "Confirm escalated assertions against their contracts",
+              "criterion_or_prune_reason": "Read only flagged units; confirm or overturn machine labels with brief/source/runtime evidence."
+            },
+            {
+              "slot": "M1.7",
+              "decision": "populate",
+              "title": "Verify graph orthogonality and memory contracts",
+              "criterion_or_prune_reason": "Prove eight milestone grids, explicit eight-slot decisions, depth<=2, <=73 nodes, acyclic edges, and scoped evidence references."
+            },
+            {
+              "slot": "M1.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: immutable vendor model weights are unavailable; record selector/response identities without claiming weight pinning."
+            }
+          ]
+        },
+        {
+          "slot": "M2",
+          "title": "Verify accessible task controls",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M2.1",
+              "decision": "populate",
+              "title": "Trace control-name requirements to authorized briefs",
+              "criterion_or_prune_reason": "Distinguish exact user wording from selector assumptions and conventional decorative state cues."
+            },
+            {
+              "slot": "M2.2",
+              "decision": "populate",
+              "title": "Reproduce flagged native accessible-name outcomes",
+              "criterion_or_prune_reason": "Capture native AX roles/names and actual task interactions from unchanged flagged artifacts before alteration."
+            },
+            {
+              "slot": "M2.3",
+              "decision": "populate",
+              "title": "Exercise conforming disclosure alternatives",
+              "criterion_or_prune_reason": "Prepare native and custom compliant controls plus decorative-content and mislabeled negative controls."
+            },
+            {
+              "slot": "M2.4",
+              "decision": "populate",
+              "title": "Verify name propagation and state transitions",
+              "criterion_or_prune_reason": "Measure generated-content, accessible labels, disclosure state, and keyboard behavior without source-only certification."
+            },
+            {
+              "slot": "M2.5",
+              "decision": "populate",
+              "title": "Resolve naming skill-versus-oracle action",
+              "criterion_or_prune_reason": "Record evidence for the smallest justified skill or verification correction; reject preference-only gates."
+            },
+            {
+              "slot": "M2.6",
+              "decision": "populate",
+              "title": "Specify candidate observable naming invariants",
+              "criterion_or_prune_reason": "Define provider-neutral behavior checks and development expectations without embedding fixture names into the skill."
+            },
+            {
+              "slot": "M2.7",
+              "decision": "populate",
+              "title": "Verify naming closure independently",
+              "criterion_or_prune_reason": "Accept only actual native/keyboard proof that corrected checks reject real defects and accept legitimate alternatives."
+            },
+            {
+              "slot": "M2.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: multilingual/locale certification is outside the en-US fixture contract; no extrapolated localization claim."
+            }
+          ]
+        },
+        {
+          "slot": "M3",
+          "title": "Verify scaled-content access and communication",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M3.1",
+              "decision": "populate",
+              "title": "Trace viewport and scaling requirements",
+              "criterion_or_prune_reason": "Bind named sizes, text scaling, essential content, and access requirements to the authorized brief."
+            },
+            {
+              "slot": "M3.2",
+              "decision": "populate",
+              "title": "Reproduce flagged clipped settings surfaces",
+              "criterion_or_prune_reason": "Capture the full named state and real scroll/keyboard path on unchanged flagged artifacts."
+            },
+            {
+              "slot": "M3.3",
+              "decision": "populate",
+              "title": "Verify observational text-scaling behavior",
+              "criterion_or_prune_reason": "Exercise reuse/rebase invariants and preserve existing genuine clipping without measurement-induced repair."
+            },
+            {
+              "slot": "M3.4",
+              "decision": "populate",
+              "title": "Separate essential access from cosmetic clipping",
+              "criterion_or_prune_reason": "Use semantic/behavioral probes to distinguish inaccessible task content from decoration, partial labels, and recoverable scrolling."
+            },
+            {
+              "slot": "M3.5",
+              "decision": "populate",
+              "title": "Resolve scoped communication evidence",
+              "criterion_or_prune_reason": "Define what browser AX/state/live-region evidence can prove and what remains unobserved; avoid universal AT claims."
+            },
+            {
+              "slot": "M3.6",
+              "decision": "populate",
+              "title": "Specify resilient candidate guidance",
+              "criterion_or_prune_reason": "Propose only generalizable, terse skill language justified by observed long/scaled-content failure mechanisms."
+            },
+            {
+              "slot": "M3.7",
+              "decision": "populate",
+              "title": "Verify scaled-content closure independently",
+              "criterion_or_prune_reason": "Require positive/negative controls and actual surface evidence for any skill or verification adjustment."
+            },
+            {
+              "slot": "M3.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: universal browser-zoom, physical-device, and screen-reader certification cannot be inferred from the scoped text-200 run."
+            }
+          ]
+        },
+        {
+          "slot": "M4",
+          "title": "Verify authority and evidence fidelity",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M4.1",
+              "decision": "populate",
+              "title": "Trace authority claims to actual allowed actions",
+              "criterion_or_prune_reason": "Separate author-time evidence, later evaluator observations, denied tools, and truthful handoffs."
+            },
+            {
+              "slot": "M4.2",
+              "decision": "populate",
+              "title": "Document irrecoverable trace boundaries",
+              "criterion_or_prune_reason": "Verify omitted-event identities and keep historical unknowns unknown without replacing the author outcome."
+            },
+            {
+              "slot": "M4.3",
+              "decision": "populate",
+              "title": "Verify future trace-limit behavior",
+              "criterion_or_prune_reason": "Inspect recorder byte/reserve/terminal behavior and define a demonstrated repair only if a current defect is found."
+            },
+            {
+              "slot": "M4.4",
+              "decision": "populate",
+              "title": "Verify actual resource delivery and outbound inclusion",
+              "criterion_or_prune_reason": "Check successful read/image delivery versus attempted reads, metadata ordering, and provider inclusion boundaries."
+            },
+            {
+              "slot": "M4.5",
+              "decision": "populate",
+              "title": "Verify no-runtime handoff scope",
+              "criterion_or_prune_reason": "Ensure verification does not demand prohibited author actions or treat permitted-read omissions as fabricated claims."
+            },
+            {
+              "slot": "M4.6",
+              "decision": "populate",
+              "title": "Verify token, byte, cache, and cost semantics",
+              "criterion_or_prune_reason": "Retain normalized/raw usage, actual loaded context, missing attribution, failed-attempt cost, and model uncertainty."
+            },
+            {
+              "slot": "M4.7",
+              "decision": "populate",
+              "title": "Verify projected-memory and evidence isolation",
+              "criterion_or_prune_reason": "Pass only declared field/hash/scope references between nodes; prevent treatment, credential, and guidance leaks."
+            },
+            {
+              "slot": "M4.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: reconstructing the five unretained historical events is impossible from retained evidence; no fake recovery or favorable replacement."
+            }
+          ]
+        },
+        {
+          "slot": "M5",
+          "title": "Verify oracle validity and review admission",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M5.1",
+              "decision": "populate",
+              "title": "Build requirement-to-check traceability",
+              "criterion_or_prune_reason": "Map each affected noncompensable gate to brief text or a scoped functional requirement; identify unsupported prescriptions."
+            },
+            {
+              "slot": "M5.2",
+              "decision": "populate",
+              "title": "Verify canonical-versus-target response admission",
+              "criterion_or_prune_reason": "Exercise complete/exact sets, missing/unknown/duplicate IDs, ignored canonical extras, and fixed first-valid selection."
+            },
+            {
+              "slot": "M5.3",
+              "decision": "populate",
+              "title": "Verify citation and request bindings",
+              "criterion_or_prune_reason": "Reject absent/out-of-bounds citations, altered sources, cross-artifact evidence, and unmatched request/image hashes."
+            },
+            {
+              "slot": "M5.4",
+              "decision": "populate",
+              "title": "Verify evidence-kind and uncertainty precedence",
+              "criterion_or_prune_reason": "Keep source/rendered/behavioral/measured claims scoped; unknown adjudication cannot erase an independent native failure."
+            },
+            {
+              "slot": "M5.5",
+              "decision": "populate",
+              "title": "Verify task outcome aggregation",
+              "criterion_or_prune_reason": "Prove design-only failures are separate and noncompensable fail/unknown/pass precedence follows the frozen rubric."
+            },
+            {
+              "slot": "M5.6",
+              "decision": "populate",
+              "title": "Verify positive and negative control coverage",
+              "criterion_or_prune_reason": "Require independent conforming alternatives and consumer-visible broken controls before scoring any revised check."
+            },
+            {
+              "slot": "M5.7",
+              "decision": "populate",
+              "title": "Freeze separately versioned verification corrections",
+              "criterion_or_prune_reason": "Change only evidenced defects; preserve historical cases, reports, original votes, and adoption thresholds."
+            },
+            {
+              "slot": "M5.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: retrospective relaxation of the frozen adoption thresholds is not a valid correction and will not be performed."
+            }
+          ]
+        },
+        {
+          "slot": "M6",
+          "title": "Verify skill-context precision and disclosure",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M6.1",
+              "decision": "populate",
+              "title": "Project evidence-supported instruction gaps",
+              "criterion_or_prune_reason": "Use confirmed mechanisms and existing context to distinguish missing guidance from stochastic noncompliance or verifier error."
+            },
+            {
+              "slot": "M6.2",
+              "decision": "populate",
+              "title": "Refine autonomous contract readback only if needed",
+              "criterion_or_prune_reason": "Keep task-specific acceptance and meaningful outcomes explicit without mandatory initialization or user-driver loops."
+            },
+            {
+              "slot": "M6.3",
+              "decision": "populate",
+              "title": "Refine accessible-control guidance only if needed",
+              "criterion_or_prune_reason": "Use minimal provider-neutral language about meaningful names/state and actual native readback; no fixture literal special cases."
+            },
+            {
+              "slot": "M6.4",
+              "decision": "populate",
+              "title": "Refine scaled-content guidance only if needed",
+              "criterion_or_prune_reason": "Use minimal long-content/access guidance with usable scrolling and adaptive layout rather than stylistic bans."
+            },
+            {
+              "slot": "M6.5",
+              "decision": "populate",
+              "title": "Refine evidence and handoff guidance only if needed",
+              "criterion_or_prune_reason": "Preserve truthful scoped verification, permitted tools, unknowns, and no fabricated execution requirements."
+            },
+            {
+              "slot": "M6.6",
+              "decision": "populate",
+              "title": "Verify terse complete Standard Technical English",
+              "criterion_or_prune_reason": "Review semantic density, existing identity, progressive disclosure, direct links, and absence of duplicated prescriptions."
+            },
+            {
+              "slot": "M6.7",
+              "decision": "populate",
+              "title": "Freeze the new candidate and context delta",
+              "criterion_or_prune_reason": "Hash candidate before development release; retain before/after bytes, selected-resource costs, and rollback inputs."
+            },
+            {
+              "slot": "M6.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: new assets, libraries, installed scripts, or reference folders are unjustified without demonstrated recurring need."
+            }
+          ]
+        },
+        {
+          "slot": "M7",
+          "title": "Verify new-candidate development outcomes",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M7.1",
+              "decision": "populate",
+              "title": "Freeze a bounded development validation protocol",
+              "criterion_or_prune_reason": "Declare development-only tasks, all repetitions, limits, controls, runtime, expected observations, and compensation rules before author calls."
+            },
+            {
+              "slot": "M7.2",
+              "decision": "populate",
+              "title": "Replay immutable current-artifact controls",
+              "criterion_or_prune_reason": "Run relevant deterministic source/runtime controls without replacing historical outcomes or claiming a fresh comparative experiment."
+            },
+            {
+              "slot": "M7.3",
+              "decision": "populate",
+              "title": "Run fresh isolated candidate development authors",
+              "criterion_or_prune_reason": "Use the frozen new candidate on declared development tasks; preserve every author failure and actual resource load."
+            },
+            {
+              "slot": "M7.4",
+              "decision": "populate",
+              "title": "Verify generated primary paths independently",
+              "criterion_or_prune_reason": "Exercise native names, keyboard/state transitions, essential scaled access, and truthful evidence for every generated output."
+            },
+            {
+              "slot": "M7.5",
+              "decision": "populate",
+              "title": "Exercise fault controls before result acceptance",
+              "criterion_or_prune_reason": "Demonstrate real broken controls fail for behavior rather than wiring/source wording, with conforming alternatives accepted."
+            },
+            {
+              "slot": "M7.6",
+              "decision": "populate",
+              "title": "Compensate regressions and verify corrections",
+              "criterion_or_prune_reason": "Keep failed candidates unpromoted, restore scoped edits if necessary, and repeat only a separately frozen development revision."
+            },
+            {
+              "slot": "M7.7",
+              "decision": "populate",
+              "title": "Report every development result and uncertainty",
+              "criterion_or_prune_reason": "Publish all repetitions, failure mechanisms, actual context/cost, limitations, and no causal/adoption overclaim."
+            },
+            {
+              "slot": "M7.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: exposed development cases cannot be reused as a new held-out adoption study; no fresh adoption verdict is claimed."
+            }
+          ]
+        },
+        {
+          "slot": "M8",
+          "title": "Verify integration rollback and durable closure",
+          "node_kind": "pure-verification-container",
+          "slots": [
+            {
+              "slot": "M8.1",
+              "decision": "populate",
+              "title": "Independently verify all milestone evidence",
+              "criterion_or_prune_reason": "Integration owner checks leaf receipts and milestone contracts rather than accepting subagent completion claims."
+            },
+            {
+              "slot": "M8.2",
+              "decision": "populate",
+              "title": "Update affected documentation and notices",
+              "criterion_or_prune_reason": "Record actual changes, corrected interpretations, new candidate status, links, and Unreleased entry; preserve root license bytes."
+            },
+            {
+              "slot": "M8.3",
+              "decision": "populate",
+              "title": "Run final repository maintenance gates",
+              "criterion_or_prune_reason": "Run checker, standard-library suite, and pinned official validator on the final union of edits."
+            },
+            {
+              "slot": "M8.4",
+              "decision": "populate",
+              "title": "Verify actual installed payload behavior",
+              "criterion_or_prune_reason": "Exercise documented installation and refusal cases, exact payload inventory, checker, and official validator without maintenance dependencies."
+            },
+            {
+              "slot": "M8.5",
+              "decision": "populate",
+              "title": "Verify fail-closed and compensating rollback paths",
+              "criterion_or_prune_reason": "Demonstrate stale/missing evidence cannot close a container or promote a candidate; exercise owned-scratch rollback safely."
+            },
+            {
+              "slot": "M8.6",
+              "decision": "populate",
+              "title": "Verify bounded resource handoff and retirement",
+              "criterion_or_prune_reason": "Archive/compare raw evidence, record expiry/cost, retire only owned scratch/processes, and preserve shared caches."
+            },
+            {
+              "slot": "M8.7",
+              "decision": "populate",
+              "title": "Verify Beads closure and durable projected memory",
+              "criterion_or_prune_reason": "Check shape/cycles/status/evidence for every node, close only verified work, and persist compact continuation knowledge in Beads."
+            },
+            {
+              "slot": "M8.8",
+              "decision": "prune",
+              "title": null,
+              "criterion_or_prune_reason": "Pruned: git commit, push, and Dolt remote sync are not authorized by this request; no remote mutation is performed."
+            }
+          ]
+        }
+      ],
+      "closure": "Every original failed-task mechanism must be reproduced and addressed by a scoped verification correction or independently measured new-candidate behavior. Required new development paths must have no noncompensable failure; historical unknowns/failures remain preserved. Containers cannot close with open children or unmet dependencies; never use --force.",
+      "memory_contract": {
+        "reference": "Beads issue id + metadata field/JSON pointer + artifact path + SHA-256 + observation scope",
+        "forbidden": "Raw credentials, automatic whole-session copies, hidden guide injection, unfrozen success criteria, and unsupported pass claims"
+      },
+      "rollback": "Never alter historical evidence. Unverified changes cannot be promoted; restore only owned changed-source snapshots on regression and retain the failed revision/receipt.",
+      "maximum_nodes": 73,
+      "populated_nodes": 65,
+      "pruned_slots": 8,
+      "tracking_source": "Beads; cached grid projection is execution input, not a second task tracker."
+    },
+    "grid_sha256": "02ff0d9e5effbdc82dea40d569bbc323ccd25e1c6000726d5371525985347d4b",
+    "dependsOn": {
+      "M1.3": [
+        "M1.1",
+        "M1.2"
+      ],
+      "M1.4": [
+        "M1.3"
+      ],
+      "M1.5": [
+        "M1.4"
+      ],
+      "M1.6": [
+        "M1.5"
+      ],
+      "M1.7": [
+        "M1.1"
+      ],
+      "M2.1": [
+        "M1.6"
+      ],
+      "M2.2": [
+        "M2.1"
+      ],
+      "M2.3": [
+        "M2.1"
+      ],
+      "M2.4": [
+        "M2.2",
+        "M2.3"
+      ],
+      "M2.5": [
+        "M2.4"
+      ],
+      "M2.6": [
+        "M2.5"
+      ],
+      "M2.7": [
+        "M2.6",
+        "M5.6"
+      ],
+      "M3.1": [
+        "M1.6"
+      ],
+      "M3.2": [
+        "M3.1"
+      ],
+      "M3.3": [
+        "M1.6"
+      ],
+      "M3.4": [
+        "M3.2",
+        "M3.3"
+      ],
+      "M3.5": [
+        "M3.4"
+      ],
+      "M3.6": [
+        "M3.5"
+      ],
+      "M3.7": [
+        "M3.6",
+        "M5.6"
+      ],
+      "M4.1": [
+        "M1.6"
+      ],
+      "M4.2": [
+        "M1.3"
+      ],
+      "M4.3": [
+        "M4.2"
+      ],
+      "M4.4": [
+        "M4.1"
+      ],
+      "M4.5": [
+        "M4.1",
+        "M4.4"
+      ],
+      "M4.6": [
+        "M1.3"
+      ],
+      "M4.7": [
+        "M4.5",
+        "M4.6"
+      ],
+      "M5.1": [
+        "M1.6"
+      ],
+      "M5.2": [
+        "M1.3"
+      ],
+      "M5.3": [
+        "M5.2"
+      ],
+      "M5.4": [
+        "M5.3"
+      ],
+      "M5.5": [
+        "M5.4"
+      ],
+      "M5.6": [
+        "M2.4",
+        "M3.4",
+        "M5.5"
+      ],
+      "M5.7": [
+        "M5.6"
+      ],
+      "M6.1": [
+        "M2.5",
+        "M3.5",
+        "M4.5",
+        "M5.5"
+      ],
+      "M6.2": [
+        "M6.1"
+      ],
+      "M6.3": [
+        "M6.1"
+      ],
+      "M6.4": [
+        "M6.1"
+      ],
+      "M6.5": [
+        "M6.1"
+      ],
+      "M6.6": [
+        "M6.2",
+        "M6.3",
+        "M6.4",
+        "M6.5"
+      ],
+      "M6.7": [
+        "M6.6"
+      ],
+      "M7.1": [
+        "M2.6",
+        "M3.6",
+        "M5.7"
+      ],
+      "M7.2": [
+        "M7.1"
+      ],
+      "M7.3": [
+        "M7.1",
+        "M7.5",
+        "M6.7"
+      ],
+      "M7.4": [
+        "M7.3"
+      ],
+      "M7.5": [
+        "M7.1",
+        "M5.6"
+      ],
+      "M7.6": [
+        "M7.4"
+      ],
+      "M7.7": [
+        "M7.6",
+        "M4.6"
+      ],
+      "M8.1": [
+        "M1.7",
+        "M2.7",
+        "M3.7",
+        "M4.7",
+        "M5.7",
+        "M6.7",
+        "M7.7"
+      ],
+      "M8.2": [
+        "M8.1"
+      ],
+      "M8.3": [
+        "M8.2"
+      ],
+      "M8.4": [
+        "M8.3"
+      ],
+      "M8.5": [
+        "M1.7",
+        "M7.6"
+      ],
+      "M8.6": [
+        "M8.4",
+        "M8.5"
+      ],
+      "M8.7": [
+        "M8.1",
+        "M8.3",
+        "M8.4",
+        "M8.5",
+        "M8.6"
+      ]
+    },
+    "native_edges": [
+      {
+        "from": "Peccable-11i.1.3",
+        "to": "Peccable-11i.1.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.1.3",
+        "to": "Peccable-11i.1.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.1.4",
+        "to": "Peccable-11i.1.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.1.5",
+        "to": "Peccable-11i.1.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.1.6",
+        "to": "Peccable-11i.1.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.1.7",
+        "to": "Peccable-11i.1.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.1",
+        "to": "Peccable-11i.1.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.2",
+        "to": "Peccable-11i.2.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.3",
+        "to": "Peccable-11i.2.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.4",
+        "to": "Peccable-11i.2.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.4",
+        "to": "Peccable-11i.2.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.5",
+        "to": "Peccable-11i.2.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.6",
+        "to": "Peccable-11i.2.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.7",
+        "to": "Peccable-11i.2.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.2.7",
+        "to": "Peccable-11i.5.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.1",
+        "to": "Peccable-11i.1.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.2",
+        "to": "Peccable-11i.3.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.3",
+        "to": "Peccable-11i.1.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.4",
+        "to": "Peccable-11i.3.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.4",
+        "to": "Peccable-11i.3.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.5",
+        "to": "Peccable-11i.3.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.6",
+        "to": "Peccable-11i.3.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.7",
+        "to": "Peccable-11i.3.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.3.7",
+        "to": "Peccable-11i.5.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.1",
+        "to": "Peccable-11i.1.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.2",
+        "to": "Peccable-11i.1.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.3",
+        "to": "Peccable-11i.4.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.4",
+        "to": "Peccable-11i.4.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.5",
+        "to": "Peccable-11i.4.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.5",
+        "to": "Peccable-11i.4.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.6",
+        "to": "Peccable-11i.1.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.7",
+        "to": "Peccable-11i.4.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.4.7",
+        "to": "Peccable-11i.4.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.1",
+        "to": "Peccable-11i.1.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.2",
+        "to": "Peccable-11i.1.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.3",
+        "to": "Peccable-11i.5.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.4",
+        "to": "Peccable-11i.5.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.5",
+        "to": "Peccable-11i.5.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.6",
+        "to": "Peccable-11i.2.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.6",
+        "to": "Peccable-11i.3.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.6",
+        "to": "Peccable-11i.5.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.5.7",
+        "to": "Peccable-11i.5.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.1",
+        "to": "Peccable-11i.2.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.1",
+        "to": "Peccable-11i.3.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.1",
+        "to": "Peccable-11i.4.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.1",
+        "to": "Peccable-11i.5.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.2",
+        "to": "Peccable-11i.6.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.3",
+        "to": "Peccable-11i.6.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.4",
+        "to": "Peccable-11i.6.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.5",
+        "to": "Peccable-11i.6.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.6",
+        "to": "Peccable-11i.6.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.6",
+        "to": "Peccable-11i.6.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.6",
+        "to": "Peccable-11i.6.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.6",
+        "to": "Peccable-11i.6.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.6.7",
+        "to": "Peccable-11i.6.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.1",
+        "to": "Peccable-11i.2.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.1",
+        "to": "Peccable-11i.3.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.1",
+        "to": "Peccable-11i.5.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.2",
+        "to": "Peccable-11i.7.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.3",
+        "to": "Peccable-11i.7.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.3",
+        "to": "Peccable-11i.7.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.3",
+        "to": "Peccable-11i.6.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.4",
+        "to": "Peccable-11i.7.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.5",
+        "to": "Peccable-11i.7.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.5",
+        "to": "Peccable-11i.5.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.6",
+        "to": "Peccable-11i.7.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.7",
+        "to": "Peccable-11i.7.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.7.7",
+        "to": "Peccable-11i.4.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.1.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.2.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.3.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.4.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.5.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.6.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.1",
+        "to": "Peccable-11i.7.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.2",
+        "to": "Peccable-11i.8.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.3",
+        "to": "Peccable-11i.8.2",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.4",
+        "to": "Peccable-11i.8.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.5",
+        "to": "Peccable-11i.1.7",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.5",
+        "to": "Peccable-11i.7.6",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.6",
+        "to": "Peccable-11i.8.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.6",
+        "to": "Peccable-11i.8.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.7",
+        "to": "Peccable-11i.8.1",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.7",
+        "to": "Peccable-11i.8.3",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.7",
+        "to": "Peccable-11i.8.4",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.7",
+        "to": "Peccable-11i.8.5",
+        "type": "blocks"
+      },
+      {
+        "from": "Peccable-11i.8.7",
+        "to": "Peccable-11i.8.6",
+        "type": "blocks"
+      }
+    ],
+    "cycles": []
+  },
+  "retired_evidence_resolution": {
+    "general_rule": "For retired source paths under /home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/,use finalarchive /home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-final-handoff.tar.gz withmemberprefix peccable-assertion-refinement-821e7d4f5f/; named earlier retiredscopes below takeprecedence. Eachleafreferencealso records its exactactual archive/member/digest.",
+    "earlier_scopes": {
+      "method": "Read compressed archives and selected members in memory/streams only; never extracted a whole archive or wrote restored files.",
+      "native_v1": {
+        "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-native-v1.tar.gz",
+        "archive_sha256_expected": "1d23944a680acb2e24b134e6c3554ac8522703640910683859568c0f12dd3b75",
+        "archive_sha256_observed": "1d23944a680acb2e24b134e6c3554ac8522703640910683859568c0f12dd3b75",
+        "mapping_receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/native-v1-retirement.json",
+        "member": "validation-after/receipt.json",
+        "member_sha256_expected": "437f22cae0ffde49a4942956ea2506e65724188abc416809d7335392571ce050",
+        "member_sha256_observed": "437f22cae0ffde49a4942956ea2506e65724188abc416809d7335392571ce050",
+        "resolves_M5_6": true
+      },
+      "scaled_before": {
+        "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-scaled-before.tar.gz",
+        "sidecar": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-scaled-before.tar.gz.json",
+        "archive_sha256_expected": "0a61fba4e41af57eee8f7261296d94553b46f7e00a4654359c2bf34c96e926a4",
+        "archive_sha256_observed": "0a61fba4e41af57eee8f7261296d94553b46f7e00a4654359c2bf34c96e926a4",
+        "member_mapping_rule": "Old source root from sidecar maps to ./ in tar; every jobs[].source_receipt suffix maps to an actual member.",
+        "summary_member_hashes_checked": 58,
+        "summary_member_hashes_matched": 58,
+        "members": [
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-negative-6-hidden-required-note/summary.json",
+            "member": "./V3-07-negative-6-hidden-required-note/summary.json",
+            "expected_and_observed_sha256": "68a5c0ff189a27b97b025973c81896fe0c0c8892ff2859f769a464fbae720dd7"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-negative-5-clipped-descendant/summary.json",
+            "member": "./V3-07-negative-5-clipped-descendant/summary.json",
+            "expected_and_observed_sha256": "27388fdd631563043ae7385c1298a5e843154616f790ee651d9b6adf021c23b4"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-negative-2-fixed-width/summary.json",
+            "member": "./V3-07-negative-2-fixed-width/summary.json",
+            "expected_and_observed_sha256": "5502abbc5de4e1687ab2d0479a8e1996d9f3716c57bae23e487031375724bb3c"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-positive-decorated-fields/summary.json",
+            "member": "./V3-07-positive-decorated-fields/summary.json",
+            "expected_and_observed_sha256": "2ee90d7ab4604e844e4f6f8744b1c81aa85968832223579126cd892679945b34"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-positive-wrapped-descendant/summary.json",
+            "member": "./V3-07-positive-wrapped-descendant/summary.json",
+            "expected_and_observed_sha256": "b6bbc51f1573d181a65281d3fc35cc941755bdfd15aa73119d9fd41921695c9b"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-positive-alternate/summary.json",
+            "member": "./V3-07-positive-alternate/summary.json",
+            "expected_and_observed_sha256": "0a48cb880e4ab74615a17b38f2368e431ae839964b1f3baf20e8399418550138"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-07-positive-native/summary.json",
+            "member": "./V3-07-positive-native/summary.json",
+            "expected_and_observed_sha256": "2f1fc2945cea895654c7b37ad0117724d14167ae1cbea17bb8dd99f96559a1af"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-probe-essential-close-hidden/summary.json",
+            "member": "./V3-04-probe-essential-close-hidden/summary.json",
+            "expected_and_observed_sha256": "d3041b1baaac8f2ccaac82d94a82cd01e90f324c937a91c2c19013a4bc2edc7c"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-probe-presentation-degraded/summary.json",
+            "member": "./V3-04-probe-presentation-degraded/summary.json",
+            "expected_and_observed_sha256": "83c4c51430a2e067c6fbcbc962d16c38df306f1b7bf0ef18a907164bd8722a08"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-probe-responsive-native/summary.json",
+            "member": "./V3-04-probe-responsive-native/summary.json",
+            "expected_and_observed_sha256": "ad585972565f582aeb2c42a169dcd9bc42abd809c2a1c104b3a0c2a6e241c5ac"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-negative-7-inert-close/summary.json",
+            "member": "./V3-04-negative-7-inert-close/summary.json",
+            "expected_and_observed_sha256": "c99c3581848206d9e947e3375ce77f7541ec7d68416a0e6dabbc5ba793e15ecd"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-negative-6-no-focus-trap/summary.json",
+            "member": "./V3-04-negative-6-no-focus-trap/summary.json",
+            "expected_and_observed_sha256": "5fae8ec13328fdf8aba7e58d26c28ca57f8c49108dcdd15894778b23d0cd1df4"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-negative-5-wrong-select-name/summary.json",
+            "member": "./V3-04-negative-5-wrong-select-name/summary.json",
+            "expected_and_observed_sha256": "a4bb6633af69afeb509f71b4483d58f124395057d60b6333ff66df3d4a9c3049"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-negative-3-no-size-effect/summary.json",
+            "member": "./V3-04-negative-3-no-size-effect/summary.json",
+            "expected_and_observed_sha256": "09cf8468cb008d39eab131bc9871c67499ef5158df02a6637641d25a8a59cb96"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-negative-1-lose-return-focus/summary.json",
+            "member": "./V3-04-negative-1-lose-return-focus/summary.json",
+            "expected_and_observed_sha256": "3356a2c52ba89c9735d36bbdab9259669a8cf34f40f4dd7d11e21ff5a080e4f8"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-positive-many-focusables/summary.json",
+            "member": "./V3-04-positive-many-focusables/summary.json",
+            "expected_and_observed_sha256": "58754a61f0c653442b2b7e1af95b8ce7318b6dcebada1b49a65c617f34a65997"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-positive-list-select/summary.json",
+            "member": "./V3-04-positive-list-select/summary.json",
+            "expected_and_observed_sha256": "aed910aa1be20514be49ebd60025dfeef02240ec6ea7602e0f57071ad71fb036"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-positive-alternate/summary.json",
+            "member": "./V3-04-positive-alternate/summary.json",
+            "expected_and_observed_sha256": "41f45f0af9a0dfb3dea124bad9126ff5e7203b9492ab7b65d4aaa95ba95bd887"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-04-positive-native/summary.json",
+            "member": "./V3-04-positive-native/summary.json",
+            "expected_and_observed_sha256": "d2fbee354cc794f413374cc33d59dbce17bf68a9f177cd83525339d8146b38f7"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-03-negative-2-inert-retry/summary.json",
+            "member": "./V3-03-negative-2-inert-retry/summary.json",
+            "expected_and_observed_sha256": "d95ce8335446a7d280e63380f198734e5e89dc02c272fd0d89b456b617465174"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-03-positive-alternate/summary.json",
+            "member": "./V3-03-positive-alternate/summary.json",
+            "expected_and_observed_sha256": "d3531349f48e167b70ed956535193b760c529db32495756da3a254305603eb69"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-03-positive-native/summary.json",
+            "member": "./V3-03-positive-native/summary.json",
+            "expected_and_observed_sha256": "dfb4c8ee334829ba2fcd77ef2f403d34420ecda124e6083bb1eab45f824b6e08"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-01-positive-alternate/summary.json",
+            "member": "./V3-01-positive-alternate/summary.json",
+            "expected_and_observed_sha256": "51420d366ad12a9d1212de26ac6d58b1a52f12ec8fdf01cd76f8ec53c0ac4ac8"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/V3-01-positive-native/summary.json",
+            "member": "./V3-01-positive-native/summary.json",
+            "expected_and_observed_sha256": "62562c720e405b6ee69ac88a7b13451dec1e7cae57a27cd7c54d370f3369161b"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/ee93f2c72e2544445b51/summary.json",
+            "member": "./ee93f2c72e2544445b51/summary.json",
+            "expected_and_observed_sha256": "1c9916a2fcdb4942ad6f32f5565f78256c7cac6583fb498df0527e3f3e4bc8fd"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/fb1b63d2f0a36d263eb4/summary.json",
+            "member": "./fb1b63d2f0a36d263eb4/summary.json",
+            "expected_and_observed_sha256": "5f81f452fef0a799c3491f12299d2b3a5a09f0a9071163eb2b1f356d87265330"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/2220c1baf22a4a2b9a28/summary.json",
+            "member": "./2220c1baf22a4a2b9a28/summary.json",
+            "expected_and_observed_sha256": "ffab336306e38028357598fc2d66e26b090bc2102b5e8f88f25435646a8f4174"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/47dff20c026603d92453/summary.json",
+            "member": "./47dff20c026603d92453/summary.json",
+            "expected_and_observed_sha256": "416e87c9290d6a3dba37b52623674cab225b507012ef381c458c5fadce18cd7f"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/1129eab43deb7f4d473c/summary.json",
+            "member": "./1129eab43deb7f4d473c/summary.json",
+            "expected_and_observed_sha256": "d51108cee01ba5d235c59a6f81e2fd91db631b6700273a0586ee90e7c2b83458"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/c46f973ac4587c01acc0/summary.json",
+            "member": "./c46f973ac4587c01acc0/summary.json",
+            "expected_and_observed_sha256": "bb17b1d2373888338252d0c96a53f01af96d3e2a655c1f1a3dc6b68d4f9ff107"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/46b892cc099ebecd5ffc/summary.json",
+            "member": "./46b892cc099ebecd5ffc/summary.json",
+            "expected_and_observed_sha256": "e4aa471d7c00e5cbe74d86aae2b86d58f9c74e2ba4811dabf0e2b1d152b7538b"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/4150d75d02a52191e518/summary.json",
+            "member": "./4150d75d02a52191e518/summary.json",
+            "expected_and_observed_sha256": "0581b4ebd61dc880b2ebc51885506c2ff2e895f92a2bfa835a9df296ed53efb2"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/6d89047c435360ad1aab/summary.json",
+            "member": "./6d89047c435360ad1aab/summary.json",
+            "expected_and_observed_sha256": "bbebd04137a1d15d4cfbfa8477989adc8a7b9eb38b5cdae58af4119964558126"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/822161fc152920d98f40/summary.json",
+            "member": "./822161fc152920d98f40/summary.json",
+            "expected_and_observed_sha256": "441bebe2e41849c10fc212ee7b1410096773c882471302b6ad2540e6a8e5e156"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/e45869dde277f80e2fb6/summary.json",
+            "member": "./e45869dde277f80e2fb6/summary.json",
+            "expected_and_observed_sha256": "7ed195bfd0c7846f72fae86a47bf562e3f57829dc918ef3f332aab6f43245a9f"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/d50c89189ce6c62be4ff/summary.json",
+            "member": "./d50c89189ce6c62be4ff/summary.json",
+            "expected_and_observed_sha256": "3367f6635557805b1954c03958c06f6a496a1b08e3985ed37a0f7eae603209d0"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/620bab06b7922478f706/summary.json",
+            "member": "./620bab06b7922478f706/summary.json",
+            "expected_and_observed_sha256": "fd7b9128ecae94c5a9e37bb215365cb3a86760630150025574652e5c59ffea2e"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/829a49dd98d64599226c/summary.json",
+            "member": "./829a49dd98d64599226c/summary.json",
+            "expected_and_observed_sha256": "eccf69bcd2b075e8656ccfbfdd9db834cffee7af288afa1915ae184b3d30f68c"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/4a0c2dd294579381813e/summary.json",
+            "member": "./4a0c2dd294579381813e/summary.json",
+            "expected_and_observed_sha256": "fe2c041c607bc9cf257324868b8210db12920f6ded1d43b56bd9268167c888de"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/15f06e7101d8058e5312/summary.json",
+            "member": "./15f06e7101d8058e5312/summary.json",
+            "expected_and_observed_sha256": "ca4982223064665343ac90503668a73bec07a80dcc467a28abdd1c016e9872be"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/4f9cefa9280f7bb6ad4b/summary.json",
+            "member": "./4f9cefa9280f7bb6ad4b/summary.json",
+            "expected_and_observed_sha256": "ad6fae0e471cdb513c9c2b45a15ea04942968acdba852e376c86dc226cdaf6ca"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/43cae132638f61aad6bd/summary.json",
+            "member": "./43cae132638f61aad6bd/summary.json",
+            "expected_and_observed_sha256": "f681ca23c7853ff62c9e864335eede558717f4910a880bcc998d0f3ecc51f829"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/6bb1daf45215713a2fc6/summary.json",
+            "member": "./6bb1daf45215713a2fc6/summary.json",
+            "expected_and_observed_sha256": "075bf3786ba8fae401860c64a72703423584efafac54498db1741215f9d007a2"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/9d1ea54f2797587e58ed/summary.json",
+            "member": "./9d1ea54f2797587e58ed/summary.json",
+            "expected_and_observed_sha256": "70ef868b75246daa5f2a3a29ee7b48545b64450d4f6357cd9f66e749122c7aa3"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/e7f9cef173ab017da27f/summary.json",
+            "member": "./e7f9cef173ab017da27f/summary.json",
+            "expected_and_observed_sha256": "de3fbd63e3054793774b70f3bb4d355c9f5c82b1d98cce61dfc974154eb3e9bc"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/5d9c6ac68799cf8f57ef/summary.json",
+            "member": "./5d9c6ac68799cf8f57ef/summary.json",
+            "expected_and_observed_sha256": "c0bf57c49e4bdbc71019f5a86d59d7bd45f4a4c577d530981f83beb9dc8d57e5"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/f2e11ebd22ef28a464f3/summary.json",
+            "member": "./f2e11ebd22ef28a464f3/summary.json",
+            "expected_and_observed_sha256": "e4130efec10f04287139f59d25194e115ba9ec571df6044b09dbfde468e8828e"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/c48ebb13a8094c5dc4db/summary.json",
+            "member": "./c48ebb13a8094c5dc4db/summary.json",
+            "expected_and_observed_sha256": "d455d7a2802321807ea95c65cfc10d2c51868ba29c4cb7285d8ec9f877b2e47f"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/da86ce39ba75b1638e42/summary.json",
+            "member": "./da86ce39ba75b1638e42/summary.json",
+            "expected_and_observed_sha256": "1cc4ba8f5de49847e697277038a26f35d6fd4aa93f8125c9ea7e916cb90aeea4"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/e38d611c1bafb5bd3115/summary.json",
+            "member": "./e38d611c1bafb5bd3115/summary.json",
+            "expected_and_observed_sha256": "659a92e722e9a6763738c40fc0d91f2f32f02e2a4265d50a1be0777aa0c24526"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/f751b013450e496e1232/summary.json",
+            "member": "./f751b013450e496e1232/summary.json",
+            "expected_and_observed_sha256": "54ac900a0f5adc8f6b3d8966903a08fca89b857b8146dee8b34f95779a995d37"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/cf0c2d594dbcc52c94a6/summary.json",
+            "member": "./cf0c2d594dbcc52c94a6/summary.json",
+            "expected_and_observed_sha256": "b4779b7644002159f7a269a661b02beb66140580d544d2a7caf0913353915f3c"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/a31a02482289cd8840f1/summary.json",
+            "member": "./a31a02482289cd8840f1/summary.json",
+            "expected_and_observed_sha256": "ffc9fe0dec10dda94c87e613ea3bba1d6ff038854dc7fee07a55c16a63fad11d"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/cfd348845e057023a8b8/summary.json",
+            "member": "./cfd348845e057023a8b8/summary.json",
+            "expected_and_observed_sha256": "3f0c17f4a5950155bb77541f45dd7462fae72b220eaf540636516c8686aa7d01"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/6e737fe5b61e0c182aae/summary.json",
+            "member": "./6e737fe5b61e0c182aae/summary.json",
+            "expected_and_observed_sha256": "68bc0b1a02d53d1dda2522e40b3117b04fa36351f6bdc0935c2b89910e4cd5f6"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/4e58e4492da2d4a34234/summary.json",
+            "member": "./4e58e4492da2d4a34234/summary.json",
+            "expected_and_observed_sha256": "216e1b9887d7c5ad2babc19a204608cb6758157faf0cd3d0c77a60f41ec9c704"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/b83745c02676b2c8b079/summary.json",
+            "member": "./b83745c02676b2c8b079/summary.json",
+            "expected_and_observed_sha256": "bb4fbdfa1f8d9453eb4cba2d3fbc83396223ce6f91269c3bbfd83dd63527e3b6"
+          },
+          {
+            "old_path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/work/scaled/probe-output/49ce9457adb3b34a1f21/summary.json",
+            "member": "./49ce9457adb3b34a1f21/summary.json",
+            "expected_and_observed_sha256": "0eac877f9afbeb900fc3c26187fb8a4cc91815028e0756509602fd9e9f11c7c1"
+          }
+        ]
+      },
+      "original_authors": {
+        "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-authors-v1.tar.gz",
+        "archive_sha256_expected": "89b1070708267a5d5ee2842401c1294f8e88ef16e9e62e94b6160712392122a8",
+        "archive_sha256_observed": "89b1070708267a5d5ee2842401c1294f8e88ef16e9e62e94b6160712392122a8",
+        "archive_matches": true,
+        "mapping_receipt": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/author-v1-retirement.json",
+        "selected_members": [
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/development-result.json",
+            "actual_sha256": "679e58b7122ccfb6ff6944ea5e18bb9bc6347c312e86145f96b4a1ae82fa209a",
+            "expected_sha256": "679e58b7122ccfb6ff6944ea5e18bb9bc6347c312e86145f96b4a1ae82fa209a",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/manifest.json",
+            "actual_sha256": "6e94bc90b5b3cae974003e322455133f21883ab9753ca4fe59c00fecf158142f",
+            "expected_sha256": "6e94bc90b5b3cae974003e322455133f21883ab9753ca4fe59c00fecf158142f",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/38e8d1e94505461581cb/attempt-1/outcome.json",
+            "actual_sha256": "4356204e9c2c9a2069997a0c1363127239f7d72d96f8a0b1ad63c111ed4e85dc",
+            "expected_sha256": "4356204e9c2c9a2069997a0c1363127239f7d72d96f8a0b1ad63c111ed4e85dc",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/4002c56dc26a085286ee/attempt-1/outcome.json",
+            "actual_sha256": "58f4e048af053c442ab1ab180e87ba944db68f950a9caee5f7b879043379f9e1",
+            "expected_sha256": "58f4e048af053c442ab1ab180e87ba944db68f950a9caee5f7b879043379f9e1",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/9fa5cf0dc09a49128545/attempt-1/outcome.json",
+            "actual_sha256": "79b22239e84ecea9ae5c0e977816537c6711f50c9258b6f0447e107ec3d367b4",
+            "expected_sha256": "79b22239e84ecea9ae5c0e977816537c6711f50c9258b6f0447e107ec3d367b4",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/d6d8f67a404e564036a5/attempt-1/outcome.json",
+            "actual_sha256": "c3a72a8f3a5aeeaeb755e3182b5b951df7057db84ede11770f44e855c8473dcb",
+            "expected_sha256": "c3a72a8f3a5aeeaeb755e3182b5b951df7057db84ede11770f44e855c8473dcb",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/dbede7fa5ade38668f83/attempt-1/outcome.json",
+            "actual_sha256": "9dac57f3503e1ef57e45f90bfdf78f0fd764d09b67298865ae8f2646f996bb64",
+            "expected_sha256": "9dac57f3503e1ef57e45f90bfdf78f0fd764d09b67298865ae8f2646f996bb64",
+            "match": true
+          },
+          {
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/fe57d2aac31b861a4c78/attempt-1/outcome.json",
+            "actual_sha256": "5027b28a905641b89753840f0640408b5d6b9c9e668b9f425b77363e54404902",
+            "expected_sha256": "5027b28a905641b89753840f0640408b5d6b9c9e668b9f425b77363e54404902",
+            "match": true
+          },
+          {
+            "member": "__peccable_handoff__/source-inventory.json",
+            "actual_sha256": "d269b6ab09fe0e499d0bbb5773b33679d691e728c24d826cca720f710ca0c6e6",
+            "expected_sha256": "d269b6ab09fe0e499d0bbb5773b33679d691e728c24d826cca720f710ca0c6e6",
+            "match": true
+          }
+        ],
+        "original_slots": [
+          {
+            "task_id": "38e8d1e94505461581cb",
+            "brief_id": "V3-07",
+            "agent_status": "infrastructure_interrupted",
+            "not_started": true,
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/38e8d1e94505461581cb/attempt-1/outcome.json",
+            "sha256": "4356204e9c2c9a2069997a0c1363127239f7d72d96f8a0b1ad63c111ed4e85dc"
+          },
+          {
+            "task_id": "4002c56dc26a085286ee",
+            "brief_id": "V3-04",
+            "agent_status": "infrastructure_interrupted",
+            "not_started": true,
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/4002c56dc26a085286ee/attempt-1/outcome.json",
+            "sha256": "58f4e048af053c442ab1ab180e87ba944db68f950a9caee5f7b879043379f9e1"
+          },
+          {
+            "task_id": "9fa5cf0dc09a49128545",
+            "brief_id": "V3-01",
+            "agent_status": "infrastructure_interrupted",
+            "not_started": false,
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/9fa5cf0dc09a49128545/attempt-1/outcome.json",
+            "sha256": "79b22239e84ecea9ae5c0e977816537c6711f50c9258b6f0447e107ec3d367b4"
+          },
+          {
+            "task_id": "d6d8f67a404e564036a5",
+            "brief_id": "V3-04",
+            "agent_status": "infrastructure_interrupted",
+            "not_started": false,
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/d6d8f67a404e564036a5/attempt-1/outcome.json",
+            "sha256": "c3a72a8f3a5aeeaeb755e3182b5b951df7057db84ede11770f44e855c8473dcb"
+          },
+          {
+            "task_id": "dbede7fa5ade38668f83",
+            "brief_id": "V3-07",
+            "agent_status": "infrastructure_interrupted",
+            "not_started": true,
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/dbede7fa5ade38668f83/attempt-1/outcome.json",
+            "sha256": "9dac57f3503e1ef57e45f90bfdf78f0fd764d09b67298865ae8f2646f996bb64"
+          },
+          {
+            "task_id": "fe57d2aac31b861a4c78",
+            "brief_id": "V3-01",
+            "agent_status": "completed",
+            "not_started": false,
+            "member": "peccable-assertion-refinement-821e7d4f5f/development-authors/trials/fe57d2aac31b861a4c78/attempt-1/outcome.json",
+            "sha256": "5027b28a905641b89753840f0640408b5d6b9c9e668b9f425b77363e54404902"
+          }
+        ],
+        "counts": {
+          "completed": 1,
+          "interrupted_started": 2,
+          "not_started": 3
+        },
+        "scope": "Regular bytes and selected declared members only; opaque socket presence is metadata, not endpoint identity. No new ownership inference from UID."
+      },
+      "historical_trace": {
+        "archive": "/home/bbferko/.cache/peccable-pilot-evidence-2026-10-31-yofrtwp4-v3.tar.gz",
+        "archive_sha256_expected_and_observed": "3b55ab0aad3b0eb3a8c531a49544c1e295d42d19ede74501cb4c13e3685906df",
+        "member": "./cohort-v3/trials/8e7292e9bc4c31e08f9d/attempt-1/evidence/author/session.jsonl",
+        "member_sha256_expected_and_observed": "5041a65c1fc75a9ce35263e9d1e26543f7a202544148b48e881f37cebd807999",
+        "retained_bytes": 6286040,
+        "omitted_events": 5,
+        "omitted_utf8_bytes": 511446,
+        "omitted_bodies_recoverable": false
+      }
+    },
+    "original_author_scopes": {
+      "archive": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-authors-v1.tar.gz",
+      "source_prefixes": [
+        "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-authors/",
+        "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f/development-controller/"
+      ],
+      "member_rule": "Member retains peccable-assertion-refinement-821e7d4f5f/ followedbysourcepathsuffixrelative toR"
+    },
+    "postretirement_closure": {
+      "path": "/home/bbferko/.cache/peccable-assertion-refinement-821e7d4f5f-beads-closure.json",
+      "sha256": "ac540c8fa9fc434e2fe459830a259f58b392b7fbf56c54e71c350846b8596677"
+    },
+    "expired_raw_artifacts": "Raw evidence is explicitly disposable after recordedexpiry. Compact graph,sourcepins,counts,failures,uncertaintiesandclosurefactsremaininthisreport/Beads."
+  },
+  "completed_at": "2026-11-01T13:59:55.556546+00:00",
+  "workflow_status": "complete",
+  "verification_scope": "Assertion-verificationDAGclosed;notwhole-taskproductcertificationornewadoption"
+}

@@ -88,6 +88,8 @@ const result = await runTask({
 
 `limits` records the six exact requested values. `limitCapabilities` is logged in configuration and returned both at result top level and in `context`; it identifies the unsupported token hint and distinguishes cooperative wall/response aborts from the local trace write ceiling. `observedLimits` returns `deliveredAssistantUtf8Bytes`, `responseUtf8Bytes` (per dispatched call), `traceBytes`, `traceComplete`, `omittedTraceEvents`, and `omittedTraceUtf8Bytes`. These are byte observations, not token estimates. `usage` and `context.actualUsage` preserve actual per-assistant reported usage; missing usage remains unknown.
 
+The trace ceiling and terminal reserve are initialized before the first event. The ceiling is a hard local file-write bound, including startup records; it is not a provider generation or billing cap. Historical omitted events cannot be reconstructed by this change.
+
 Permission mapping is exact:
 
 | Mode | Tools |
@@ -165,6 +167,10 @@ Records include:
 
 The browser explicitly controls and observes `en-US`, UTC, light color scheme, and device scale 1. Chrome runs with its inner sandbox disabled only inside the mandatory outer bubblewrap namespace. Record this boundary rather than claiming Chrome's inner sandbox remains active.
 
+Accessible names and roles come from Chrome's native CDP accessibility tree, with backend-node provenance, not a DOM-text approximation. Ignored nodes, unavailable names, truncated scope, and unsupported observations remain explicit unknowns. This is native-browser evidence, not certification across assistive technologies.
+
+The authorized author `viewport` action accepts `wide`, `narrow`, and `text200`. The last selects 320 × 900 CSS pixels with controlled computed-2x text; the selected mode persists across actions. Browser reads observe and verify the active context without reapplying scaling or repairing focus/scroll. Evaluator-owned sessions remain observational unless explicitly configured.
+
 Author browsers navigate normally. Evaluator browsers start at `about:blank`, call the custodian's `preparePage(page, scenario)` once, then navigate each scored context after clearing that origin's storage. Pre-document hooks observe service settlements and print requests before application scripts can cache those APIs. A print request is not proof of printed layout or an operating-system print dialog.
 
 For each declared `review_states` label, the evaluator calls `context.captureState(label)` after establishing that state. The runner retains a separate full-scope PNG, context/timing metadata, and scaling observation; final captures do not replace pending, error, recovery, dialog, or print-media states. Capture limits are 8 MiB and 24 million pixels. Exceeding a limit leaves missing evidence, not a favorable crop.
@@ -176,6 +182,8 @@ Measurement callbacks use `ensureTextScale`: an already verified snapshot is reu
 A necessary rebase records incoming scroll positions, resets the overlay, establishes the new baseline, and restores those positions within current geometry. It never focuses a control or calls `scrollIntoView`; existing clipped focus is not repaired. Raw before/after positions, geometric clamping, source changes, sizes, line heights, exceptions, and ratios remain auditable. Scroll-driven application reactions are not universally proven noninterfering.
 
 Every runtime assertion carries typed `evidence.kind` and actual observations. Planning inventory equality is measured evidence; source plausibility cannot establish interaction. Free-text semantic judgments remain explicit independent-review assertions rather than unpublished wording whitelists.
+
+Admission requires exactly one row per declared assertion in every required context: `wide`, `narrow`, and `text200` for runtime work, or the independently audited `planning` scope for read-only work. Duplicate, missing, unknown, or self-declared contexts cannot establish coverage. Trusted planning scope survives packet rejection; a rejected packet does not erase separately integrity-checked deterministic evidence. Each assertion has one evidence field. Only failures in `task`, `authority`, `data`, or `accessibility` make the automated task outcome `failed`; design negatives remain review evidence. Otherwise automated output remains `incomplete_evidence`, not `verified_success`.
 
 Presentation labels inside data hooks are not themselves data corruption. Check complete supplied text separately from numeric values, dates, and unknown semantics. In flow measurements, hidden optional labels may be excluded, but required names/notes must remain present in visible text; visible descendants, clipping, and document overflow still determine access. Positive decorated-field and negative hidden-required-text controls exercise that boundary.
 
@@ -241,3 +249,15 @@ Freeze selection and disagreement inputs before adjudication. Make no new indivi
 ## Owner verification before adoption evidence
 
 Verify the integration with actual provider calls, namespace/tool denials, overlapping resource reads, native browser interactions, deadline and hard-kill trace retention, and isolated browser state. Validate semantic positive and negative oracle controls before scoring. The manifest requires the successful oracle receipt and exact review implementation's real-provider JSON probe. Then freeze and execute the registered 63 tasks and independent blind review/adjudication. Report unavailable evidence and invalid observations; do not alter `RUBRIC.md`, its thresholds, or a frozen cohort to accommodate outcomes.
+
+## Development finalization and resume
+
+The bounded [development API](README.md#bounded-exposed-case-development-api) is separate from the ordinary pilot CLI and its 7 MiB trace default. It uses a 24 MiB trace ceiling and a 900-second author preset; the output-token hint remains unsupported by the Codex backend. Source-bound native/calibration receipts must precede preparation. Preparation makes no authentication or author calls, and execution validates the accepted manifest SHA, frozen/live source hashes, candidate bytes, runtime, host, and fonts before authentication. A changed binding requires fresh valid evidence, not a bypass.
+
+`runDevelopment` returns the `peccable-development-result-v1` summary. Its committed `development-result.json` is instead one mode-0400 `peccable-development-final-v1` envelope with exactly `schema_version`, `summary_serialization`, `summary_sha256`, and `summary`. The serialization is `json-indent-2-lf-utf8-v1`; the digest covers `JSON.stringify(summary, null, 2)` plus one LF. There is no checksum sidecar or old-format compatibility.
+
+Publication writes an exclusive same-directory staging file, makes it read-only, syncs and closes it, then atomically links it to the final pathname without overwrite. Interrupted stages remain evidence. A post-link process kill exposes a complete envelope; power-loss durability before directory sync is not claimed. Resume validates the exact canonical envelope, digest, ownership/mode, accepted manifest, all six original ordered outcomes, and their evidence before returning the same summary. Corrupt or obsolete finals reject rather than regenerate. Before commit, retained slots are reused without replacement authors.
+
+Interrupted, exceptional, and not-started outcomes retain a partial seal of the entire attempt, excluding only `outcome.json`: directory entries, regular-file bytes/hashes, and symlink target bytes without traversal. Socket, FIFO, and device entries bind only kind/presence metadata, mode, and device number, not mutable endpoint contents or identity. Resume rejects changed or missing sealed evidence. This does not guarantee an atomic filesystem snapshot, protection against concurrent writers/TOCTOU, or recovery of omitted trace events.
+
+Keep exposed-case development separate from historical adoption evidence. Native primary-path `measured_pass` covers declared runtime assertions only when normal inventories are available; it does not certify manual assertions, whole-task success, assistive technologies, comparative efficacy, or adoption. Publish only actually executed results in the separate [assertion-refinement report](results/assertion-refinement-2026-11-01.md).

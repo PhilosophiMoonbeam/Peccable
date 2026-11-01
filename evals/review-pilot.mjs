@@ -144,7 +144,7 @@ async function loadManifest(options, registered) {
   const oracleBytes=await readFile(path.join(manifest.storage,'frozen/oracle-validation.json')), oracle=JSON.parse(oracleBytes);
   ensure(sha(oracleBytes)===manifest.oracle_validation?.sha256 && oracle.schema_version==='peccable-oracle-validation-v1' && oracle.ready===true && oracle.mismatches===0 && oracle.cases===7 && oracle.positive_controls>=14 && oracle.negative_controls>=14 && oracle.observations>=76 && Date.parse(oracle.finished_at)<=Date.parse(manifest.created_at), 'Successful oracle controls were not frozen before cohort setup');
   const frozenHash=name=>manifest.frozen.files.find(record=>record.path===name)?.sha256;
-  for (const [key,value] of Object.entries({holdouts:frozenHash('holdouts.json'),evaluator:frozenHash('evaluator.mjs'),browser:frozenHash('harness/pilot-browser.mjs'),runner:frozenHash('harness/run-pilot.mjs'),reviewer:frozenHash('harness/review-pilot.mjs'),chrome:manifest.runtime_files.chrome.sha256,driver:manifest.versions.packages['puppeteer-core'].package_sha256})) ensure(oracle.bindings?.[key]===value, `Oracle validation binding differs: ${key}`);
+  for (const [key,value] of Object.entries({holdouts:frozenHash('holdouts.json'),evaluator:frozenHash('evaluator.mjs'),browser:frozenHash('harness/pilot-browser.mjs'),runner:frozenHash('harness/run-pilot.mjs'),reviewer:frozenHash('harness/review-pilot.mjs'),agent:frozenHash('harness/pilot-agent.mjs'),worker:frozenHash('harness/pilot-worker.mjs'),chrome:manifest.runtime_files.chrome.sha256,driver:manifest.versions.packages['puppeteer-core'].package_sha256})) ensure(oracle.bindings?.[key]===value, `Oracle validation binding differs: ${key}`);
   ensure(oracle.results.sha256===frozenHash('oracle-validation-results.json') && oracle.validator.sha256===frozenHash('oracle-validator.mjs'), 'Frozen oracle validation evidence differs');
   return { manifest, hash };
 }
@@ -328,7 +328,12 @@ async function loadTrial(manifest, hash, row) {
     const rawNeutral = { brief: packet.brief, input_fixture: packet.input_fixture, starter_files: packet.starter_files, permission_mode: packet.permission_mode, source_files, handoff: packet.handoff || '', trace, assertion_specs: packet.assertion_specs, assertion_evidence: neutralEvidence(packet.assertions, substitutions), artifact_inventory: artifacts, evidence, review_states:packet.review_states, supplied_images:images.map(image=>image.location) };
     const evaluation=evidence['evidence/evaluation.json'];
     await auditTrial(item, manifest, hash);
-    if (!item.audit.invalidations.length && item.audit.provenance.length) item.runtimeBundle = { evaluation };
+    if (!item.audit.invalidations.length && item.audit.provenance.length) {
+      // Retain the audited worker permission scope before packet admission; rows
+      // cannot declare their own coverage, and unknown modes certify nothing.
+      const expectedContexts = item.audit.mode === 'read-only' ? ['planning'] : ['edit', 'no-runtime'].includes(item.audit.mode) ? ['wide', 'narrow', 'text200'] : null;
+      item.runtimeBundle = { evaluation, expectedContexts };
+    }
     const neutral = projectReviewPacket(rawNeutral, Object.keys(resources));
     item.audit.review_context={raw_packet_utf8_bytes:Buffer.byteLength(json(rawNeutral)),delivered_packet_utf8_bytes:Buffer.byteLength(json(neutral)),image_bytes:imageBytes,image_count:images.length,projection:'Grouped fonts, indexed assertions, exact repeated actual-observation references, hash-only author images; raw records retained.'};
     ensure(item.audit.review_context.delivered_packet_utf8_bytes<=manifest.reviewers.evidence_policy.maximum_packet_utf8_bytes,'Neutral packet exceeds preregistered input bound; no truncation allowed');
@@ -510,12 +515,25 @@ function supportedRecord(bundle, record) {
   }
   return false;
 }
-export function runtimeRecord(spec, bundle) {
-  const observations = (bundle.evaluation?.contexts || []).flatMap(context => (context.result?.assertions || []).filter(assertion => assertion.id === spec.id).map(assertion => ({ ...assertion, context_id: context.context_id, context_error: context.error || assertion.context_error || null })));
-  const failed = observations.filter(record => record.result === 'fail');
-  if (failed.length) return { result: 'fail', observations };
+// Whole-task runtime evidence requires all frozen viewport/text contexts. Native
+// preflight and source-only planning callers must declare their narrower scope.
+export function runtimeRecord(spec, bundle, expectedContexts = ['wide', 'narrow', 'text200']) {
+  const contexts = Array.isArray(bundle.evaluation?.contexts) ? bundle.evaluation.contexts : [];
+  const rows = contexts.map(context => Array.isArray(context?.result?.assertions) ? context.result.assertions : []);
+  const observations = rows.flatMap((assertions, index) => assertions.filter(assertion => assertion?.id === spec.id).map(assertion => ({ ...assertion, context_id: contexts[index]?.context_id, context_error: contexts[index]?.error || assertion.context_error || null })));
+  if (observations.some(record => record.result === 'fail')) return { result: 'fail', observations };
+  const validScope = Array.isArray(expectedContexts) && expectedContexts.length > 0 &&
+    new Set(expectedContexts).size === expectedContexts.length &&
+    expectedContexts.every(id => ['wide', 'narrow', 'text200', 'planning'].includes(id)) &&
+    (!expectedContexts.includes('planning') || expectedContexts.length === 1);
+  const identities = contexts.map(context => context?.context_id);
+  const complete = validScope && contexts.length === expectedContexts.length &&
+    new Set(identities).size === contexts.length && identities.every(id => expectedContexts.includes(id)) &&
+    rows.every(assertions => assertions.filter(assertion => assertion?.id === spec.id).length === 1 &&
+      assertions.every(assertion => typeof assertion?.id === 'string' && assertion.id.trim().length > 0) &&
+      new Set(assertions.map(assertion => assertion.id)).size === assertions.length);
+  if (!complete || observations.some(record => record.context_error || record.result === 'unverified')) return { result: 'unverified', observations };
   const applicable = observations.filter(record => record.result !== 'not_applicable');
-  if (!observations.length || observations.length !== bundle.evaluation.contexts.length || applicable.some(record => record.context_error || record.result === 'unverified')) return { result: 'unverified', observations };
   const verified = applicable.every(record => record.result === 'pass' && record.evidence && ['behavioral', 'measured'].includes(record.evidence.kind) && Object.hasOwn(record,'actual'));
   return { result: verified && applicable.length ? 'pass' : observations.every(record => record.result === 'not_applicable') ? 'not_applicable' : 'unverified', observations };
 }
@@ -542,7 +560,7 @@ export function mergedAssertions(item, votes, adjudication) {
     const specs = item.specs || item.outcome?.assertions || [];
     const retained = specs.map(spec => {
       const original = item.outcome?.assertions?.find(assertion => assertion.id === spec.id);
-      const runtime = item.runtimeBundle ? runtimeRecord(spec, item.runtimeBundle) : null;
+      const runtime = item.runtimeBundle ? runtimeRecord(spec, item.runtimeBundle, item.runtimeBundle.expectedContexts ?? null) : null;
       const result = original?.result === 'fail' ? 'fail' : runtime?.result || 'unverified';
       return { id: spec.id, category: spec.category, requirement: spec.requirement ?? null, method: spec.method ?? null, result, original_runtime: original || null, runtime, original_reviews: [null, null], adjudication: null, disagreement: false, resolution: runtime ? 'Integrity-checked deterministic observations retained independently of reviewer packet eligibility; no manual vote inferred.' : 'Evidence integrity unavailable; observed failures retained and missing observations remain unverified.' };
     });
@@ -551,7 +569,7 @@ export function mergedAssertions(item, votes, adjudication) {
   }
   const output = [];
   for (const spec of item.bundle.specs) {
-    const runtime = runtimeRecord(spec, item.bundle), originals = votes.map(vote => vote?.assertions.find(assertion => assertion.id === spec.id) || null);
+    const runtime = runtimeRecord(spec, item.bundle, item.bundle.neutral?.permission_mode?.source_writes?.length === 0 ? ['planning'] : undefined), originals = votes.map(vote => vote?.assertions.find(assertion => assertion.id === spec.id) || null);
     const disputed = originals.every(Boolean) && originals[0].result !== originals[1].result;
     const decision = disputed ? adjudication?.assertions.find(assertion => assertion.id === spec.id) || null : originals.every(Boolean) ? originals[0] : null;
     const agreedEvidence = !disputed && originals.every(vote => manualCanVerify(spec, vote, item.bundle));
@@ -1063,7 +1081,7 @@ async function prepareSupplement(options) {
     ensure(new Set(ids).size===ids.length && ids.every(id=>allSpecs.some(spec=>spec.id===id && spec.method!=='runtime')),'Supplement target is duplicate, absent, or a runtime gate');
     if(ids.length)neutral.requested_assertion_ids=[...ids];
     neutral.assertion_specs=ids.length?allSpecs.filter(spec=>ids.includes(spec.id)):allSpecs;
-    neutral.assertion_evidence=allSpecs.map(spec=>({id:spec.id,category:spec.category,result:runtimeRecord(spec,{evaluation:neutral.evidence['evidence/evaluation.json']}).result}));
+    neutral.assertion_evidence=allSpecs.map(spec=>({id:spec.id,category:spec.category,result:runtimeRecord(spec,{evaluation:neutral.evidence['evidence/evaluation.json']},neutral.permission_mode?.source_writes?.length===0?['planning']:undefined).result}));
     neutral.supplied_images=[...images.keys()];
     let projected=projectReviewPacket(neutral,[]);
     projected.evidence_locations=Object.keys(supplementResources(projected));
