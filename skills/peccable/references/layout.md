@@ -23,6 +23,7 @@ If sections become interchangeable without their words, reconsider whether the s
 - Use tight internal spacing and more generous separation between distinct groups.
 - Place headings closer to the content they introduce than to the preceding section.
 - Align meaningful edges: labels, text baselines, controls, and image boundaries should share a clear structure.
+- Keep decorative grids, dots, and rules distinct from meaningful rows or chart lines. Reduce pattern detail behind text when it impairs reading.
 - Inspect rendered shapes before making optical corrections; mathematical centering is not always perceptual centering.
 - Use empty space for priority, pacing, or separation, not to compensate for missing content.
 - If the target lacks emphasis, choose one strong local change: clarify the lead, change content proportions, or use an existing motif confidently.
@@ -84,8 +85,9 @@ Use the project's spacing token and a content-appropriate minimum. `auto-fit` ex
 ## Use imagery as evidence
 
 - Use actual product views, artifacts, photography, or illustration when the subject needs visual evidence.
+- When part relationships matter, establish the product or workflow as a whole before relying on isolated detail views.
 - Do not substitute a decorative gradient, placeholder chart, or unrelated stock scene for what the visitor needs to understand.
-- Choose crop, aspect ratio, and scale to preserve the subject and its relationship to text; inspect every responsive crop.
+- Choose crop, aspect ratio, and scale to preserve the subject and its relationship to text; inspect every responsive crop. Inspect information-bearing imagery at its displayed size. Keep identifying features and the demonstrated action or result clear of crops, fades, overlays, and frame edges; crop supporting context instead.
 - When an effect needs the subject's organic edge, use an actual cut-out or image-derived matte, not an arbitrary geometric mask.
 - Separate foreground, frame, and background when they must vary independently for responsive placement, motion, or changing content. A frame opening should reveal the intended layer behind it, not a baked-in view that conflicts with that behavior.
 - Use geometry for diagrams and shapes whose structure conveys meaning.

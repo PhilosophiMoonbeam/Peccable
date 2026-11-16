@@ -7,6 +7,7 @@ Use when inspecting interface changes, reviewing design and implementation, or d
 - Identify the target route/screen, relevant components, requested outcome, supported platforms, and changed states.
 - Use existing project runtime and inspection tools when authorized; this skill requires no downloaded engine, detector, account, or private service.
 - Prefer the documented local workflow over a second environment.
+- Distinguish development-preview evidence from the delivered build. When delivery behavior is in scope and the project's build preview is available and authorized, inspect that artifact; otherwise name the unverified delivery behavior.
 - Do not deploy for a preview or use production data to prove a control works.
 
 Distinguish evidence types:
@@ -48,6 +49,7 @@ Before trusting inspection or a capture:
 - Judge visibility against the authorized treatment, including subtle art, cropping, gradients, SVG, and low opacity. A visual target alone does not mandate a particular asset.
 - Capture the whole scoped surface or its important regions, not only the flattering first viewport.
 - Exclude temporary inspector overlays and chrome from product captures.
+- Stitched or altered captures do not establish unmodified scroll behavior. Disclose hidden or repositioned product elements and uncaptured regions; inspect affected sticky controls and overlaps in an unmodified viewport when that behavior is in scope and inspection is authorized. Hiding product elements is not a fix.
 
 Name runtime and context precisely: for example, “Chromium at 1440 and 390 CSS pixels; pointer and synthesized touch,” not “tested on desktop and iPhone.” Emulated Chromium touch proves neither Safari behavior nor real-device ergonomics; name untested contexts. A screenshot cannot prove submission, dragging, keyboard operation, screen-reader behavior, or data persistence.
 
@@ -69,7 +71,7 @@ Preserve strengths. Explain observed friction and its consequence; do not penali
 ## Exercise the primary path and states
 
 - Use sanctioned fixtures, test accounts, or a local environment where required. Do not send real messages, spend money, delete records, or make irreversible submissions without authority.
-- Exercise the affected path from entry to meaningful outcome, not just the first click.
+- Exercise the affected path from entry to its task-specific outcome, not just a click or selected styling. When variant preview is part of the existing or requested behavior, its control must show the selected variant.
 
 Check state transitions as well as static appearance:
 - Initial, first-use, and empty states explain what is available and how to proceed.

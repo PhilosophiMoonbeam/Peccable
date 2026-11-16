@@ -119,7 +119,7 @@ The [final V3 recovery report](results/pilot-v3-final-recovery.md) records compl
 
 `run-pilot.mjs` separately exports `prepareDevelopment(options)` and `runDevelopment({manifest, acceptFreeze})`. These are optional programmatic owner interfaces, not new CLI commands or installed resources. The ordinary pilot CLI, its defaults, and its 63-task adoption procedure remain unchanged.
 
-Preparation fixes V3-01, V3-04, and V3-07 to two fresh candidate-only authors each. Its preset is low thinking, 900 seconds, 80 turns, 200 tool calls, a requested 16000-output-token hint, a hard 24 MiB trace ceiling, concurrency three, and zero author retries. This is exposed-case development, not a no-skill comparison or adoption experiment. The canonical candidate payload remains byte-identical to the recorded baseline; this maintenance work adds no optional installed resources.
+Preparation fixes V3-01, V3-04, and V3-07 to two fresh candidate-only authors each. Its preset is low thinking, 900 seconds, 80 turns, 200 tool calls, a requested 16000-output-token hint, a hard 24 MiB trace ceiling, concurrency three, and zero author retries. This is exposed-case development, not a no-skill comparison or adoption experiment. During the 2026-11-01 maintenance/development work, the canonical candidate payload remained byte-identical to the recorded baseline and no optional installed resources were added. Those observations do not validate later guidance revisions.
 
 Use an owner-controlled Bun module to call the real exports; supply actual absolute paths rather than a cache-specific driver:
 

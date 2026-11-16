@@ -44,15 +44,16 @@ Short travel and frequent actions usually need shorter durations. Entrances can 
 - Update real state immediately; animation presents it, not a separate source of truth.
 - Rapid clicks, reversal, navigation, and dismissal must interrupt cleanly without leaving a half-open or unclickable interface.
 - Do not move focus unexpectedly, animate a focused control away, or leave visually hidden controls reachable.
-- Keep content visible and usable before scripts initialize and when effects are unsupported.
+- Keep content visible and usable before scripts initialize and when effects are unsupported. Late initialization must not hide readable content.
 - Use the existing stack's smallest adequate mechanism; an isolated transition rarely justifies a new dependency.
 - Give each animated property one owner; independent engines can coexist when they do not compete for the same styles or lifecycle.
 - Scope animation targets to the owning surface; cancel timelines, observers, and frame callbacks and restore temporary styles on teardown or preference changes. Reinitialization must not duplicate effects.
+- When splitting or duplicating text for animation, preserve one complete accessible reading and the names and keyboard behavior of embedded controls; hide only decorative fragments. Restore original nodes after temporary splitting so font or size changes can reflow naturally.
 - For scroll-linked effects, derive travel from actual container/content geometry and refresh when it changes; when pinning or effects are disabled or unsupported, preserve reading order and reachable content in normal flow.
 - Avoid reflexively animating layout-driving properties. Transforms can move elements without relaying out siblings, but expanding content still needs an honest final layout.
 - Bound expensive filters, shadows, canvas, and shader effects to a purposeful region and lifetime.
 - Apply `will-change` only where a known animation benefits; permanently promoting many elements consumes memory without proving smoothness.
-- Stop nonessential loops when hidden or offscreen; unseen flourishes should not consume attention or device resources.
+- Stop nonessential loops when hidden or offscreen; unseen flourishes should not consume attention or device resources. Preserve a user pause on the current surface when focus, visibility, or motion preferences change; resume only on explicit request.
 
 ## Reduced motion
 
@@ -72,7 +73,8 @@ Make content visible by default. Opt into nonessential movement only where the p
 This example enhances an existing confirmation; it must not manufacture success before an operation completes. The reduced-motion path shows final state immediately, without requiring a script, animation event, or entrance sequence to reveal content.
 
 - For elaborate effects, replace large spatial travel, parallax, or zoom with immediate updates or restrained nonspatial feedback.
-- Preserve meaningful confirmation and orientation; reduced motion does not justify erasing status changes.
+- Preserve meaningful confirmation and orientation; reduced motion does not justify erasing status changes, including partial and error states.
+- A static sequence must retain every meaningful step and its associated content, not only the last frame. Omit playback controls when nothing can move; paused-but-resumable content is not a static variant.
 - Avoid blanket near-zero animation-duration overrides that can break sequencing or unrelated functional controls.
 - Provide pause, stop, or hide controls for nonessential automatically moving content where required; respect autoplay, sound consent, and mute preferences.
 - Avoid flashing effects and do not hijack ordinary scrolling to stage a sequence.
@@ -86,7 +88,7 @@ A milestone may justify celebration; an ordinary save should simply feel certain
 
 ## Concrete checks
 
-- Name the job of each changed animation and the state or relationship it clarifies.
+- Name each changed animation's purpose, trigger, final state, and replay or reversal behavior.
 - Exercise repeated activation, reversal, dismissal, and navigation during the transition; inspect both final state and focus.
 - Inspect keyboard and touch paths as well as pointer hover; a screenshot cannot prove interruption or interaction behavior.
 - Compare normal and reduced-motion states, including initialization failure: content and essential feedback must remain available.

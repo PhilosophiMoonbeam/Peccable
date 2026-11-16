@@ -56,6 +56,7 @@ Read when consolidating repeated UI, extracting tokens or components, extending 
 - Support class/style extension through existing conventions without requiring routine overrides of internals.
 - Avoid exposing internal implementation details as an API when consumers need only a semantic option.
 - Preserve stable identity and state when lists reorder or layouts change; reused UI must not unexpectedly discard user work.
+- Keep instance-owned IDs unique across repeated components and update their references together, including SVG resources and label/error associations; deliberate shared definitions remain valid.
 
 ## Migrate consumers without parallel conventions
 

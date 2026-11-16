@@ -8,10 +8,12 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Separate network wait, main-thread work, rendering, image decoding, and application-state causes.
 - Use the project's available profiling and measurement tools; no particular binary, hosted service, or agent is a prerequisite.
 - Record route/state, build mode, device or emulation, browser/runtime, network, cache warmth, and data size.
+- Disclose workload substitutions in measurements. Software rendering or disabled effects do not establish the cost of the corresponding hardware-accelerated workload on user devices.
 - Compare before and after under equivalent conditions; repeat noisy samples enough to separate changes from variance.
 - Prioritize user-experienced delay over micro-optimizations that cannot affect the task.
 - When execution is unavailable or unauthorized, identify likely source-level costs and report hypotheses, not measured improvements.
 - Use representative slower hardware and constrained connections when possible; desktop width does not imply a fast device.
+- Set loading and interaction budgets from product requirements and representative baseline measurements; choose relevant timing, payload, or resource limits rather than copying another site's fixed caps. Without execution, budgets are proposals, not achieved results.
 
 ## Distinguish metrics
 
@@ -64,6 +66,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Prefer transform/opacity for ordinary movement when suitable; compositor-friendly properties do not guarantee cheap animation.
 - Use layer promotion hints sparingly and only while useful; excessive layers consume memory.
 - Limit layout/shared-element animation measurements to transitions that need them; static content should not incur continuous motion bookkeeping.
+- For a genuinely still decorative canvas, consider retaining its image and releasing the live renderer. Refresh it when content, dimensions, pixel density, or theme changes; measure retained-image memory and redraw cost rather than assuming savings.
 - Use containment or deferred offscreen rendering only where focus, sizing, search, printing, and accessible content remain intact.
 
 ## Data, lists, and network
@@ -92,6 +95,7 @@ Use for slow loading, delayed responses, poor scrolling, unexpected shifts, or w
 - Compare equivalent cold and warm loads, interaction traces, large datasets, and constrained-network paths as relevant.
 - Check that the complete task still works: keyboard, focus, screen readers, error/retry, search, and navigation.
 - Check for regressions in font coverage, layout stability, image quality, full text, and native text scaling.
+- Observe deferred media, effects, and reveals when needed; a loaded module or reserved blank space is not proof they rendered. Preserve truthful fallback or error states.
 - Report observed before/after numbers, conditions, and the responsible change; distinguish perceived feedback from actual latency.
 - Name unmeasured areas, especially field percentiles, target hardware, native gestures, and production network behavior.
 - Stop optimizing when evidence no longer identifies a user-relevant bottleneck within scope.

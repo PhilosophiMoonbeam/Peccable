@@ -1,6 +1,6 @@
 # Content and localization
 
-Read when improving labels, navigation, forms, errors, onboarding, long text, or translated interfaces. Copy should simplify the next decision without changing product truth.
+Read when improving labels, navigation, forms, errors, onboarding, long text, translated interfaces, or the meaning of media, icons, and diagrams. Copy should simplify the next decision without changing product truth.
 
 ## Meaning before brevity
 
@@ -12,7 +12,7 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, or
 - Use the project's existing glossary, or record necessary terminology in existing documentation when useful.
 - Keep voice consistent while adapting tone to risk, urgency, success, or frustration.
 - Cut words without losing consequences, eligibility, useful instructions, or recovery.
-- Remove ornamental marketing filler, not legal meaning or information needed for informed decisions.
+- Replace ornamental marketing filler with a supported fact or mechanism, or remove it; preserve legal meaning and information needed for informed decisions.
 
 ## Truth and authority
 
@@ -34,6 +34,12 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, or
 - For production media, describe the subject, focal region, crop or aspect ratio, palette, and clear space needed for live content. Keep imagery, text, and controls as separate implementation layers.
 - Choose an output size that keeps required detail legible at its intended viewing scale; a compressed overview is not a reliable source for small labels or component measurements.
 - Inspect drafts for hierarchy, content fidelity, and fit with the established direction. A draft is not evidence of runtime behavior; reuse an accepted comp rather than regenerating it for variety.
+
+## Visual meaning
+
+- Keep the depicted product, variant, material, and state consistent with nearby copy and selected controls; identify unavailable views instead of showing a different option as selected.
+- Distinguish brand marks, file-type icons, and interface actions. Use a clear text label when the available mark would misidentify the item.
+- Use a diagram to explain relationships, direction, or sequence; show the relevant interface when the question is what the user sees or does.
 
 ## Actions, navigation, and help
 

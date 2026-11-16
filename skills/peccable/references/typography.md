@@ -47,6 +47,7 @@ Restraint means fewer competing weights and clearer spacing, not equal sizes for
 
 - Size expressive headings to available space with bounded fluid values when appropriate; keep frequently scanned product roles predictable.
 - Let meaningful phrases wrap naturally. Balanced headings can help, but forced line breaks often fail in translation or narrower containers.
+- For text that changes in place, reserve space for known alternatives so nearby content does not jump. Recheck with loaded fonts, localization, and narrow containers; allow reflow instead of locking lines that no longer fit.
 - Avoid fixed-height text boxes unless overflow behavior is explicitly designed.
 - Truncation must not hide essential actions, errors, or distinctions between records. Supply a reachable full value when abbreviation is justified.
 - Preserve browser zoom, user font settings, and platform text scaling. Layouts that work only at the designer's text size are incomplete.

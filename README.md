@@ -73,7 +73,7 @@ Iteration is bounded by the task's acceptance criteria and available evidence, r
 | [Layout](skills/peccable/references/layout.md) | Composition, spacing, density, and responsive structure |
 | [Motion](skills/peccable/references/motion.md) | Purposeful animation and reduced-motion behavior |
 | [Interaction](skills/peccable/references/interaction.md) | Controls, navigation, feedback, and recovery |
-| [Content](skills/peccable/references/content.md) | Clear interface copy and truthful product communication |
+| [Content](skills/peccable/references/content.md) | Clear interface copy, truthful product communication, and the meaning of media, icons, and diagrams |
 | [Data interfaces](skills/peccable/references/data-interfaces.md) | Decision-led data scope, truthful encoding, aggregation, and real actions |
 | [Systems](skills/peccable/references/systems.md) | Existing identity, reusable components, and tokens |
 | [Performance](skills/peccable/references/performance.md) | Efficient frontend implementation and rendering |
@@ -146,7 +146,7 @@ The [final V3 evidence recovery](evals/results/pilot-v3-final-recovery.md) fixes
 
 Current maintenance contracts use native Chrome AX names/roles with provenance, author-accessible 320-pixel computed-2x `text200`, a hard trace-write ceiling initialized before startup events, exact unique assertion/context coverage, audited planning scope, and category-correct task outcomes. The optional [bounded development API](evals/README.md#bounded-exposed-case-development-api) fixes three exposed cases to two candidate-only authors each, with a separate 24 MiB/900-second preset and zero author retries; ordinary pilot CLI defaults are unchanged. Source-bound native/calibration evidence and an accepted manifest SHA gate execution before authentication. Atomic final envelopes and sealed partial attempts support integrity-checked resume, not recovery of lost events or broad assistive-technology/egress certification.
 
-The [assertion-refinement report](evals/results/assertion-refinement-2026-11-01.md) is the separate publication location for actual controls and development observations; this description claims no unexecuted result. Canonical payload bytes remain unchanged and no optional installed resources are justified. Exposed-case native `measured_pass` is not whole-task success, a no-skill comparison, token savings, or adoption; independent manual review and the original adoption rule still apply.
+The [assertion-refinement report](evals/results/assertion-refinement-2026-11-01.md) is the separate publication location for actual controls and development observations; this description claims no unexecuted result. Canonical payload bytes remained unchanged during that 2026-11-01 maintenance/development work, which justified no optional installed resources. Those observations do not validate later guidance revisions. Exposed-case native `measured_pass` is not whole-task success, a no-skill comparison, token savings, or adoption; independent manual review and the original adoption rule still apply.
 
 Pass an absolute skill-directory path to the pinned reference validator: a literal `.` is interpreted with an empty directory name and fails its name-matching check. The copy installation above creates an exclusive destination, copies only the complete shipping directory, and refuses existing destinations without changing their contents.
 

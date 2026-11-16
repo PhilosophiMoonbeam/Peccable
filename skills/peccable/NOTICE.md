@@ -52,7 +52,7 @@ SOFTWARE.
 The focused references include guidance distilled and adapted from Leonxlnx's Taste Skill collection. Peccable retains applicable craft, not the collection's mandatory workflows, style restrictions, or tool defaults.
 
 - Original work: https://github.com/Leonxlnx/taste-skill
-- Reviewed revision: https://github.com/Leonxlnx/taste-skill/tree/12af471f627f866411b4bd785b19646d3672784c/skills
+- Reviewed revision: https://github.com/Leonxlnx/taste-skill/tree/f6b76575f949707b4e3c37cd86cb44b0b98643e8/skills/taste-skill
 - Original license: MIT
 
 The applicable upstream MIT license text is reproduced below:
