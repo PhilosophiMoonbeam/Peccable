@@ -46,6 +46,7 @@ A fictional fixture contains 640 invoices in the account; 127 match the active s
 
 - Preserve quantitative meaning in geometry. Bars and area encodings need a truthful baseline; a zero must not become a visible positive stub. A restricted line-chart range may help comparison when its bounds are explicit and do not disguise the change.
 - Keep comparable series on comparable scales, or explicitly disclose differences. Label logarithmic or broken scales; decorative smoothing must not invent peaks, timing, or intermediate measurements.
+- When a changing headline metric needs temporal context for the decision, show available, authoritative recent history and mark the known onset of a relevant change. Do not fabricate history or onset, or require a chart for every metric.
 - Make direction, units, thresholds, and series distinctions readable from labels and marks, not color alone. A rise is not automatically good: increased error rate and increased successful throughput have different implications.
 - When exact values matter, provide a reachable labeled table, list, or equivalent structured alternative with the same units, scope, and important values. A hover-only tooltip or summary sentence is insufficient for auditing individual records.
 - Preserve table relationships through row and column headers, stable object identity, and comparable numeric alignment and precision. Expose the active sort; distinguish sorting the loaded page from sorting the full result. Do not turn a record table into an interactive grid unless cell navigation or editing needs it.

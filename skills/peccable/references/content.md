@@ -13,6 +13,7 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, tr
 - Keep voice consistent while adapting tone to risk, urgency, success, or frustration.
 - Cut words without losing consequences, eligibility, useful instructions, or recovery.
 - Replace ornamental marketing filler with a supported fact or mechanism, or remove it; preserve legal meaning and information needed for informed decisions.
+- Edit copy in its authoritative source, not captured DOM markup. Preserve inline markup, interpolation, typed data, and exact authorized wording, including meaningful casing, punctuation, spacing, and leading-zero display. Encode literal text safely for the source format and update clearly coupled lookups only within the authorized scope; do not stringify numeric models to reproduce displayed text or guess unrelated data changes.
 
 ## Truth and authority
 
@@ -75,6 +76,7 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, tr
 - Failure text offers a safe retry or available alternative; do not misrepresent failure as no data.
 - Success text briefly confirms the completed outcome; add consequences only when they affect the next action.
 - Onboarding states the useful outcome, asks only necessary setup questions, and avoids extensive feature descriptions.
+- Respect onboarding completion and dismissals. If persisting them, use existing identity/storage conventions and the relevant account, flow, and applicable version scope so shared-browser use does not hide another account's guidance; avoid unnecessary replays or product-wide resets.
 - Time commitments, templates, and help destinations must match actual product offerings.
 
 ## Long text and realistic data
@@ -92,12 +94,14 @@ Read when improving labels, navigation, forms, errors, onboarding, long text, tr
 
 - Follow project localization conventions; write complete messages, not concatenated translated fragments.
 - Structure variables for translator reordering; use locale-aware plural rules, not English suffix logic.
-- Format dates, times, numbers, currencies, and lists with locale-aware facilities already in the stack.
+- Format dates, times, numbers, currencies, and lists with locale-aware facilities already in the stack; honor the supported locale and calendar selection rather than inferring it solely from language, identity, or region.
 - Preserve actual currency and time-zone meaning; formatting must not silently convert business facts.
 - Allow substantial translation expansion and validate real target languages; fixed percentages are only initial stress cases.
 - Support Unicode, accented names, CJK text, emoji, and script-appropriate fallback fonts; never assume one code unit per character.
-- Use logical spacing/alignment and a deliberate direction context for RTL layouts and mixed-direction user content.
-- Mirror directional navigation where appropriate, not every icon, logo, media control, chart, or number.
+- For supported Arabic-script input, preserve meaningful joining controls such as Zero-Width Non-Joiner (U+200C). Match keyboard variants such as Arabic/Persian Yeh and Kaf only as the locale, task, and field's search or validation contract permits; retain the stored original without blanket normalization or weakened security validation.
+- Use logical spacing/alignment and a deliberate direction context for RTL layouts and mixed-direction user content; inspect declared or inherited direction because `lang` alone does not set it.
+- Inspect physical properties in context rather than treating them as defects: `left: 50%` with `translateX(-50%)` centers in either direction. Preserve working geometry and clear conflicting base offsets or margins in direction-specific overrides.
+- Mirror directional navigation where appropriate, not every icon, logo, media control, chart, or number; inspect assets first because they may already be correctly oriented.
 - Keep email addresses, code, identifiers, and embedded opposite-direction text legible through suitable direction isolation.
 - Do not embed interface text in imagery or add decorative spaces that damage shaping, translation, or reading order.
 

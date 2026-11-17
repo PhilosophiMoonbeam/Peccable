@@ -22,6 +22,7 @@ Working and reading surfaces usually need fast feedback and continuity, not page
 - Bounded shadow, blur, or color changes can clarify depth, attention, or material behavior.
 - Springs can communicate manipulation or physical response; bounce is not a universal sign of delight.
 - Use hover motion to help users recognize or operate a target; moving inert imagery can falsely imply actionability.
+- Keep hover hit areas stable and avoid moving or covering neighboring targets; animating a child surface is one option, not a required structure or effect. Delay optional preview entry until the pointer settles, without applying that entry delay to dismissal. Preserve access to hovered or focused preview content, keyboard and touch alternatives, task-appropriate dismissal, focus restoration, and data-loss guards.
 - Sibling stagger can show a list arriving as a list; cap total delay and keep items usable without waiting.
 
 Prefer one coherent material idea with quiet supporting states to stacked effects. For local refinements, improve the confusing transition rather than introduce a new motion system throughout.
@@ -90,7 +91,8 @@ A milestone may justify celebration; an ordinary save should simply feel certain
 
 - Name each changed animation's purpose, trigger, final state, and replay or reversal behavior.
 - Exercise repeated activation, reversal, dismissal, and navigation during the transition; inspect both final state and focus.
-- Inspect keyboard and touch paths as well as pointer hover; a screenshot cannot prove interruption or interaction behavior.
-- Compare normal and reduced-motion states, including initialization failure: content and essential feedback must remain available.
+- Inspect the whole changed transition region before activation, through intermediate frames, and at rest, including painted layers rather than only the new DOM. Check for unintended entrance replays, content or shadow jumps, lingering layers, clipping, stacking changes, brightness dips or spikes, and lost legibility. Intentional state, material, or brightness changes remain valid; smooth geometry or complementary opacity alone does not prove correct compositing.
+- Inspect keyboard and touch paths as well as pointer hover; sampled paint cannot prove interruption, accessibility, interaction behavior, frame-rate performance, or unseen intervals. Missing or wrong-state captures are unavailable evidence, not a pass; state unavailable runtime checks.
+- Compare matching normal and reduced-motion interactions and states, including initialization failure: content and essential feedback must remain available. Shorter duration or faster playback alone does not establish reduced spatial movement; compare displacement.
 - Inspect performance on the relevant device class; transform-only code does not by itself prove smooth rendering.
 - Confirm frequent use remains quick and that the interface still makes sense with the flourish absent.

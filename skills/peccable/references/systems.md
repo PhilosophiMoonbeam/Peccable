@@ -40,6 +40,7 @@ Read when consolidating repeated UI, extracting tokens or components, extending 
 - Resolve light/dark and contrast-sensitive roles consistently; a dark theme is not a blanket inversion.
 - Native tokens map to platform semantic colors, text scaling, and materials instead of overriding OS behavior.
 - Do not tokenize every literal. Centralize values when shared meaning or coordinated change warrants it.
+- Resolve token values in the consuming application's effective theme and state, including shared definitions and intentional overrides. Matching names, nearest files, or first declarations do not establish rendered values; scan exclusions do not exclude styles from the cascade. When rendering is unavailable, trace source resolution and state the uncertainty.
 - Maintain one authoritative definition per role; prevent drift across code, theme configuration, and descriptive prose.
 
 ## Include behavior in components
@@ -61,7 +62,7 @@ Read when consolidating repeated UI, extracting tokens or components, extending 
 ## Migrate consumers without parallel conventions
 
 - Define the token/component contract before replacing callers; include every variant currently needed.
-- Replace affected consumers with the shared implementation; preserve task, content, and interaction outcomes.
+- Replace affected consumers with the shared implementation; preserve task, content, interaction outcomes, and nonvisual contracts, including submitted field names and values, form actions and methods, handler bindings, script lookups, and test selectors. Visual parity alone does not establish preserved behavior.
 - Migrate every consumer of an obsolete API within the authorized cutover; leave no competing conventions.
 - Remove replaced local styles, duplicate components, unused variants, dead imports, and examples made obsolete by the change.
 - Preserve unrelated project work; do not turn a scoped refinement into a whole-product rewrite.

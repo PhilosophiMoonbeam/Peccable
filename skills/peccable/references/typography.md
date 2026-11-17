@@ -38,6 +38,7 @@ Restraint means fewer competing weights and clearer spacing, not equal sizes for
 - Display headings can use tighter leading, but accents, descenders, and wrapped lines must not collide or clip. Inspect italic overhangs at wrapper edges too; allow clearance for the actual glyphs rather than relying on one line-height ratio.
 - Adjust tracking for the face and role. Tighten large display text only while letter shapes remain clear; do not copy one negative tracking value across the interface.
 - Small uppercase labels may need more tracking than mixed-case text. Tune the actual face and language without making labels harder to scan or wrap.
+- If trimming a control label's line box, apply trimming to the text-bearing element, not a flex, grid, or table container through which it does not propagate. Inspect real mixed-case labels at supported sizes and languages; centered cap metrics do not guarantee optical centering. Preserve text scaling and clearance for accents, descenders, and required scripts.
 - Reassess apparent weight and spacing on dark surfaces. Slightly more weight or leading may help; automatic compensation can make a robust face clumsy.
 - Use paragraph spacing or indentation as the primary paragraph signal. Applying both often overstates the boundary.
 - Give headings more separation from the preceding section than from the content they introduce.
@@ -46,7 +47,7 @@ Restraint means fewer competing weights and clearer spacing, not equal sizes for
 ## Make text resilient
 
 - Size expressive headings to available space with bounded fluid values when appropriate; keep frequently scanned product roles predictable.
-- Let meaningful phrases wrap naturally. Balanced headings can help, but forced line breaks often fail in translation or narrower containers.
+- Let meaningful phrases wrap naturally; preserve deliberate short lines that carry emphasis. Balanced headings are optional and must leave usable default wrapping. Use manual breaks sparingly between phrases: forced breaks often fail in translation or narrower containers, so recheck supported widths, languages, and enlarged text.
 - For text that changes in place, reserve space for known alternatives so nearby content does not jump. Recheck with loaded fonts, localization, and narrow containers; allow reflow instead of locking lines that no longer fit.
 - Avoid fixed-height text boxes unless overflow behavior is explicitly designed.
 - Truncation must not hide essential actions, errors, or distinctions between records. Supply a reachable full value when abbreviation is justified.
@@ -71,7 +72,7 @@ body { font-family: "Product Sans", system-ui, sans-serif; }
 
 - Match the path and weight range to the actual asset; declare each static font's actual weight.
 - `swap` keeps fallback text available during loading. `optional` can avoid a late swap when retaining the fallback is acceptable; choose deliberately.
-- When reflow is disruptive, match fallback metrics with measured `size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override` values on a fallback face. Values depend on the chosen pair; never borrow percentages from an unrelated font example.
+- When reflow is disruptive, match fallback metrics with measured `size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override` values on a fallback face. `size-adjust` scales glyphs; ascent, descent, and line-gap overrides do not scale outlines but can affect the baseline and normal line height. For cap-trimmed fallbacks, measure visible glyph size too. Values depend on the chosen pair; never borrow percentages from an unrelated font example.
 - Preload only a critical font needed immediately; loading every weight competes with other content.
 
 ## Inspect evidence

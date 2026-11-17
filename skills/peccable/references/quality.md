@@ -19,6 +19,10 @@ Distinguish evidence types:
 
 Qualify measurements inferred only from source. An unresolved CSS custom property leaves the affected measurement unknown; do not substitute a guessed value and report it as a measurement or defect.
 
+A clean scan covers only checks executed on the named target; name skipped or unsupported checks. When comparing runs, disclose material changes to targets, contexts, rules, and exclusions. Fewer findings under reduced coverage do not prove a fix.
+
+Separate a newly observed issue from an introduced regression. Without relevant before-state evidence, leave attribution unknown. Unknown origin neither proves a regression nor authorizes unrelated repairs; assess in-scope blockers on their impact.
+
 Existing screenshots or visual-regression fixtures can establish incumbent appearance when their route, state, theme, and freshness are known. Compare them with current components, assets, and tokens; stale captures cannot resolve conflicts with the implementation.
 
 When the assignment designates a supplied or accepted design comp as the visual target, treat it as fixed until new user direction authorizes a changed target. A mood image, inspiration, or evidence of an incumbent interface does not become a mandated target merely because it was supplied. Preserve the designated reference as supplied; correct the build or assets rather than edit or regenerate the reference to make a mismatch pass. Carry out authorized work, including authorized target changes, without an extra approval step or introducing a hidden target copy or new state. A comp expresses intent, not proof of a matching running interface.
@@ -43,6 +47,7 @@ Use real content, loaded fonts/assets, and representative data. Inspect the open
 Before trusting inspection or a capture:
 - Confirm the route/screen, viewport, theme, and state are the intended ones, and that the intended interface is displayed rather than an incidental bot challenge, login screen, network failure, or server error. Requested error or denied states remain legitimate inspection targets.
 - If the intended interface is unavailable, report the missing observation, not a clean result.
+- Bind findings to the element and state actually observed, not just a selector. If content moves, disappears, or is replaced before confirmation, preserve the original observation separately from the unverified current result; do not transfer evidence to a replacement or infer a fix from disappearance. Reobserve only when tools and assignment authority permit.
 - Allow loading and entrance motion to settle; separately inspect intentional loading or motion states when relevant.
 - Open the capture and check for blank regions, missing assets, clipping, wrong scroll position, and mislabeled screenshots.
 - Verify required assets appear in their intended roles; source references or concealed pixels do not establish rendered presence.

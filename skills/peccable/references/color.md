@@ -53,6 +53,7 @@ Perceptual lightness is not a WCAG contrast ratio; compute the rendered foregrou
 - Design dark-theme surfaces, elevation, text, and accents together rather than mechanically inverting the light theme.
 - Preserve relative action, selection, and content emphasis across themes while keeping brand colors recognizable; identical token values are not the goal.
 - Inspect selected, disabled, error, hover, pressed, and focus states in every supported theme.
+- In asset or design-review tools, theme surrounding controls independently of the displayed artifact. Preserve the artifact's colors and intended preview background unless changing them is part of the task; authorized product themes and deliberate alternate-background inspections of transparency remain valid.
 - Prefer explicit foreground/surface pairs when stacked translucent layers make their final contrast hard to predict.
 - Give translucent surfaces a legible solid-fill fallback when blur is unavailable or reduced transparency is requested. Blur alone cannot guarantee contrast against changing content.
 - For sequential data, make ordering legible through lightness; for diverging data, make the meaningful midpoint clear.
@@ -77,7 +78,7 @@ At standard CSS units, large-text thresholds are 24px regular or about 18.67px b
 
 ## Inspect evidence
 
-- List critical foreground/background pairs, measured composited contrast ratios, and states; do not assert accessibility from appearance or reject colors by gray-named classes, shade labels, or lightness alone.
+- List critical foreground/background pairs, measured composited contrast ratios, and states; do not assert accessibility from appearance or reject colors by gray-named classes, shade labels, or lightness alone. If images, layers, filters, or unavailable rendered states prevent trustworthy measurement, identify the actual pair and state as unverified. No warning is not a pass, and a ratio against an obscured fallback surface is not rendered evidence; uncertainty does not waive a known measured failure.
 - For text over photography or gradients, inspect the weakest area behind the text and provide a stable backing if needed.
 - In grayscale or with common color-vision deficiencies simulated, confirm action, selection, status, and data meaning remain recoverable.
 - Inspect empty, dense, error, and loading states for accents that change meaning or overpower the intended task.

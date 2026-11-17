@@ -6,6 +6,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Changed
 
+- Adapted compatible Impeccable guidance in the existing focused references: optical and resilient text, composited color and preview themes, stable hover and painted transitions, account-aware onboarding, source-safe copy, locale and direction semantics, temporal metric context, integration contracts, token scope, and evidence attribution. Kept the portable entrypoint, reference set, notices, installation model, and runtime unchanged.
 - Refreshed compatible Taste guidance in seven existing references with 20 focused craft claims: information-bearing imagery and visual meaning, stable text layout, motion purpose/pause/static/accessibility behavior, supported copy, component identity, scoped performance evidence, and task-outcome/build/capture inspection. Updated the Content load trigger/index and reviewed-source pin without adding references, resources, runtime dependencies, or installation changes. Source comparison and structural checks do not establish design efficacy, context savings, or adoption.
 - Split repository instructions into always-needed rules in `AGENTS.md` and directly indexed, task-triggered procedures in `docs/skill-maintenance.md` and `docs/verification.md`. Preserved contribution, packaging, upstream, verification, and evaluation requirements; the lifecycle block and installed payload are unchanged. Task-specific sections are required before the relevant action, not loaded for every task.
 - Evolved the payload from eleven to twelve focused references with decision-led data-interface guidance: scoped authoritative data, truthful quantitative encoding, units and time windows, visible versus global counts, freshness and state distinctions, aggregation and rounding, and real actions. Staffing slack and balanced energy flows provide domain examples without prescribing styles or APIs.
@@ -56,6 +57,27 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 
 ### Upstream review
 
+#### Current review: 2a26f1c5 through d41d9860
+
+- Compared [2a26f1c50b9c4f86d10c0fec8f74cf523a2236e7...d41d9860b0094dcb68030657da63461212835aaa](https://github.com/pbakaus/impeccable/compare/2a26f1c50b9c4f86d10c0fec8f74cf523a2236e7...d41d9860b0094dcb68030657da63461212835aaa), fetched 2026-11-16: 908 commits and 2,428 net tracked-path changes. The observed fork divergence of 1,337 upstream commits is not the new review interval; the single-entry ledger supplied the baseline.
+- Judged all 2,424 text units under a rubric frozen before bulk loading, with no final item errors. Deterministically excluded two dependency locks and two binary files. Advisory routes, not adoption decisions:
+
+| Route | Units |
+| --- | ---: |
+| Craft | 599 |
+| Mixed | 812 |
+| Autonomy | 218 |
+| Maintenance | 791 |
+| Incompatible | 0 |
+| Other | 4 |
+
+- Investigated all 2,030 escalated paths, including all 180 capped file units, through 1,358 exact normalized-patch groups. Canonical authored guidance was read fully; runtime, test, generated, and catalog material was inspected at recorded mechanism, structure, or metadata depth. The other 394 text units were not manually scanned. This is not an every-byte runtime, security, intermediate-commit, or behavior audit.
+- Resolved 41 explicit proposal or reference decisions: selected 17 compatible clarifications, retained 22 as already covered or consolidated, and excluded two architecture or unsupported-resource proposals. Cross-domain review omitted duplicate subject-visibility and reference-comparison instructions already present elsewhere. Source evidence, exact targets, qualifications, failures, and review limits are retained in Beads root `Peccable-dmp`.
+- Omitted runtime and provider machinery, hooks, hosted gates, required documents or hidden state, approval rituals, fixed aesthetic or numeric vetoes, compulsory comp or capture pipelines, provider-specific rendition priors, catalogs, and unsupported efficacy or resource claims. Added no optional resources or dependencies. Reference text grew by 5,792 UTF-8 bytes; the entrypoint did not grow. These are static file measurements, not actual loaded context or token savings.
+- The final payload passed portable resource integrity, all 30 maintenance regressions, and the existing official specification validator pinned at `69ef37e9424c0a7ea9dd2293b559e43ec8176379`. The exact documented copy created only the configured `peccable` destination, preserved all 15 payload files, and refused an existing destination without mutation; installed integrity and pinned validation passed outside the checkout. The disposable fixture was removed. Source and structural evidence establish neither design efficacy, automatic activation, comparative benefit, nor outcome-pilot adoption; historical trials and their conclusions remain unchanged.
+
+#### Review: e103efe7 through ca6ca49f
+
 - Reviewed `pbakaus/impeccable` from [e103efe7](https://github.com/pbakaus/impeccable/commit/e103efe779e2dd01274dabae83531fef00bf2563) through [ca6ca49f](https://github.com/pbakaus/impeccable/commit/ca6ca49f6a74e2e23adb955fb3801f4aa6426f3d), fetched 2026-10-06: [full baseline-to-tip comparison](https://github.com/pbakaus/impeccable/compare/e103efe779e2dd01274dabae83531fef00bf2563...ca6ca49f6a74e2e23adb955fb3801f4aa6426f3d). Adapted transferable guidance to autonomous, assignment-bounded work rather than importing upstream orchestration.
 - Adapted contextual direction inspiration: draw from audience-relevant visual traditions without copying motifs or fragmenting the design system. Removed the initially imported emblem-specific restrictions. Source for retained guidance: [981031de](https://github.com/pbakaus/impeccable/commit/981031de).
 - Added optional visual prompt composition in visitor reading order, led by exact headline/action and one dominant move. Show the actual surface and inspect generated drafts; prompts are not runnable evidence, and accepted comps are reused. Sources: [f3132ffe](https://github.com/pbakaus/impeccable/commit/f3132ffe), [b89311dc](https://github.com/pbakaus/impeccable/commit/b89311dc).
@@ -65,7 +87,7 @@ Peccable is a deliberately divergent fork replacing upstream Impeccable's comman
 - Rejected mandatory choices and approval rituals, fixed candidate counts, roll catalogs/services, hidden state, required product/design documents, and hosted lifecycle gates. They replace assignment-bounded judgment with workshops or external prerequisites.
 - Excluded engine, hooks, telemetry, provider/runtime distributions, installation changes, parser/source-rewriting internals, browser process controls, generated bundles, dependencies, and test/corpus artifacts. Rejected universal aesthetic bans, numeric authority overrides, mandatory comp generation, fixed iteration caps, and forced binary/raster asset workflows; retain contextual judgment, existing identity, and evidence-based acceptance instead.
 
-#### Current review: ca6ca49f through 2a26f1c5
+#### Review: ca6ca49f through 2a26f1c5
 
 - Reviewed all 383 commits in [ca6ca49f6a74e2e23adb955fb3801f4aa6426f3d...2a26f1c50b9c4f86d10c0fec8f74cf523a2236e7](https://github.com/pbakaus/impeccable/compare/ca6ca49f6a74e2e23adb955fb3801f4aa6426f3d...2a26f1c50b9c4f86d10c0fec8f74cf523a2236e7), fetched 2026-10-06. The valid final advisory classification was maintenance 316, craft 42, incompatible 10, mixed 9, autonomy 6, and other 0, with zero errors. These labels describe review candidates, not adoption counts or a full-byte engine/runtime audit.
 - Classification covered canonical upstream `skill/` Markdown and agent TOML, root README/notice/license, and non-runtime documentation Markdown. No commits were excluded; 13,395 runtime, script, provider-replica, test, generated, website, and binary file diffs were deterministically excluded. Of the 383 commits, 343 had no authored guidance diff. There were 34 capped states and 221 escalations: 38 with authored diffs and 183 metadata-only infrastructure false positives. Three read-only evidence reviewers inspected the full capped authored diffs and deduplicated repeated merge diffs against the tip. Two preliminary passes were invalidated for oversized state and then corrected canonical source paths; their counts are not combined with the final pass.
