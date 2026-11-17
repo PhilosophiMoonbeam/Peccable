@@ -13,7 +13,7 @@ The agent infers context from your task, repository, existing documentation, int
 Recommended: install with the [Skills CLI](https://github.com/vercel-labs/skills) using Node.js and npm:
 
 ```sh
-npx skills add PhilosophiMoonbeam/Peccable
+npx skills@latest add https://github.com/PhilosophiMoonbeam/Peccable/tree/main/skills/peccable
 ```
 
 Follow the prompts to choose your agent and installation scope.
